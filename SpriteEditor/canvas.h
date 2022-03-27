@@ -11,7 +11,8 @@ public:
     Canvas(QWidget *parent = nullptr, QImage *I = nullptr );
 
 protected:
-    void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event)
+    Q_DECL_OVERRIDE;
     QImage *I;
 
 signals:

@@ -18,5 +18,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    Canvas *canvas;
 };
 #endif
