@@ -2,7 +2,7 @@
 #include <QPainter>
 
 Canvas::Canvas(QWidget *parent, QImage *I)
-    : QWidget{parent}, I(*I)
+    : QWidget{parent}, I(I)
 {
 
 }
