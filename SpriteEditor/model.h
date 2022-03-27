@@ -5,6 +5,7 @@
 #include <QImage>
 #include <QSize>
 #include <QPainter>
+#include "canvas.h"
 
 class Model : public QObject
 {
@@ -14,7 +15,7 @@ public:
     QSize size = QSize(640,480);
     QImage::Format format = QImage::Format_ARGB32;
     QImage panel = QImage(size, format);
-
+    Canvas canvas;
 
 
 
