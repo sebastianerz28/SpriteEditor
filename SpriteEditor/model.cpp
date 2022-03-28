@@ -4,5 +4,5 @@
 Model::Model(QObject *parent)
     : QObject{parent}
 {
-
+    panel.fill(Qt::red);
 }
