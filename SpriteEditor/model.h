@@ -13,6 +13,7 @@ class Model : public QObject
 
 public:
     explicit Model(QObject *parent = nullptr);
+
     QSize size = QSize(640,480);
     QImage::Format format = QImage::Format_ARGB32;
     QImage panel = QImage(size, format);

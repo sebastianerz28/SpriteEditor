@@ -3,18 +3,21 @@
 
 #include <QWidget>
 #include <QImage>
+#include <QMouseEvent>
+#include <QPainter>
+#include <QPoint>
 
 class Canvas : public QWidget
 {
     Q_OBJECT
 public:
-    Canvas(QWidget *parent = nullptr, QImage *I = nullptr );
-    QImage *I;
+    Canvas(QWidget *parent = nullptr);
 
 protected:
-    void paintEvent(QPaintEvent *event)
-    Q_DECL_OVERRIDE;
-
+    QPainter painter;
+    QPoint mousePos;
+    void paintEvent(QPaintEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 
 signals:
 
