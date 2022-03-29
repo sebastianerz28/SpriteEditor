@@ -13,7 +13,7 @@ void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
       {
           double rad = 1;
           QPointF pt = mouseEvent->scenePos();
-          this->addEllipse(pt.x()-rad, pt.y()-rad, rad*2.0, rad*2.0,QPen(),
+          this->addRect(pt.x()-rad, pt.y()-rad, rad*2.0, rad*2.0,QPen(),
           QBrush(Qt::SolidPattern));
       }
 
