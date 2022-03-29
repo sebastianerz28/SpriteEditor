@@ -18,7 +18,8 @@ protected:
     QPoint mousePos;
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
-
+    QImage image = QPixmap(300,300).toImage();
+    void mouseMoveEvent(QMouseEvent *event);
 signals:
 
 };
