@@ -19,5 +19,6 @@ public:
 private:
     Ui::MainWindow *ui;
     Canvas *canvas;
+    void paintEvent(QPaintEvent *);
 };
 #endif
