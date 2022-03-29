@@ -30,7 +30,7 @@ MainWindow::MainWindow(Model& model,QWidget *parent)
 //    QGridLayout * gridLayout = new QGridLayout(this);
 //    gridLayout->addWidget(c);
 //    this->setLayout(gridLayout);
-    c->setStyleSheet("background-color: black; border:1px solid black");
+//    c->setStyleSheet("background-color: black; border:1px solid black");
 //    c->show();
 
 //    ui->mainCanvas->setPixmap(QPixmap::fromImage(*img));
