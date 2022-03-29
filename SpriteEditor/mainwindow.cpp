@@ -3,18 +3,32 @@
 #include "model.h"
 #include "canvas.h"
 #include <QLabel>
+#include "graphicsscene.h"
+#include <QGraphicsView>
+#include <QGridLayout>
 
 MainWindow::MainWindow(Model& model,QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    QImage *img = &model.panel;
+    QGraphicsView * view = new QGraphicsView(this) ;
     ui->setupUi(this);
-    ui->mainCanvas->setPixmap(QPixmap::fromImage(*img));
 
-    // button connections
-    connect(ui->mainCanvas, SIGNAL(valueChanged(int)),
-    this, SLOT(valuesChanged()));
+    QGridLayout * gridLayout = new QGridLayout(ui->mainCanvas);
+    gridLayout->addWidget(view);
+
+    GraphicsScene *scene = new GraphicsScene(this);
+    view->setScene(scene);
+
+//    QImage *img = &model.panel;
+//    ui->setupUi(this);
+//    ui->mainCanvas->setPixmap(QPixmap::fromImage(*img));
+
+//    // button connections
+//    connect(ui->mainCanvas, SIGNAL(valueChanged(int)),
+//    this, SLOT(valuesChanged()));
+
+
 }
 
 MainWindow::~MainWindow()
