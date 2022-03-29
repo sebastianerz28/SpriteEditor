@@ -24,8 +24,8 @@ MainWindow::MainWindow(Model& model,QWidget *parent)
     QImage *img = &model.panel;
     ui->setupUi(this);
 
-    Canvas *c = new Canvas(this);
-    c->resize(400, 400);
+    Canvas *c = new Canvas(ui->canvasFrame);
+    c->resize(ui->canvasFrame->width(), ui->canvasFrame->height());
 
 //    QGridLayout * gridLayout = new QGridLayout(this);
 //    gridLayout->addWidget(c);
