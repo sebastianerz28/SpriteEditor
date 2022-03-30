@@ -35,6 +35,16 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>420</y>
+       <width>21</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="brushWidget" native="true">
     <property name="geometry">
@@ -77,7 +87,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
       <string>Brush</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="labelButton">
+    <widget class="QPushButton" name="paintButton">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -218,7 +228,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
       <string>Color History</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="colorHist_1">
+    <widget class="QPushButton" name="colorHist1">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -243,7 +253,7 @@ background-color: orange;
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="colorHist_2">
+    <widget class="QPushButton" name="colorHist2">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -267,7 +277,7 @@ background-color: orange;
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="colorHist_3">
+    <widget class="QPushButton" name="colorHist3">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -291,7 +301,7 @@ background-color: orange;
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="colorHist_4">
+    <widget class="QPushButton" name="colorHist4">
      <property name="geometry">
       <rect>
        <x>100</x>
@@ -313,6 +323,26 @@ background-color: orange;
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+    <widget class="QWidget" name="brushIcon" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>21</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QWidget" name="eraserIcon" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>21</width>
+       <height>21</height>
+      </rect>
      </property>
     </widget>
    </widget>
@@ -353,6 +383,16 @@ padding: 0px;
      </property>
      <property name="text">
       <string>Preview</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="previewAnimationBox" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>191</width>
+       <height>181</height>
+      </rect>
      </property>
     </widget>
    </widget>
@@ -401,7 +441,7 @@ padding: 0px;
        <x>30</x>
        <y>70</y>
        <width>141</width>
-       <height>24</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -422,7 +462,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
      <property name="geometry">
       <rect>
        <x>130</x>
-       <y>100</y>
+       <y>110</y>
        <width>44</width>
        <height>25</height>
       </rect>
@@ -434,8 +474,8 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
     <widget class="QLabel" name="frameRateLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>100</y>
+       <x>30</x>
+       <y>110</y>
        <width>91</width>
        <height>21</height>
       </rect>
@@ -451,7 +491,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>30</y>
+       <y>40</y>
        <width>141</width>
        <height>31</height>
       </rect>
@@ -474,6 +514,29 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="plusButton">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>450</y>
+      <width>21</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="previewFrame" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>420</y>
+      <width>141</width>
+      <height>80</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -481,7 +544,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
      <x>0</x>
      <y>0</y>
      <width>1055</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
