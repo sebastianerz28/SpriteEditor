@@ -16,8 +16,14 @@ public:
 protected:
     QPainter painter;
     QPoint mousePos;
+    void drawLineTo(const QPoint &endPoint);
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    QImage image = QPixmap(300,300).toImage();
+    bool drawing = false;
+    bool modified = false;
 
 signals:
 
