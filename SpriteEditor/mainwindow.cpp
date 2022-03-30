@@ -44,8 +44,7 @@ MainWindow::MainWindow(Model& model,QWidget *parent)
 
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow(){
     delete ui;
 }
 
