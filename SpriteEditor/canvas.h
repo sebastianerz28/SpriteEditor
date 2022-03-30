@@ -21,7 +21,7 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
-    QImage image = QPixmap(300,300).toImage();
+    QImage image = QPixmap(621,391).toImage();
     bool drawing = false;
     bool modified = false;
 
