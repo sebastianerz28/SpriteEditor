@@ -19,6 +19,7 @@ public:
     vector<QImage> frames;
     explicit Model(QObject *parent = nullptr);
     int currFrame = 0;
+    int currAnimationFrame = 0;
 public slots:
 
     void addFrame();
@@ -26,10 +27,17 @@ public slots:
     void prevFrame();
     void receiveUpdatedCanvasFrame(QImage&);
     void deleteFrame();
+    void incrementAnimation();
 
 signals:
     void sendNextFrame(QImage &image);
     void sendPreviousFrame(QImage &image);
+    void sendNextAnimationFrame(QImage &image);
+
+private:
+    void emitSendNextAnimationFrame();
+    bool animationStarted = false;
+
 };
 
 #endif // MODEL_H

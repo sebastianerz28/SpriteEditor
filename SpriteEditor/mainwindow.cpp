@@ -112,6 +112,20 @@ MainWindow::MainWindow(Model& model,QWidget *parent)
             &QPushButton::clicked,
             &model,
             &Model::deleteFrame);
+
+    // connect animation frame increment
+    connect(&model,
+            &Model::sendNextAnimationFrame,
+            &model,
+            &Model::incrementAnimation);
+    connect(&model,
+            &Model::sendNextAnimationFrame,
+            this,
+            &MainWindow::drawAnimation);
+}
+
+void MainWindow::drawAnimation(QImage &img){
+    ui->animationLabel->setPixmap(QPixmap::fromImage(img));
 }
 
 MainWindow::~MainWindow(){

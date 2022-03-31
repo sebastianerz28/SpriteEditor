@@ -50,7 +50,7 @@ public:
     QWidget *eraserIcon;
     QWidget *previewWidget;
     QLabel *previewLabel;
-    QWidget *previewAnimationBox;
+    QLabel *animationLabel;
     QWidget *toolsWidget;
     QLabel *toolsLabel;
     QPushButton *deleteFrameButton;
@@ -243,9 +243,9 @@ public:
 "border-style: transparent;\n"
 "padding: 0px;\n"
 "}"));
-        previewAnimationBox = new QWidget(previewWidget);
-        previewAnimationBox->setObjectName(QString::fromUtf8("previewAnimationBox"));
-        previewAnimationBox->setGeometry(QRect(10, 30, 191, 181));
+        animationLabel = new QLabel(previewWidget);
+        animationLabel->setObjectName(QString::fromUtf8("animationLabel"));
+        animationLabel->setGeometry(QRect(10, 30, 191, 181));
         toolsWidget = new QWidget(centralwidget);
         toolsWidget->setObjectName(QString::fromUtf8("toolsWidget"));
         toolsWidget->setGeometry(QRect(820, 260, 211, 151));
@@ -369,6 +369,7 @@ public:
         colorHist3->setText(QString());
         colorHist4->setText(QString());
         previewLabel->setText(QCoreApplication::translate("MainWindow", "Preview", nullptr));
+        animationLabel->setText(QString());
         toolsLabel->setText(QCoreApplication::translate("MainWindow", "Tools:", nullptr));
         deleteFrameButton->setText(QCoreApplication::translate("MainWindow", "Delete Frame", nullptr));
         frameRateLabel->setText(QCoreApplication::translate("MainWindow", "Frame Rate:", nullptr));

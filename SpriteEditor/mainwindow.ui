@@ -385,7 +385,7 @@ padding: 0px;
       <string>Preview</string>
      </property>
     </widget>
-    <widget class="QWidget" name="previewAnimationBox" native="true">
+    <widget class="QLabel" name="animationLabel">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -393,6 +393,9 @@ padding: 0px;
        <width>191</width>
        <height>181</height>
       </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>

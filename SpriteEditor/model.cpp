@@ -1,6 +1,7 @@
 #include "model.h"
 #include "canvas.h"
 #include <QDebug>
+#include <QTimer>
 
 Model::Model(QObject *parent)
     : QObject{parent}
@@ -10,6 +11,10 @@ Model::Model(QObject *parent)
 
 void Model::addFrame(){
     frames.push_back(QPixmap(400, 400).toImage());
+    if(!animationStarted){
+        animationStarted = true;
+        emit sendNextAnimationFrame(frames.at(currAnimationFrame));
+    }
 
     qDebug() << "frame added";
     qDebug() << frames.size();
@@ -39,4 +44,14 @@ void Model::deleteFrame(){
         frames.erase(frames.begin()+currFrame);
     }
 
+}
+
+void Model::emitSendNextAnimationFrame(){
+    emit sendNextAnimationFrame(frames.at(currAnimationFrame));
+    qDebug() << "curr frame is: "<< currAnimationFrame;
+}
+
+void Model::incrementAnimation(){
+    QTimer::singleShot(100, this, &Model::emitSendNextAnimationFrame);
+    currAnimationFrame = (currAnimationFrame+1) % frames.size();
 }
