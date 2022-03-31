@@ -22,17 +22,30 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Model_t {
-    const uint offsetsAndSize[2];
-    char stringdata0[6];
+    const uint offsetsAndSize[22];
+    char stringdata0[120];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_Model_t, stringdata0) + ofs), len 
 static const qt_meta_stringdata_Model_t qt_meta_stringdata_Model = {
     {
-QT_MOC_LITERAL(0, 5) // "Model"
+QT_MOC_LITERAL(0, 5), // "Model"
+QT_MOC_LITERAL(6, 13), // "sendNextFrame"
+QT_MOC_LITERAL(20, 0), // ""
+QT_MOC_LITERAL(21, 7), // "QImage&"
+QT_MOC_LITERAL(29, 5), // "image"
+QT_MOC_LITERAL(35, 17), // "sendPreviousFrame"
+QT_MOC_LITERAL(53, 8), // "addFrame"
+QT_MOC_LITERAL(62, 9), // "nextFrame"
+QT_MOC_LITERAL(72, 9), // "prevFrame"
+QT_MOC_LITERAL(82, 25), // "receiveUpdatedCanvasFrame"
+QT_MOC_LITERAL(108, 11) // "deleteFrame"
 
     },
-    "Model"
+    "Model\0sendNextFrame\0\0QImage&\0image\0"
+    "sendPreviousFrame\0addFrame\0nextFrame\0"
+    "prevFrame\0receiveUpdatedCanvasFrame\0"
+    "deleteFrame"
 };
 #undef QT_MOC_LITERAL
 
@@ -42,22 +55,70 @@ static const uint qt_meta_data_Model[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       2,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   56,    2, 0x06,    1 /* Public */,
+       5,    1,   59,    2, 0x06,    3 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       6,    0,   62,    2, 0x0a,    5 /* Public */,
+       7,    0,   63,    2, 0x0a,    6 /* Public */,
+       8,    0,   64,    2, 0x0a,    7 /* Public */,
+       9,    1,   65,    2, 0x0a,    8 /* Public */,
+      10,    0,   68,    2, 0x0a,   10 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3,    4,
+
+ // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 3,    2,
+    QMetaType::Void,
 
        0        // eod
 };
 
 void Model::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    (void)_o;
-    (void)_id;
-    (void)_c;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<Model *>(_o);
+        (void)_t;
+        switch (_id) {
+        case 0: _t->sendNextFrame((*reinterpret_cast< QImage(*)>(_a[1]))); break;
+        case 1: _t->sendPreviousFrame((*reinterpret_cast< QImage(*)>(_a[1]))); break;
+        case 2: _t->addFrame(); break;
+        case 3: _t->nextFrame(); break;
+        case 4: _t->prevFrame(); break;
+        case 5: _t->receiveUpdatedCanvasFrame((*reinterpret_cast< QImage(*)>(_a[1]))); break;
+        case 6: _t->deleteFrame(); break;
+        default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (Model::*)(QImage & );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Model::sendNextFrame)) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (Model::*)(QImage & );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Model::sendPreviousFrame)) {
+                *result = 1;
+                return;
+            }
+        }
+    }
 }
 
 const QMetaObject Model::staticMetaObject = { {
@@ -67,8 +128,8 @@ const QMetaObject Model::staticMetaObject = { {
     qt_static_metacall,
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_Model_t
-, QtPrivate::TypeAndForceComplete<Model, std::true_type>
-
+, QtPrivate::TypeAndForceComplete<Model, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,
@@ -92,7 +153,32 @@ void *Model::qt_metacast(const char *_clname)
 int Model::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 7)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 7;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 7)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 7;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void Model::sendNextFrame(QImage & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void Model::sendPreviousFrame(QImage & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

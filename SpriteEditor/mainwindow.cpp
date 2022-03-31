@@ -11,37 +11,107 @@ MainWindow::MainWindow(Model& model,QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-//    QGraphicsView * view = new QGraphicsView(this) ;
-//    ui->setupUi(this);
-
-
-
-//    GraphicsScene *scene = new GraphicsScene(this);
-//    view->setScene(scene);
-
-
-
-    QImage *img = &model.panel;
     ui->setupUi(this);
 
-    Canvas *c = new Canvas(ui->canvasFrame);
+    Canvas *c = new Canvas(model.frames.at(0), ui->canvasFrame);
     c->resize(ui->canvasFrame->width(), ui->canvasFrame->height());
 
-//    QGridLayout * gridLayout = new QGridLayout(this);
-//    gridLayout->addWidget(c);
-//    this->setLayout(gridLayout);
-//    c->setStyleSheet("background-color: black; border:1px solid black");
-//    c->show();
+    // Initializing slider
+    ui->sizeSlider->setMaximum(40);
+    ui->sizeSlider->setMinimum(1);
+    ui->sizeSlider->setValue(5);
 
-//    ui->mainCanvas->setPixmap(QPixmap::fromImage(*img));
+    c->brushSize = 5; // setting initial brush size to match the slider initial value (kinda janky)
+    c->brushColor = Qt::black; // initializing brush color
+    ui->colorPrevWidget->setStyleSheet("background-color: black;");
 
+    // brush slots
+    connect(ui->sizeSlider,
+            &QSlider::valueChanged,
+            c,
+            &Canvas::brushSizeChanged);
+    connect(ui->eraseButton,
+            &QPushButton::clicked,
+            c,
+            &Canvas::eraseSelected);
+    connect(ui->brushButton,
+            &QPushButton::clicked,
+            c,
+            &Canvas::brushSelected);
+    connect(ui->colorPickButton,
+            &QPushButton::clicked,
+            c,
+            &Canvas::colorDialogSelected);
+    connect(c,
+            &Canvas::firstHistoryChanged,
+            ui->colorHist1,
+            &QPushButton::setStyleSheet);
+    connect(c,
+            &Canvas::secondHistoryChanged,
+            ui->colorHist2,
+            &QPushButton::setStyleSheet);
+    connect(c,
+            &Canvas::thirdHistoryChanged,
+            ui->colorHist3,
+            &QPushButton::setStyleSheet);
+    connect(c,
+            &Canvas::fourthHistoryChanged,
+            ui->colorHist4,
+            &QPushButton::setStyleSheet);
 
+    connect(c,
+            &Canvas::newCurrentColor,
+            ui->colorPrevWidget,
+            &QWidget::setStyleSheet);
 
-//    // button connections
-//    connect(ui->mainCanvas, SIGNAL(valueChanged(int)),
-//    this, SLOT(valuesChanged()));
+    //connecting color recents
+    connect(ui->colorHist1,
+            &QPushButton::clicked,
+            c,
+            &Canvas::firstHistorySelcted);
+    connect(ui->colorHist2,
+            &QPushButton::clicked,
+            c,
+            &Canvas::secondHistorySelcted);
+    connect(ui->colorHist3,
+            &QPushButton::clicked,
+            c,
+            &Canvas::thirdHistorySelcted);
+    connect(ui->colorHist4,
+            &QPushButton::clicked,
+            c,
+            &Canvas::fourthHistorySelcted);
 
+    //connect add frame signal
+    connect(ui->plusButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::addFrame);
+    connect(ui->nextFrameButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::nextFrame);
+    connect(&model,
+            &Model::sendNextFrame,
+            c,
+            &Canvas::nextFrameChanged);
 
+    connect(ui->previousFrameButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::prevFrame);
+    connect(&model,
+            &Model::sendPreviousFrame,
+            c,
+            &Canvas::prevFrameChanged);
+    connect(c,
+            &Canvas::updateModelFrames,
+            &model,
+            &Model::receiveUpdatedCanvasFrame);
+    connect(ui->deleteFrameButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::deleteFrame);
 }
 
 MainWindow::~MainWindow(){
