@@ -1,0 +1,10 @@
+release/canvas.o
+release/canvaslabel.o
+release/graphicsscene.o
+release/main.o
+release/mainwindow.o
+release/model.o
+release/moc_canvas.o
+release/moc_graphicsscene.o
+release/moc_mainwindow.o
+release/moc_model.o

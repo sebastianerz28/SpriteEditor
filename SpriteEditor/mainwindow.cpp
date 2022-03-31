@@ -14,6 +14,8 @@ MainWindow::MainWindow(Model& model,QWidget *parent)
     ui->setupUi(this);
 
     Canvas *c = new Canvas(model.frames.at(0), ui->canvasFrame);
+
+
     c->resize(ui->canvasFrame->width(), ui->canvasFrame->height());
 
     // Initializing slider

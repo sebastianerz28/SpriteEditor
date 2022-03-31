@@ -68,7 +68,8 @@ OBJECTS       = release/canvas.o \
 		release/moc_mainwindow.o \
 		release/moc_model.o
 
-DIST          = ../../../Desktop/480px-Happy_smiley_face.png ..\SpriteEditor\canvas.h \
+DIST          = ../../../Desktop/480px-Happy_smiley_face.png \
+		../../Desktop/plus.png ..\SpriteEditor\canvas.h \
 		..\SpriteEditor\graphicsscene.h \
 		..\SpriteEditor\mainwindow.h \
 		..\SpriteEditor\model.h ..\SpriteEditor\canvas.cpp \
@@ -260,6 +261,9 @@ release/moc_canvas.cpp: ../SpriteEditor/canvas.h \
 		C:/Qt/6.2.4/mingw_64/include/QtGui/qtextoption.h \
 		C:/Qt/6.2.4/mingw_64/include/QtGui/qpen.h \
 		C:/Qt/6.2.4/mingw_64/include/QtCore/QPoint \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QColorDialog \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qcolordialog.h \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qdialog.h \
 		release/moc_predefs.h \
 		C:/Qt/6.2.4/mingw_64/bin/moc.exe
 	C:\Qt\6.2.4\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/natio/cs3505/spriteEditor/build-SpriteEditor-Desktop_Qt_6_2_4_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/6.2.4/mingw_64/mkspecs/win32-g++ -IC:/Users/natio/cs3505/spriteEditor/SpriteEditor -IC:/Qt/6.2.4/mingw_64/include -IC:/Qt/6.2.4/mingw_64/include/QtWidgets -IC:/Qt/6.2.4/mingw_64/include/QtGui -IC:/Qt/6.2.4/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\SpriteEditor\canvas.h -o release\moc_canvas.cpp
@@ -530,6 +534,9 @@ release/moc_mainwindow.cpp: ../SpriteEditor/mainwindow.h \
 		C:/Qt/6.2.4/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.2.4/mingw_64/include/QtGui/QMouseEvent \
 		C:/Qt/6.2.4/mingw_64/include/QtCore/QPoint \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QColorDialog \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qcolordialog.h \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qmainwindow.h \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qtabwidget.h \
@@ -673,6 +680,9 @@ release/moc_model.cpp: ../SpriteEditor/model.h \
 		C:/Qt/6.2.4/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.2.4/mingw_64/include/QtGui/QMouseEvent \
 		C:/Qt/6.2.4/mingw_64/include/QtCore/QPoint \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QColorDialog \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qcolordialog.h \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qdialog.h \
 		release/moc_predefs.h \
 		C:/Qt/6.2.4/mingw_64/bin/moc.exe
 	C:\Qt\6.2.4\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/natio/cs3505/spriteEditor/build-SpriteEditor-Desktop_Qt_6_2_4_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/6.2.4/mingw_64/mkspecs/win32-g++ -IC:/Users/natio/cs3505/spriteEditor/SpriteEditor -IC:/Qt/6.2.4/mingw_64/include -IC:/Qt/6.2.4/mingw_64/include/QtWidgets -IC:/Qt/6.2.4/mingw_64/include/QtGui -IC:/Qt/6.2.4/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\SpriteEditor\model.h -o release\moc_model.cpp
@@ -833,7 +843,11 @@ release/canvas.o: ../SpriteEditor/canvas.cpp ../SpriteEditor/canvas.h \
 		C:/Qt/6.2.4/mingw_64/include/QtGui/qpainter.h \
 		C:/Qt/6.2.4/mingw_64/include/QtGui/qtextoption.h \
 		C:/Qt/6.2.4/mingw_64/include/QtGui/qpen.h \
-		C:/Qt/6.2.4/mingw_64/include/QtCore/QPoint
+		C:/Qt/6.2.4/mingw_64/include/QtCore/QPoint \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QColorDialog \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qcolordialog.h \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qdialog.h \
+		C:/Qt/6.2.4/mingw_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\canvas.o ..\SpriteEditor\canvas.cpp
 
 release/graphicsscene.o: ../SpriteEditor/graphicsscene.cpp ../SpriteEditor/graphicsscene.h \
@@ -1100,6 +1114,9 @@ release/main.o: ../SpriteEditor/main.cpp ../SpriteEditor/mainwindow.h \
 		C:/Qt/6.2.4/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.2.4/mingw_64/include/QtGui/QMouseEvent \
 		C:/Qt/6.2.4/mingw_64/include/QtCore/QPoint \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QColorDialog \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qcolordialog.h \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qmainwindow.h \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qtabwidget.h \
@@ -1263,6 +1280,9 @@ release/mainwindow.o: ../SpriteEditor/mainwindow.cpp ../SpriteEditor/mainwindow.
 		C:/Qt/6.2.4/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.2.4/mingw_64/include/QtGui/QMouseEvent \
 		C:/Qt/6.2.4/mingw_64/include/QtCore/QPoint \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QColorDialog \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qcolordialog.h \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qmainwindow.h \
 		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qtabwidget.h \
@@ -1423,7 +1443,14 @@ release/model.o: ../SpriteEditor/model.cpp ../SpriteEditor/model.h \
 		C:/Qt/6.2.4/mingw_64/include/QtGui/QTransform \
 		C:/Qt/6.2.4/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/Qt/6.2.4/mingw_64/include/QtGui/QMouseEvent \
-		C:/Qt/6.2.4/mingw_64/include/QtCore/QPoint
+		C:/Qt/6.2.4/mingw_64/include/QtCore/QPoint \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/QColorDialog \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qcolordialog.h \
+		C:/Qt/6.2.4/mingw_64/include/QtWidgets/qdialog.h \
+		C:/Qt/6.2.4/mingw_64/include/QtCore/QDebug \
+		C:/Qt/6.2.4/mingw_64/include/QtCore/QTimer \
+		C:/Qt/6.2.4/mingw_64/include/QtCore/qtimer.h \
+		C:/Qt/6.2.4/mingw_64/include/QtCore/qbasictimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\model.o ..\SpriteEditor\model.cpp
 
 release/moc_canvas.o: release/moc_canvas.cpp 

@@ -6,11 +6,15 @@
 Model::Model(QObject *parent)
     : QObject{parent}
 {
-    frames.push_back(QPixmap(400, 400).toImage());
+    QImage img = QPixmap(400, 400).toImage();
+    img.fill(Qt::transparent);
+    frames.push_back(img);
 }
 
 void Model::addFrame(){
-    frames.push_back(QPixmap(400, 400).toImage());
+    QImage img = QPixmap(400, 400).toImage();
+    img.fill(Qt::transparent);
+    frames.push_back(img);
     if(!animationStarted){
         animationStarted = true;
         emit sendNextAnimationFrame(frames.at(currAnimationFrame));
