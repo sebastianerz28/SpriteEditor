@@ -6,19 +6,37 @@
 #include <QSize>
 #include <QPainter>
 #include "canvas.h"
+#include <vector>
+
+using std::vector;
 
 class Model : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit Model(QObject *parent = nullptr);
 
-    QSize size = QSize(640,480);
-    QImage::Format format = QImage::Format_ARGB32;
-    QImage panel = QImage(size, format);
+    vector<QImage> frames;
+    explicit Model(QObject *parent = nullptr);
+    int currFrame = 0;
+    int currAnimationFrame = 0;
+public slots:
+
+    void addFrame();
+    void nextFrame();
+    void prevFrame();
+    void receiveUpdatedCanvasFrame(QImage&);
+    void deleteFrame();
+    void incrementAnimation();
 
 signals:
+    void sendNextFrame(QImage &image);
+    void sendPreviousFrame(QImage &image);
+    void sendNextAnimationFrame(QImage &image);
+
+private:
+    void emitSendNextAnimationFrame();
+    bool animationStarted = false;
 
 };
 
