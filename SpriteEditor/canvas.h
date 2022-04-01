@@ -14,16 +14,14 @@ class Canvas : public QWidget
     Q_OBJECT
 public:
     Canvas( QImage _image, QWidget *parent = nullptr);
-    int brushSize;
-    QColor brushColor;
-
+    qreal brushSize;
+    QBrush brushColor;
+    QImage image;
 
 protected:
     QPainter painter;
     QPoint mousePos;
     void drawLineTo(const QPoint &endPoint);
-    void drawPixel(const QPoint &endPoint);
-
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
