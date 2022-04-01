@@ -12,16 +12,10 @@ Model::Model(int canvasWidth, int canvasHeight, QObject *parent)
 }
 
 void Model::addFrame(){
+    qDebug() << "frame added";
     QImage img = QPixmap(canvasWidth, canvasHeight).toImage();
     //img.fill(Qt::transparent);
     frames.push_back(img);
-    if(!animationStarted){
-        animationStarted = true;
-        emit sendNextAnimationFrame(frames.at(currAnimationFrame));
-    }
-
-    qDebug() << "frame added";
-    qDebug() << frames.size();
 }
 
 void Model::nextFrame(){
@@ -58,4 +52,15 @@ void Model::emitSendNextAnimationFrame(){
 void Model::incrementAnimation(){
     QTimer::singleShot(100, this, &Model::emitSendNextAnimationFrame);
     currAnimationFrame = (currAnimationFrame+1) % frames.size();
+}
+
+void Model::setPlayPauseBool(bool play){
+    qDebug() << "recieved" << play;
+    if(!animationRunning){
+        animationRunning = play;
+        emitSendNextAnimationFrame();
+    } else {
+        animationRunning = play;
+    }
+
 }

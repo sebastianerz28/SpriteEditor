@@ -65,6 +65,7 @@ public:
     QScrollBar *horizontalScrollBar;
     QPushButton *nextFrameButton;
     QPushButton *previousFrameButton;
+    QPushButton *playPauseAnimationButton;
     QMenuBar *menubar;
     QMenu *menufile;
     QMenu *menuhelp;
@@ -84,7 +85,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         canvasFrame = new QFrame(centralwidget);
         canvasFrame->setObjectName(QString::fromUtf8("canvasFrame"));
-        canvasFrame->setGeometry(QRect(180, 20, 621, 391));
+        canvasFrame->setGeometry(QRect(180, 20, 600, 390));
         canvasFrame->setStyleSheet(QString::fromUtf8("background-color: transparent;"));
         canvasFrame->setFrameShape(QFrame::StyledPanel);
         canvasFrame->setFrameShadow(QFrame::Raised);
@@ -254,7 +255,7 @@ public:
         animationLabel->setGeometry(QRect(10, 30, 191, 181));
         toolsWidget = new QWidget(centralwidget);
         toolsWidget->setObjectName(QString::fromUtf8("toolsWidget"));
-        toolsWidget->setGeometry(QRect(820, 260, 211, 151));
+        toolsWidget->setGeometry(QRect(821, 300, 211, 151));
         toolsWidget->setStyleSheet(QString::fromUtf8("#toolsWidget{\n"
 "border-style: solid;\n"
 "border-width: 1px;\n"
@@ -306,7 +307,7 @@ public:
 ""));
         plusButton = new QPushButton(centralwidget);
         plusButton->setObjectName(QString::fromUtf8("plusButton"));
-        plusButton->setGeometry(QRect(820, 430, 31, 32));
+        plusButton->setGeometry(QRect(821, 470, 31, 32));
         QFont font;
         font.setPointSize(20);
         font.setBold(true);
@@ -336,14 +337,17 @@ public:
         horizontalScrollBar->setOrientation(Qt::Horizontal);
         nextFrameButton = new QPushButton(centralwidget);
         nextFrameButton->setObjectName(QString::fromUtf8("nextFrameButton"));
-        nextFrameButton->setGeometry(QRect(970, 430, 80, 24));
+        nextFrameButton->setGeometry(QRect(971, 470, 80, 24));
         previousFrameButton = new QPushButton(centralwidget);
         previousFrameButton->setObjectName(QString::fromUtf8("previousFrameButton"));
-        previousFrameButton->setGeometry(QRect(859, 430, 91, 24));
+        previousFrameButton->setGeometry(QRect(860, 470, 91, 24));
+        playPauseAnimationButton = new QPushButton(centralwidget);
+        playPauseAnimationButton->setObjectName(QString::fromUtf8("playPauseAnimationButton"));
+        playPauseAnimationButton->setGeometry(QRect(820, 260, 80, 24));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1072, 24));
+        menubar->setGeometry(QRect(0, 0, 1072, 21));
         menufile = new QMenu(menubar);
         menufile->setObjectName(QString::fromUtf8("menufile"));
         menuhelp = new QMenu(menubar);
@@ -387,6 +391,7 @@ public:
         plusButton->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
         nextFrameButton->setText(QCoreApplication::translate("MainWindow", "Next Frame", nullptr));
         previousFrameButton->setText(QCoreApplication::translate("MainWindow", "Previous Frame", nullptr));
+        playPauseAnimationButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         menufile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuhelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
     } // retranslateUi

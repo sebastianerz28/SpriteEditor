@@ -7,23 +7,18 @@ Canvas::Canvas(QImage _image, QWidget *parent) : QWidget{parent}, painter(this),
 void Canvas::drawLineTo(const QPoint &endPoint)
 {
     QPainter painter(&image);
-    painter.setPen(QPen(brushColor, brushSize, Qt::SolidLine, Qt::RoundCap,
-                        Qt::RoundJoin));
-    if(eraseOn){
-        painter.setCompositionMode(QPainter::CompositionMode_Clear);
-    }
+        painter.setPen(QPen(brushColor));
+        if(eraseOn){
+            painter.setCompositionMode(QPainter::CompositionMode_Clear);
+        }
 
-    if(mousePos == endPoint){
-        painter.drawPoint(mousePos);
-    }
+        int xCoord = brushSize * (endPoint.x() / brushSize);
+        int yCoord = brushSize * (endPoint.y() / brushSize);
 
-    painter.drawLine(mousePos, endPoint);
-    modified = true;
 
-    int rad = (10 / 2) + 2;
-    update(QRect(mousePos, endPoint).normalized()
-                                     .adjusted(-rad, -rad, +rad, +rad));
-    mousePos = endPoint;
+        painter.fillRect(xCoord, yCoord, brushSize, brushSize, brushColor);
+        mousePos = endPoint;
+        update();
 }
 
 void Canvas::mousePressEvent(QMouseEvent *event)
@@ -74,8 +69,8 @@ void Canvas::brushSelected(){
 }
 
 void Canvas::colorDialogSelected(){
-    QColor colorSelected = QColorDialog::getColor(brushColor.color(), this);
-    brushColor.setColor(colorSelected);
+    QColor colorSelected = QColorDialog::getColor(brushColor, this);
+    brushColor = (colorSelected);
     eraseOn = false;
 
     if(colorHistory.size() > 4){
@@ -113,29 +108,29 @@ void Canvas::colorDialogSelected(){
 
 void Canvas::firstHistorySelcted(){
     if(colorHistory.size() >= 1){
-        brushColor.setColor(colorHistory.at(0));
-        emit newCurrentColor("background-color:" + brushColor.color().name());
+        brushColor = (colorHistory.at(0));
+        emit newCurrentColor("background-color:" + brushColor.name());
         eraseOn = false;
     }
 }
 void Canvas::secondHistorySelcted(){
     if(colorHistory.size() >= 2){
-        brushColor.setColor(colorHistory.at(1));
-        emit newCurrentColor("background-color:" + brushColor.color().name());
+        brushColor = (colorHistory.at(1));
+        emit newCurrentColor("background-color:" + brushColor.name());
         eraseOn = false;
     }
 }
 void Canvas::thirdHistorySelcted(){
     if(colorHistory.size() >= 3){
-        brushColor.setColor(colorHistory.at(2));
-        emit newCurrentColor("background-color:" + brushColor.color().name());
+        brushColor = (colorHistory.at(2));
+        emit newCurrentColor("background-color:" + brushColor.name());
         eraseOn = false;
     }
 }
 void Canvas::fourthHistorySelcted(){
     if(colorHistory.size() >= 4){
-        brushColor.setColor(colorHistory.at(3));
-        emit newCurrentColor("background-color:" + brushColor.color().name());
+        brushColor = (colorHistory.at(3));
+        emit newCurrentColor("background-color:" + brushColor.name());
         eraseOn = false;
     }
 }

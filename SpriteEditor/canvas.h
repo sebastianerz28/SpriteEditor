@@ -14,8 +14,8 @@ class Canvas : public QWidget
     Q_OBJECT
 public:
     Canvas( QImage _image, QWidget *parent = nullptr);
-    qreal brushSize;
-    QBrush brushColor;
+    int brushSize;
+    QColor brushColor;
     QImage image;
 
 protected:

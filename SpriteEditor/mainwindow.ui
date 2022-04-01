@@ -22,8 +22,8 @@
      <rect>
       <x>180</x>
       <y>20</y>
-      <width>621</width>
-      <height>391</height>
+      <width>600</width>
+      <height>390</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -402,8 +402,8 @@ padding: 0px;
    <widget class="QWidget" name="toolsWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>260</y>
+      <x>821</x>
+      <y>300</y>
       <width>211</width>
       <height>151</height>
      </rect>
@@ -520,8 +520,8 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
    <widget class="QPushButton" name="plusButton">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>430</y>
+      <x>821</x>
+      <y>470</y>
       <width>31</width>
       <height>32</height>
      </rect>
@@ -588,8 +588,8 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
    <widget class="QPushButton" name="nextFrameButton">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>430</y>
+      <x>971</x>
+      <y>470</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -601,14 +601,27 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
    <widget class="QPushButton" name="previousFrameButton">
     <property name="geometry">
      <rect>
-      <x>859</x>
-      <y>430</y>
+      <x>860</x>
+      <y>470</y>
       <width>91</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
      <string>Previous Frame</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="playPauseAnimationButton">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>260</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
     </property>
    </widget>
   </widget>
@@ -618,7 +631,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
      <x>0</x>
      <y>0</y>
      <width>1072</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
