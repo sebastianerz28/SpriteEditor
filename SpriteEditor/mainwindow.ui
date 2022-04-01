@@ -625,6 +625,8 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionsave"/>
+    <addaction name="actionLoad"/>
    </widget>
    <widget class="QMenu" name="menuhelp">
     <property name="title">
@@ -635,6 +637,16 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
    <addaction name="menuhelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionsave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionLoad">
+   <property name="text">
+    <string>Load</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

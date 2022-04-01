@@ -30,6 +30,8 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionsave;
+    QAction *actionLoad;
     QWidget *centralwidget;
     QFrame *canvasFrame;
     QWidget *widget;
@@ -74,6 +76,10 @@ public:
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(1072, 563);
         MainWindow->setStyleSheet(QString::fromUtf8("background-color: beige"));
+        actionsave = new QAction(MainWindow);
+        actionsave->setObjectName(QString::fromUtf8("actionsave"));
+        actionLoad = new QAction(MainWindow);
+        actionLoad->setObjectName(QString::fromUtf8("actionLoad"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         canvasFrame = new QFrame(centralwidget);
@@ -349,6 +355,8 @@ public:
 
         menubar->addAction(menufile->menuAction());
         menubar->addAction(menuhelp->menuAction());
+        menufile->addAction(actionsave);
+        menufile->addAction(actionLoad);
 
         retranslateUi(MainWindow);
 
@@ -358,6 +366,8 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        actionsave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        actionLoad->setText(QCoreApplication::translate("MainWindow", "Load", nullptr));
         brushButton->setText(QCoreApplication::translate("MainWindow", "Brush", nullptr));
         eraseButton->setText(QCoreApplication::translate("MainWindow", "Erase", nullptr));
         brushLabel->setText(QCoreApplication::translate("MainWindow", "Brush Size", nullptr));
