@@ -79,7 +79,7 @@ public:
         canvasFrame = new QFrame(centralwidget);
         canvasFrame->setObjectName(QString::fromUtf8("canvasFrame"));
         canvasFrame->setGeometry(QRect(180, 20, 621, 391));
-        canvasFrame->setStyleSheet(QString::fromUtf8("background-color: white;"));
+        canvasFrame->setStyleSheet(QString::fromUtf8("background-color: #fff;"));
         canvasFrame->setFrameShape(QFrame::StyledPanel);
         canvasFrame->setFrameShadow(QFrame::Raised);
         widget = new QWidget(canvasFrame);
@@ -337,7 +337,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1072, 21));
+        menubar->setGeometry(QRect(0, 0, 1072, 19));
         menufile = new QMenu(menubar);
         menufile->setObjectName(QString::fromUtf8("menufile"));
         menuhelp = new QMenu(menubar);

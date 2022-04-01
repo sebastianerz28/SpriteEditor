@@ -7,23 +7,13 @@ Canvas::Canvas(QImage _image, QWidget *parent) : QWidget{parent}, painter(this),
 void Canvas::drawLineTo(const QPoint &endPoint)
 {
     QPainter painter(&image);
-    painter.setPen(QPen(brushColor, brushSize, Qt::SolidLine, Qt::RoundCap,
-                        Qt::RoundJoin));
+    painter.setPen(QPen(brushColor));
     if(eraseOn){
         painter.setCompositionMode(QPainter::CompositionMode_Clear);
     }
-
-    if(mousePos == endPoint){
-        painter.drawPoint(mousePos);
-    }
-
-    painter.drawLine(mousePos, endPoint);
-    modified = true;
-
-    int rad = (10 / 2) + 2;
-    update(QRect(mousePos, endPoint).normalized()
-                                     .adjusted(-rad, -rad, +rad, +rad));
+    painter.fillRect(endPoint.x(), endPoint.y(), brushSize, brushSize, brushColor);
     mousePos = endPoint;
+    update();
 }
 
 void Canvas::mousePressEvent(QMouseEvent *event)
@@ -38,6 +28,7 @@ void Canvas::mousePressEvent(QMouseEvent *event)
 void Canvas::mouseMoveEvent(QMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && drawing){
+        qDebug() << event->position();
         drawLineTo(event->pos());
         emit updateModelFrames(image);
     }
@@ -74,8 +65,8 @@ void Canvas::brushSelected(){
 }
 
 void Canvas::colorDialogSelected(){
-    QColor colorSelected = QColorDialog::getColor(brushColor.color(), this);
-    brushColor.setColor(colorSelected);
+    QColor colorSelected = QColorDialog::getColor(brushColor, this);
+    brushColor = colorSelected;
     eraseOn = false;
 
     if(colorHistory.size() > 4){
@@ -115,7 +106,7 @@ void Canvas::firstHistorySelcted(){
     if(colorHistory.size() >= 1){
         //brushColor.setColor(colorHistory.at(1));
         QColor colorSelected = QColorDialog::getColor(colorHistory.at(1), this);
-        brushColor.setColor(colorSelected);
+        brushColor = (colorSelected);
         qDebug() << "one";
     }
 }
@@ -123,14 +114,14 @@ void Canvas::secondHistorySelcted(){
     if(colorHistory.size() >= 2){
         qDebug() << "two";
         QColor colorSelected = QColorDialog::getColor(colorHistory.at(2), this);
-        brushColor.setColor(colorSelected);
+        brushColor = colorSelected;
        //brushColor.setColor(colorHistory.at(2));
     }
 }
 void Canvas::thirdHistorySelcted(){
     if(colorHistory.size() >= 3){
         QColor colorSelected = QColorDialog::getColor(colorHistory.at(2), this);
-        brushColor.setColor(colorSelected);
+        brushColor = (colorSelected);
         //brushColor.setColor(colorHistory.at(3));
         qDebug() << "three";
     }
@@ -138,7 +129,7 @@ void Canvas::thirdHistorySelcted(){
 void Canvas::fourthHistorySelcted(){
     if(colorHistory.size() >= 4){
         QColor colorSelected = QColorDialog::getColor(colorHistory.at(4), this);
-        brushColor.setColor(colorSelected);
+        brushColor = (colorSelected);
         //brushColor.setColor(colorHistory.at(4));
         qDebug() << "four";
 

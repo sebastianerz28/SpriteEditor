@@ -133,11 +133,3 @@ void MainWindow::drawAnimation(QImage &img){
 MainWindow::~MainWindow(){
     delete ui;
 }
-
-void MainWindow::paintEvent(QPaintEvent *) {
- // Create a painter
- QPainter painter(this);
- QPen pen(Qt::black);
- painter.setPen(pen);
-
-}

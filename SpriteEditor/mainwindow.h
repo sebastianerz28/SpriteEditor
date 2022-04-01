@@ -19,7 +19,7 @@ public:
 private:
     Ui::MainWindow *ui;
     Canvas *canvas;
-    void paintEvent(QPaintEvent *);
+
 
 public slots:
     void drawAnimation(QImage&);
