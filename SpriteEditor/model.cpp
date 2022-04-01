@@ -7,13 +7,13 @@ Model::Model(QObject *parent)
     : QObject{parent}
 {
     QImage img = QPixmap(400, 400).toImage();
-    img.fill(Qt::transparent);
+    //img.fill(Qt::transparent);
     frames.push_back(img);
 }
 
 void Model::addFrame(){
     QImage img = QPixmap(400, 400).toImage();
-    img.fill(Qt::transparent);
+    //img.fill(Qt::transparent);
     frames.push_back(img);
     if(!animationStarted){
         animationStarted = true;

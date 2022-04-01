@@ -113,40 +113,34 @@ void Canvas::colorDialogSelected(){
 
 void Canvas::firstHistorySelcted(){
     if(colorHistory.size() >= 1){
-        //brushColor.setColor(colorHistory.at(1));
-        QColor colorSelected = QColorDialog::getColor(colorHistory.at(1), this);
-        brushColor.setColor(colorSelected);
-        qDebug() << "one";
+        brushColor.setColor(colorHistory.at(0));
+        emit newCurrentColor("background-color:" + brushColor.color().name());
+        eraseOn = false;
     }
 }
 void Canvas::secondHistorySelcted(){
     if(colorHistory.size() >= 2){
-        qDebug() << "two";
-        QColor colorSelected = QColorDialog::getColor(colorHistory.at(2), this);
-        brushColor.setColor(colorSelected);
-       //brushColor.setColor(colorHistory.at(2));
+        brushColor.setColor(colorHistory.at(1));
+        emit newCurrentColor("background-color:" + brushColor.color().name());
+        eraseOn = false;
     }
 }
 void Canvas::thirdHistorySelcted(){
     if(colorHistory.size() >= 3){
-        QColor colorSelected = QColorDialog::getColor(colorHistory.at(2), this);
-        brushColor.setColor(colorSelected);
-        //brushColor.setColor(colorHistory.at(3));
-        qDebug() << "three";
+        brushColor.setColor(colorHistory.at(2));
+        emit newCurrentColor("background-color:" + brushColor.color().name());
+        eraseOn = false;
     }
 }
 void Canvas::fourthHistorySelcted(){
     if(colorHistory.size() >= 4){
-        QColor colorSelected = QColorDialog::getColor(colorHistory.at(4), this);
-        brushColor.setColor(colorSelected);
-        //brushColor.setColor(colorHistory.at(4));
-        qDebug() << "four";
-
+        brushColor.setColor(colorHistory.at(3));
+        emit newCurrentColor("background-color:" + brushColor.color().name());
+        eraseOn = false;
     }
 }
 
 void Canvas::nextFrameChanged(QImage &frame){
-
     image = frame;
     update();
 }
