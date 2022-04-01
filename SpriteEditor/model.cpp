@@ -46,12 +46,15 @@ void Model::deleteFrame(){
 
 void Model::emitSendNextAnimationFrame(){
     emit sendNextAnimationFrame(frames.at(currAnimationFrame));
-    qDebug() << "curr frame is: "<< currAnimationFrame;
+
 }
 
 void Model::incrementAnimation(){
-    QTimer::singleShot(100, this, &Model::emitSendNextAnimationFrame);
-    currAnimationFrame = (currAnimationFrame+1) % frames.size();
+    if(animationRunning){
+        QTimer::singleShot(100, this, &Model::emitSendNextAnimationFrame);
+        currAnimationFrame = (currAnimationFrame+1) % frames.size();
+    }
+
 }
 
 void Model::setPlayPauseBool(bool play){

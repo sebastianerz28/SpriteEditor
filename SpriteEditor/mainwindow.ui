@@ -621,7 +621,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Play</string>
     </property>
    </widget>
   </widget>

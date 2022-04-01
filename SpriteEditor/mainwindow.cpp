@@ -7,8 +7,8 @@
 #include <QGraphicsView>
 #include <QGridLayout>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), model(400,400)
+MainWindow::MainWindow(Model&model, QWidget *parent)
+    : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);

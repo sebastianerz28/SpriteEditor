@@ -13,10 +13,10 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(Model& model,QWidget *parent = nullptr);
     ~MainWindow();
     bool animationButtonPlay = true;
-    Model model;
+//    Model model;
 
 
 private:
