@@ -123,24 +123,42 @@ MainWindow::MainWindow(QWidget *parent)
             &Model::sendNextAnimationFrame,
             &model,
             &Model::incrementAnimation);
+
     connect(&model,
             &Model::sendNextAnimationFrame,
             this,
             &MainWindow::drawAnimation);
+
+    // connect the play/pause button to preview animation
+    connect(this,
+            &MainWindow::emitPlayValue,
+            &model,
+            &Model::setPlayPauseBool);
+
+    connect(ui->playPauseAnimationButton,
+            &QPushButton::clicked,
+            this,
+            &MainWindow::playPauseAnimation);
 }
 
 void MainWindow::drawAnimation(QImage &img){
     ui->animationLabel->setPixmap(QPixmap::fromImage(img));
+
 }
 
 MainWindow::~MainWindow(){
     delete ui;
 }
 
-void MainWindow::paintEvent(QPaintEvent *) {
- // Create a painter
- QPainter painter(this);
- QPen pen(Qt::black);
- painter.setPen(pen);
+void MainWindow::playPauseAnimation()
+{
+    if(animationButtonPlay){
+        ui->playPauseAnimationButton->setText("Pause");
+    } else {
+        ui->playPauseAnimationButton->setText("Play");
+    }
 
+    emit emitPlayValue(animationButtonPlay);
+    animationButtonPlay = !animationButtonPlay;
 }
+

@@ -19,9 +19,14 @@ public:
 private:
     Ui::MainWindow *ui;
     Canvas *canvas;
-    void paintEvent(QPaintEvent *);
+    bool animationButtonPlay = true;
 
-public slots:
+signals:
+    void emitPlayValue(bool play);
+
+
+private slots:
     void drawAnimation(QImage&);
+    void playPauseAnimation();
 };
 #endif

@@ -15,27 +15,18 @@ void Model::addFrame(){
     QImage img = QPixmap(canvasWidth, canvasHeight).toImage();
     //img.fill(Qt::transparent);
     frames.push_back(img);
-    if(!animationStarted){
-        animationStarted = true;
-        emit sendNextAnimationFrame(frames.at(currAnimationFrame));
-    }
-
-    qDebug() << "frame added";
-    qDebug() << frames.size();
 }
 
 void Model::nextFrame(){
     if(currFrame < (int)frames.size()-1){
         emit sendNextFrame(frames.at(++currFrame));
     }
-    qDebug() << "curr frame is: "<< currFrame;
 }
 
 void Model::prevFrame(){
     if(currFrame > 0){
         emit sendPreviousFrame(frames.at(--currFrame));
     }
-    qDebug() << "curr frame is: "<< currFrame;
 }
 
 void Model::receiveUpdatedCanvasFrame(QImage& img){
@@ -47,15 +38,26 @@ void Model::deleteFrame(){
         emit sendPreviousFrame(frames.at(--currFrame));
         frames.erase(frames.begin()+currFrame);
     }
-
 }
 
 void Model::emitSendNextAnimationFrame(){
     emit sendNextAnimationFrame(frames.at(currAnimationFrame));
-    qDebug() << "curr frame is: "<< currAnimationFrame;
+}
+
+void Model::setPlayPauseBool(bool play){
+    qDebug() << "recieved" << play;
+    if(!animationRunning){
+        animationRunning = play;
+        emitSendNextAnimationFrame();
+    } else {
+        animationRunning = play;
+    }
+
 }
 
 void Model::incrementAnimation(){
-    QTimer::singleShot(100, this, &Model::emitSendNextAnimationFrame);
-    currAnimationFrame = (currAnimationFrame+1) % frames.size();
+    if(animationRunning){
+        QTimer::singleShot(100, this, &Model::emitSendNextAnimationFrame);
+        currAnimationFrame = (currAnimationFrame+1) % frames.size();
+    }
 }
