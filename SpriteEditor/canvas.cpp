@@ -11,7 +11,12 @@ void Canvas::drawLineTo(const QPoint &endPoint)
     if(eraseOn){
         painter.setCompositionMode(QPainter::CompositionMode_Clear);
     }
-    painter.fillRect(endPoint.x(), endPoint.y(), brushSize, brushSize, brushColor);
+
+    int xCoord = brushSize * (endPoint.x() / brushSize);
+    int yCoord = brushSize * (endPoint.y() / brushSize);
+
+
+    painter.fillRect(xCoord, yCoord, brushSize, brushSize, brushColor);
     mousePos = endPoint;
     update();
 }

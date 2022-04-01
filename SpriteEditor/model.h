@@ -21,13 +21,13 @@ public:
     int currFrame = 0;
     int currAnimationFrame = 0;
 public slots:
-
     void addFrame();
     void nextFrame();
     void prevFrame();
     void receiveUpdatedCanvasFrame(QImage&);
     void deleteFrame();
     void incrementAnimation();
+    void setPlayPauseBool(bool play);
 
 signals:
     void sendNextFrame(QImage &image);
@@ -36,8 +36,7 @@ signals:
 
 private:
     void emitSendNextAnimationFrame();
-    bool animationStarted = false;
-
+    bool animationRunning = false;
 };
 
 #endif // MODEL_H
