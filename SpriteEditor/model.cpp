@@ -3,16 +3,16 @@
 #include <QDebug>
 #include <QTimer>
 
-Model::Model(QObject *parent)
-    : QObject{parent}
+Model::Model(int canvasWidth, int canvasHeight, QObject *parent)
+    : canvasWidth(canvasWidth), canvasHeight(canvasHeight), QObject{parent}
 {
-    QImage img = QPixmap(400, 400).toImage();
+    QImage img = QPixmap(canvasWidth, canvasHeight).toImage();
     //img.fill(Qt::transparent);
     frames.push_back(img);
 }
 
 void Model::addFrame(){
-    QImage img = QPixmap(400, 400).toImage();
+    QImage img = QPixmap(canvasWidth, canvasHeight).toImage();
     //img.fill(Qt::transparent);
     frames.push_back(img);
     if(!animationStarted){
