@@ -16,6 +16,7 @@ public:
     Canvas( QImage _image, QWidget *parent = nullptr);
     qreal brushSize;
     QBrush brushColor;
+    QImage image;
 
 protected:
     QPainter painter;
@@ -26,7 +27,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
-    QImage image;
+
 
     bool drawing = false;
     bool modified = false;

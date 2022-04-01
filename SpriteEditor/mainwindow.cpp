@@ -14,7 +14,7 @@ MainWindow::MainWindow(Model& model,QWidget *parent)
     ui->setupUi(this);
 
     Canvas *c = new Canvas(model.frames.at(0), ui->canvasFrame);
-
+    c->move((ui->canvasFrame->width()/2) -(model.frames.at(0).width()/2), (ui->canvasFrame->height()/2) - (model.frames.at(0).height()/2));
 
     c->resize(ui->canvasFrame->width(), ui->canvasFrame->height());
 
