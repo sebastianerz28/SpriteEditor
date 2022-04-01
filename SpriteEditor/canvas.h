@@ -17,6 +17,7 @@ public:
     int brushSize;
     QColor brushColor;
 
+
 protected:
     QPainter painter;
     QPoint mousePos;
@@ -28,7 +29,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
-    QImage image;
+
 
     bool drawing = false;
     bool modified = false;

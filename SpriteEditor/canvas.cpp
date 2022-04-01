@@ -113,6 +113,7 @@ void Canvas::firstHistorySelcted(){
         QColor colorSelected = QColorDialog::getColor(colorHistory.at(1), this);
         brushColor = (colorSelected);
         qDebug() << "one";
+
     }
 }
 void Canvas::secondHistorySelcted(){
@@ -120,7 +121,7 @@ void Canvas::secondHistorySelcted(){
         qDebug() << "two";
         QColor colorSelected = QColorDialog::getColor(colorHistory.at(2), this);
         brushColor = colorSelected;
-       //brushColor.setColor(colorHistory.at(2));
+
     }
 }
 void Canvas::thirdHistorySelcted(){
@@ -129,20 +130,19 @@ void Canvas::thirdHistorySelcted(){
         brushColor = (colorSelected);
         //brushColor.setColor(colorHistory.at(3));
         qDebug() << "three";
+
     }
 }
 void Canvas::fourthHistorySelcted(){
     if(colorHistory.size() >= 4){
         QColor colorSelected = QColorDialog::getColor(colorHistory.at(4), this);
         brushColor = (colorSelected);
-        //brushColor.setColor(colorHistory.at(4));
         qDebug() << "four";
 
     }
 }
 
 void Canvas::nextFrameChanged(QImage &frame){
-
     image = frame;
     update();
 }

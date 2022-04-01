@@ -7,14 +7,17 @@
 #include <QGraphicsView>
 #include <QGridLayout>
 
-MainWindow::MainWindow(Model& model,QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
+    Model model(400, 400); // We switched declarations so that we can ask the user what size they want BEFORE creating the model
+
     Canvas *c = new Canvas(model.frames.at(0), ui->canvasFrame);
 
+    c->move((ui->canvasFrame->width()/2) -(model.canvasWidth/2), (ui->canvasFrame->height()/2) - (model.canvasHeight/2));
 
     c->resize(ui->canvasFrame->width(), ui->canvasFrame->height());
 
