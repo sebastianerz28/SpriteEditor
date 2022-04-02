@@ -8,8 +8,8 @@
 #include <QGridLayout>
 
 MainWindow::MainWindow(Model&model, QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent),
+     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     //Model model(400, 400); // We switched declarations so that we can ask the user what size they want BEFORE creating the model

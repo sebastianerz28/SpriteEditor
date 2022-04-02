@@ -13,6 +13,8 @@ OpeningWindow::OpeningWindow(QWidget *parent) :
     ui->heightBox->setMinimum(1);
     ui->heightBox->setMaximum(400);
     ui->heightBox->setValue(400);
+    width = 400;
+    height = 400;
 
     ui->startButton->setEnabled(false);
     ui->widthBox->setEnabled(false);
@@ -43,6 +45,7 @@ OpeningWindow::OpeningWindow(QWidget *parent) :
 OpeningWindow::~OpeningWindow()
 {
     delete ui;
+    delete w;
 }
 
 void OpeningWindow::loadExistingPressed(){
@@ -51,9 +54,10 @@ void OpeningWindow::loadExistingPressed(){
 }
 
 void OpeningWindow::startPressed(){
-    Model m(width, height);
-    MainWindow w(m);
-    w.show();
+    Model model(width, height);
+    w = new MainWindow(model);
+    w->show();
+    this->hide();
 }
 
 void OpeningWindow::widthBoxChanged(int inputWidth){

@@ -15,7 +15,7 @@ class OpeningWindow : public QWidget
 public:
     explicit OpeningWindow(QWidget *parent = nullptr);
     ~OpeningWindow();
-    MainWindow w;
+    MainWindow* w;
 
 public slots:
     void loadExistingPressed();
