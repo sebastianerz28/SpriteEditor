@@ -8,8 +8,8 @@
 #include <QGridLayout>
 
 MainWindow::MainWindow(Model&model, QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent),
+     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     //Model model(400, 400); // We switched declarations so that we can ask the user what size they want BEFORE creating the model
@@ -24,6 +24,13 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
     ui->sizeSlider->setMaximum(40);
     ui->sizeSlider->setMinimum(1);
     ui->sizeSlider->setValue(5);
+
+    ui->frameRateBox->setMinimum(1);
+    ui->frameRateBox->setMaximum(30);
+    ui->frameRateBox->setValue(5);
+    model.frameRate = 200;
+
+    ui->playPauseAnimationButton->setText("Play");
 
     c->brushSize = 5; // setting initial brush size to match the slider initial value (kinda janky)
     c->brushColor = Qt::black; // initializing brush color
@@ -138,6 +145,11 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
                 &QPushButton::clicked,
                 this,
                 &MainWindow::playPauseAnimation);
+
+        connect(ui->frameRateBox,
+                &QSpinBox::valueChanged,
+                &model,
+                &Model::frameRateChanged);
 }
 
 void MainWindow::drawAnimation(QImage &img){

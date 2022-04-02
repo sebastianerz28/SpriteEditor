@@ -51,7 +51,7 @@ void Model::emitSendNextAnimationFrame(){
 
 void Model::incrementAnimation(){
     if(animationRunning){
-        QTimer::singleShot(100, this, &Model::emitSendNextAnimationFrame);
+        QTimer::singleShot(frameRate, this, &Model::emitSendNextAnimationFrame);
         currAnimationFrame = (currAnimationFrame+1) % frames.size();
     }
 
@@ -65,5 +65,8 @@ void Model::setPlayPauseBool(bool play){
     } else {
         animationRunning = play;
     }
+}
 
+void Model::frameRateChanged(int framesPerSecond){
+    frameRate = 1000 / framesPerSecond;
 }

@@ -22,6 +22,7 @@ public:
     int currAnimationFrame = 0;
     int canvasHeight;
     int canvasWidth;
+    int frameRate;
 
 public slots:
 
@@ -32,6 +33,7 @@ public slots:
     void deleteFrame();
     void incrementAnimation();
     void setPlayPauseBool(bool);
+    void frameRateChanged(int);
 
 signals:
     void sendNextFrame(QImage &image);
