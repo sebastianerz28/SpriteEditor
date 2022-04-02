@@ -25,6 +25,13 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
     ui->sizeSlider->setMinimum(1);
     ui->sizeSlider->setValue(5);
 
+    ui->frameRateBox->setMinimum(1);
+    ui->frameRateBox->setMaximum(30);
+    ui->frameRateBox->setValue(5);
+    model.frameRate = 200;
+
+    ui->playPauseAnimationButton->setText("Play");
+
     c->brushSize = 5; // setting initial brush size to match the slider initial value (kinda janky)
     c->brushColor = Qt::black; // initializing brush color
     ui->colorPrevWidget->setStyleSheet("background-color: black;");
@@ -138,6 +145,11 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
                 &QPushButton::clicked,
                 this,
                 &MainWindow::playPauseAnimation);
+
+        connect(ui->frameRateBox,
+                &QSpinBox::valueChanged,
+                &model,
+                &Model::frameRateChanged);
 }
 
 void MainWindow::drawAnimation(QImage &img){
