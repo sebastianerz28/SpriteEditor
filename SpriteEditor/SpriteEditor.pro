@@ -13,16 +13,19 @@ SOURCES += \
     graphicsscene.cpp \
     main.cpp \
     mainwindow.cpp \
-    model.cpp
+    model.cpp \
+    openingwindow.cpp
 
 HEADERS += \
     canvas.h \
     graphicsscene.h \
     mainwindow.h \
-    model.h
+    model.h \
+    openingwindow.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    openingwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
