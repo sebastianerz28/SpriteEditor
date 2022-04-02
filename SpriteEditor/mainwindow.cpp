@@ -7,14 +7,16 @@
 #include <QGraphicsView>
 #include <QGridLayout>
 
-MainWindow::MainWindow(Model& model,QWidget *parent)
+MainWindow::MainWindow(Model&model, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //Model model(400, 400); // We switched declarations so that we can ask the user what size they want BEFORE creating the model
 
     Canvas *c = new Canvas(model.frames.at(0), ui->canvasFrame);
 
+    c->move((ui->canvasFrame->width()/2) -(model.canvasWidth/2), (ui->canvasFrame->height()/2) - (model.canvasHeight/2));
 
     c->resize(ui->canvasFrame->width(), ui->canvasFrame->height());
 
@@ -89,6 +91,7 @@ MainWindow::MainWindow(Model& model,QWidget *parent)
             &QPushButton::clicked,
             &model,
             &Model::addFrame);
+
     connect(ui->nextFrameButton,
             &QPushButton::clicked,
             &model,
@@ -115,15 +118,26 @@ MainWindow::MainWindow(Model& model,QWidget *parent)
             &model,
             &Model::deleteFrame);
 
-    // connect animation frame increment
     connect(&model,
-            &Model::sendNextAnimationFrame,
-            &model,
-            &Model::incrementAnimation);
-    connect(&model,
-            &Model::sendNextAnimationFrame,
-            this,
-            &MainWindow::drawAnimation);
+                &Model::sendNextAnimationFrame,
+                &model,
+                &Model::incrementAnimation);
+
+        connect(&model,
+                &Model::sendNextAnimationFrame,
+                this,
+                &MainWindow::drawAnimation);
+
+        // connect the play/pause button to preview animation
+        connect(this,
+                &MainWindow::emitPlayValue,
+                &model,
+                &Model::setPlayPauseBool);
+
+        connect(ui->playPauseAnimationButton,
+                &QPushButton::clicked,
+                this,
+                &MainWindow::playPauseAnimation);
 }
 
 void MainWindow::drawAnimation(QImage &img){
@@ -140,4 +154,16 @@ void MainWindow::paintEvent(QPaintEvent *) {
  QPen pen(Qt::black);
  painter.setPen(pen);
 
+}
+
+void MainWindow::playPauseAnimation()
+{
+    if(animationButtonPlay){
+        ui->playPauseAnimationButton->setText("Pause");
+    } else {
+        ui->playPauseAnimationButton->setText("Play");
+    }
+
+    emit emitPlayValue(animationButtonPlay);
+    animationButtonPlay = !animationButtonPlay;
 }

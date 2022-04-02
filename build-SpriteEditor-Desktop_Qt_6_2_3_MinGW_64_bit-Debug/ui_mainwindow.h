@@ -30,6 +30,8 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionsave;
+    QAction *actionLoad;
     QWidget *centralwidget;
     QFrame *canvasFrame;
     QWidget *widget;
@@ -63,6 +65,7 @@ public:
     QScrollBar *horizontalScrollBar;
     QPushButton *nextFrameButton;
     QPushButton *previousFrameButton;
+    QPushButton *playPauseAnimationButton;
     QMenuBar *menubar;
     QMenu *menufile;
     QMenu *menuhelp;
@@ -74,12 +77,16 @@ public:
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(1072, 563);
         MainWindow->setStyleSheet(QString::fromUtf8("background-color: beige"));
+        actionsave = new QAction(MainWindow);
+        actionsave->setObjectName(QString::fromUtf8("actionsave"));
+        actionLoad = new QAction(MainWindow);
+        actionLoad->setObjectName(QString::fromUtf8("actionLoad"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         canvasFrame = new QFrame(centralwidget);
         canvasFrame->setObjectName(QString::fromUtf8("canvasFrame"));
-        canvasFrame->setGeometry(QRect(180, 20, 621, 391));
-        canvasFrame->setStyleSheet(QString::fromUtf8("background-color: white;"));
+        canvasFrame->setGeometry(QRect(180, 20, 600, 390));
+        canvasFrame->setStyleSheet(QString::fromUtf8("background-color: transparent;"));
         canvasFrame->setFrameShape(QFrame::StyledPanel);
         canvasFrame->setFrameShadow(QFrame::Raised);
         widget = new QWidget(canvasFrame);
@@ -248,7 +255,7 @@ public:
         animationLabel->setGeometry(QRect(10, 30, 191, 181));
         toolsWidget = new QWidget(centralwidget);
         toolsWidget->setObjectName(QString::fromUtf8("toolsWidget"));
-        toolsWidget->setGeometry(QRect(820, 260, 211, 151));
+        toolsWidget->setGeometry(QRect(821, 300, 211, 151));
         toolsWidget->setStyleSheet(QString::fromUtf8("#toolsWidget{\n"
 "border-style: solid;\n"
 "border-width: 1px;\n"
@@ -300,7 +307,7 @@ public:
 ""));
         plusButton = new QPushButton(centralwidget);
         plusButton->setObjectName(QString::fromUtf8("plusButton"));
-        plusButton->setGeometry(QRect(820, 430, 31, 32));
+        plusButton->setGeometry(QRect(821, 470, 31, 32));
         QFont font;
         font.setPointSize(20);
         font.setBold(true);
@@ -330,10 +337,13 @@ public:
         horizontalScrollBar->setOrientation(Qt::Horizontal);
         nextFrameButton = new QPushButton(centralwidget);
         nextFrameButton->setObjectName(QString::fromUtf8("nextFrameButton"));
-        nextFrameButton->setGeometry(QRect(970, 430, 80, 24));
+        nextFrameButton->setGeometry(QRect(971, 470, 80, 24));
         previousFrameButton = new QPushButton(centralwidget);
         previousFrameButton->setObjectName(QString::fromUtf8("previousFrameButton"));
-        previousFrameButton->setGeometry(QRect(859, 430, 91, 24));
+        previousFrameButton->setGeometry(QRect(860, 470, 91, 24));
+        playPauseAnimationButton = new QPushButton(centralwidget);
+        playPauseAnimationButton->setObjectName(QString::fromUtf8("playPauseAnimationButton"));
+        playPauseAnimationButton->setGeometry(QRect(820, 260, 80, 24));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -349,6 +359,8 @@ public:
 
         menubar->addAction(menufile->menuAction());
         menubar->addAction(menuhelp->menuAction());
+        menufile->addAction(actionsave);
+        menufile->addAction(actionLoad);
 
         retranslateUi(MainWindow);
 
@@ -358,6 +370,8 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        actionsave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        actionLoad->setText(QCoreApplication::translate("MainWindow", "Load", nullptr));
         brushButton->setText(QCoreApplication::translate("MainWindow", "Brush", nullptr));
         eraseButton->setText(QCoreApplication::translate("MainWindow", "Erase", nullptr));
         brushLabel->setText(QCoreApplication::translate("MainWindow", "Brush Size", nullptr));
@@ -377,6 +391,7 @@ public:
         plusButton->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
         nextFrameButton->setText(QCoreApplication::translate("MainWindow", "Next Frame", nullptr));
         previousFrameButton->setText(QCoreApplication::translate("MainWindow", "Previous Frame", nullptr));
+        playPauseAnimationButton->setText(QCoreApplication::translate("MainWindow", "Play", nullptr));
         menufile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuhelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
     } // retranslateUi

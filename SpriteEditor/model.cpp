@@ -3,25 +3,19 @@
 #include <QDebug>
 #include <QTimer>
 
-Model::Model(QObject *parent)
-    : QObject{parent}
+Model::Model(int canvasWidth, int canvasHeight, QObject *parent)
+    : canvasWidth(canvasWidth), canvasHeight(canvasHeight), QObject{parent}
 {
-    QImage img = QPixmap(400, 400).toImage();
-    img.fill(Qt::transparent);
+    QImage img = QPixmap(canvasWidth, canvasHeight).toImage();
+    //img.fill(Qt::transparent);
     frames.push_back(img);
 }
 
 void Model::addFrame(){
-    QImage img = QPixmap(400, 400).toImage();
-    img.fill(Qt::transparent);
-    frames.push_back(img);
-    if(!animationStarted){
-        animationStarted = true;
-        emit sendNextAnimationFrame(frames.at(currAnimationFrame));
-    }
-
     qDebug() << "frame added";
-    qDebug() << frames.size();
+    QImage img = QPixmap(canvasWidth, canvasHeight).toImage();
+    //img.fill(Qt::transparent);
+    frames.push_back(img);
 }
 
 void Model::nextFrame(){
@@ -52,10 +46,24 @@ void Model::deleteFrame(){
 
 void Model::emitSendNextAnimationFrame(){
     emit sendNextAnimationFrame(frames.at(currAnimationFrame));
-    qDebug() << "curr frame is: "<< currAnimationFrame;
+
 }
 
 void Model::incrementAnimation(){
-    QTimer::singleShot(100, this, &Model::emitSendNextAnimationFrame);
-    currAnimationFrame = (currAnimationFrame+1) % frames.size();
+    if(animationRunning){
+        QTimer::singleShot(100, this, &Model::emitSendNextAnimationFrame);
+        currAnimationFrame = (currAnimationFrame+1) % frames.size();
+    }
+
+}
+
+void Model::setPlayPauseBool(bool play){
+    qDebug() << "recieved" << play;
+    if(!animationRunning){
+        animationRunning = play;
+        emitSendNextAnimationFrame();
+    } else {
+        animationRunning = play;
+    }
+
 }
