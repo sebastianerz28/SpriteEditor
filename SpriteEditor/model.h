@@ -23,6 +23,11 @@ public:
     int canvasWidth;
     int canvasHeight;
     int frameRate;
+    void write(QJsonObject &json) const;
+    void read(QJsonObject &json);
+    int imageWidth;
+    int imageHeight;
+    int numberOfFrames;
 
 public slots:
 

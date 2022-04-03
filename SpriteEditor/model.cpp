@@ -2,6 +2,9 @@
 #include "canvas.h"
 #include <QDebug>
 #include <QTimer>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonArray>
 
 Model::Model(int canvasWidth, int canvasHeight, QObject *parent)
     : QObject{parent}, canvasWidth(canvasWidth), canvasHeight(canvasHeight)
@@ -90,4 +93,31 @@ void Model::setCanvasPlayPause(bool play){
 
 void Model::frameRateChanged(int framesPerSecond){
     frameRate = 1000 / framesPerSecond;
+}
+
+void Model::write(QJsonObject &json) const {
+    json["width"] = frames.at(0).width();
+    json["height"] = frames.at(0).height();
+    json["numberOfFrames"] = (int)frames.size();
+
+    for(int l = 0; l < (int)frames.size(); l++){
+        //vector<vector<QString>> frameColors;
+        QJsonArray heightArray;
+        for(int i = 0; i < frames.at(l).height(); i++){
+            QJsonArray widthArray;
+            for(int j = 0; j < frames.at(l).width(); j++){
+                QColor color = frames.at(l).pixelColor(i, j);
+                //frameColors.at(j).at(i) = color.name();
+                widthArray.push_back(color.name());
+            }
+            heightArray.push_back(widthArray);
+        }
+        QJsonDocument frameAtIndex(heightArray);
+    }
+}
+
+void Model::read(QJsonObject &json) {
+    numberOfFrames = json["numberOfFrames"].toInt();
+    imageWidth = json["width"].toInt();
+    imageHeight = json["height"].toInt();
 }
