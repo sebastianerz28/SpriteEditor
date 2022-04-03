@@ -20,8 +20,8 @@ public:
     explicit Model(int, int, QObject *parent = nullptr);
     int currFrame = 0;
     int currAnimationFrame = 0;
-    int canvasHeight;
     int canvasWidth;
+    int canvasHeight;
     int frameRate;
 
 public slots:
@@ -34,16 +34,22 @@ public slots:
     void incrementAnimation();
     void setPlayPauseBool(bool);
     void frameRateChanged(int);
+    void incrementCanvasAnimation();
+    void setCanvasPlayPause(bool);
 
 signals:
     void sendNextFrame(QImage &image);
     void sendPreviousFrame(QImage &image);
     void sendNextAnimationFrame(QImage &image);
+    void sendNextCanvasAnimationFrame(QImage &image);
 
 private:
+
+    void emitSendNextCanvasAnimationFrame();
     void emitSendNextAnimationFrame();
-    bool animationStarted = false;
     bool animationRunning = false;
+    bool canvasAnimationRunning = false;
+
 };
 
 #endif // MODEL_H

@@ -13,10 +13,10 @@ class OpeningWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit OpeningWindow(QWidget *parent = nullptr);
+    explicit OpeningWindow(Model* model,QWidget *parent = nullptr);
     ~OpeningWindow();
     MainWindow* w;
-
+    Model* m;
 public slots:
     void loadExistingPressed();
     void createNewPressed();
