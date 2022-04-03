@@ -6,24 +6,37 @@
 #include "graphicsscene.h"
 #include <QGraphicsView>
 #include <QGridLayout>
+#include <cmath>
+
+using std::fmin;
 
 MainWindow::MainWindow(Model&model, QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent),
+      ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //Model model(400, 400); // We switched declarations so that we can ask the user what size they want BEFORE creating the model
 
-    Canvas *c = new Canvas(model.frames.at(0), ui->canvasFrame);
+    Canvas *c = new Canvas(model.frames.at(0), ui->canvasLabel);
 
-    c->move((ui->canvasFrame->width()/2) -(model.canvasWidth/2), (ui->canvasFrame->height()/2) - (model.canvasHeight/2));
+    c->move((ui->canvasLabel->width()/2) -(model.canvasWidth/2), (ui->canvasLabel->height()/2) - (model.canvasHeight/2));
 
-    c->resize(ui->canvasFrame->width(), ui->canvasFrame->height());
+    c->resize(model.canvasWidth, model.canvasHeight);
+
+//    ui->animationLabel->setScaledContents(true);
+
 
     // Initializing slider
     ui->sizeSlider->setMaximum(40);
     ui->sizeSlider->setMinimum(1);
     ui->sizeSlider->setValue(5);
+
+
+    ui->frameRateBox->setMinimum(1);
+    ui->frameRateBox->setMaximum(30);
+    ui->frameRateBox->setValue(5);
+    model.frameRate = 200;
+
+    ui->playPauseAnimationButton->setText("Play");
 
     c->brushSize = 5; // setting initial brush size to match the slider initial value (kinda janky)
     c->brushColor = Qt::black; // initializing brush color
@@ -119,29 +132,68 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &Model::deleteFrame);
 
     connect(&model,
-                &Model::sendNextAnimationFrame,
-                &model,
-                &Model::incrementAnimation);
+            &Model::sendNextAnimationFrame,
+            &model,
+            &Model::incrementAnimation);
 
-        connect(&model,
-                &Model::sendNextAnimationFrame,
-                this,
-                &MainWindow::drawAnimation);
+    connect(&model,
+            &Model::sendNextAnimationFrame,
+            this,
+            &MainWindow::drawAnimation);
 
-        // connect the play/pause button to preview animation
-        connect(this,
-                &MainWindow::emitPlayValue,
-                &model,
-                &Model::setPlayPauseBool);
+    // connect the play/pause button to preview animation
+    connect(this,
+            &MainWindow::sendPlayValue,
+            &model,
+            &Model::setPlayPauseBool);
 
-        connect(ui->playPauseAnimationButton,
-                &QPushButton::clicked,
-                this,
-                &MainWindow::playPauseAnimation);
+    connect(ui->playPauseAnimationButton,
+            &QPushButton::clicked,
+            this,
+            &MainWindow::playPauseAnimation);
+
+    connect(ui->frameRateBox,
+            &QSpinBox::valueChanged,
+            &model,
+            &Model::frameRateChanged);
+
+    // connect play canvas animation
+
+    connect(this,
+            &MainWindow::sendCanvasPlayValue,
+            &model,
+            &Model::setCanvasPlayPause);
+
+    connect(&model,
+            &Model::sendNextCanvasAnimationFrame,
+            &model,
+            &Model::incrementCanvasAnimation);
+
+    connect(ui->playFullscreenButton,
+            &QPushButton::clicked,
+            this,
+            &MainWindow::playPauseCanvasAnimation);
+    connect(&model,
+            &Model::sendNextCanvasAnimationFrame,
+            c,
+            &Canvas::nextFrameChanged);
 }
 
 void MainWindow::drawAnimation(QImage &img){
-    ui->animationLabel->setPixmap(QPixmap::fromImage(img));
+    QPixmap p(QPixmap::fromImage(img));
+
+    int scaledWidth = 0;
+    int scaledHeight = 0;
+    int maxWidth(ui->animationLabel->width());
+    int maxHeight(ui->animationLabel->height());
+    int srcWidth(img.width());
+    int srcHeight(img.height());
+
+    calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight, scaledWidth, scaledHeight);
+
+    qDebug() << scaledWidth << " " << scaledHeight;
+
+    ui->animationLabel->setPixmap(p.scaled(scaledWidth, scaledHeight, Qt::KeepAspectRatio));
 }
 
 MainWindow::~MainWindow(){
@@ -149,11 +201,28 @@ MainWindow::~MainWindow(){
 }
 
 void MainWindow::paintEvent(QPaintEvent *) {
- // Create a painter
- QPainter painter(this);
- QPen pen(Qt::black);
- painter.setPen(pen);
+    // Create a painter
+    QPainter painter(this);
+    QPen pen(Qt::black);
+    painter.setPen(pen);
+}
 
+void MainWindow::calculateAspectRatioFit(int srcWidth, int srcHeight, int maxWidth, int maxHeight, int& scaledWidth, int& scaledHeight){
+    double ratio = fmin(maxWidth/(double)srcWidth, maxHeight/(double)srcHeight);
+
+    scaledWidth = srcWidth * ratio;
+    scaledHeight = srcHeight * ratio;
+}
+
+void MainWindow::playPauseCanvasAnimation(){
+    if(canvasAnimationButtonPlay){
+        ui->playFullscreenButton->setText("Pause");
+    } else {
+        ui->playFullscreenButton->setText("Play Fullscreen");
+    }
+
+    emit sendCanvasPlayValue(canvasAnimationButtonPlay);
+    canvasAnimationButtonPlay = !canvasAnimationButtonPlay;
 }
 
 void MainWindow::playPauseAnimation()
@@ -161,9 +230,9 @@ void MainWindow::playPauseAnimation()
     if(animationButtonPlay){
         ui->playPauseAnimationButton->setText("Pause");
     } else {
-        ui->playPauseAnimationButton->setText("Play");
+        ui->playPauseAnimationButton->setText("Play Preview");
     }
 
-    emit emitPlayValue(animationButtonPlay);
+    emit sendPlayValue(animationButtonPlay);
     animationButtonPlay = !animationButtonPlay;
 }

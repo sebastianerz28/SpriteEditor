@@ -15,20 +15,23 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(Model& model,QWidget *parent = nullptr);
     ~MainWindow();
-    bool animationButtonPlay = true;
-//    Model model;
 
 
 private:
+    bool canvasAnimationButtonPlay = true;
+    bool animationButtonPlay = true;
     Ui::MainWindow *ui;
     Canvas *canvas;
     void paintEvent(QPaintEvent *);
+    void calculateAspectRatioFit(int srcWidth, int srcHeight, int maxWidth, int maxHeight, int& scaledWidth, int& scaledHeight);
 
 signals:
-    void emitPlayValue(bool play);
+    void sendPlayValue(bool);
+    void sendCanvasPlayValue(bool);
 
 public slots:
     void drawAnimation(QImage&);
     void playPauseAnimation();
+    void playPauseCanvasAnimation();
 };
 #endif

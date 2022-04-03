@@ -1,24 +1,23 @@
 #include "canvas.h"
 #include <QDebug>
-
-Canvas::Canvas(QImage _image, QWidget *parent) : QWidget{parent}, painter(this), image(_image) {}
+#include <QStyleOption>
+Canvas::Canvas(QImage _image, QWidget *parent) : QWidget{parent},  image(_image), painter(this) {
+    this->setStyleSheet("background-color: #DFDFDE");
+}
 
 
 void Canvas::drawLineTo(const QPoint &endPoint)
 {
     QPainter painter(&image);
-        painter.setPen(QPen(brushColor));
-        if(eraseOn){
-            painter.setCompositionMode(QPainter::CompositionMode_Clear);
-        }
-
-        int xCoord = brushSize * (endPoint.x() / brushSize);
-        int yCoord = brushSize * (endPoint.y() / brushSize);
-
-
-        painter.fillRect(xCoord, yCoord, brushSize, brushSize, brushColor);
-        mousePos = endPoint;
-        update();
+    painter.setPen(QPen(brushColor));
+    if(eraseOn){
+        painter.setCompositionMode(QPainter::CompositionMode_Clear);
+    }
+    int xCoord = brushSize * (endPoint.x() / brushSize);
+    int yCoord = brushSize * (endPoint.y() / brushSize);
+    painter.fillRect(xCoord, yCoord, brushSize, brushSize, brushColor);
+    mousePos = endPoint;
+    update();
 }
 
 void Canvas::mousePressEvent(QMouseEvent *event)
@@ -36,7 +35,6 @@ void Canvas::mouseMoveEvent(QMouseEvent *event)
         drawLineTo(event->pos());
         emit updateModelFrames(image);
     }
-
 }
 
 void Canvas::mouseReleaseEvent(QMouseEvent *event)
@@ -51,9 +49,16 @@ void Canvas::mouseReleaseEvent(QMouseEvent *event)
 
 
 void Canvas::paintEvent(QPaintEvent *event) {
-    QPainter painter(this);
-        QRect dirtyRect = event->rect();
-        painter.drawImage(dirtyRect, image, dirtyRect);
+    QStyleOption opt;
+    opt.initFrom(this);
+
+    QPainter imagePainter(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &imagePainter, this);
+    QRect dirtyRect = event->rect();
+
+    imagePainter.drawImage(dirtyRect, image, dirtyRect);
+
+
 }
 
 void Canvas::brushSizeChanged(int newBrushSize){
@@ -69,15 +74,15 @@ void Canvas::brushSelected(){
 }
 
 void Canvas::colorDialogSelected(){
-    QColor colorSelected = QColorDialog::getColor(brushColor, this);
+    QColor colorSelected = QColorDialog::getColor(brushColor);
     brushColor = (colorSelected);
     eraseOn = false;
 
     if(colorHistory.size() > 4){
-           QColor removal = colorHistory.back();
-           colorHistory.pop_back();
-           colorsSet.erase(removal.name());
-     }
+        QColor removal = colorHistory.back();
+        colorHistory.pop_back();
+        colorsSet.erase(removal.name());
+    }
 
     if(!colorsSet.count(colorSelected.name())){
         colorHistory.insert(colorHistory.begin(), colorSelected);
@@ -90,18 +95,18 @@ void Canvas::colorDialogSelected(){
 
     for(unsigned long i = 0; i < colorHistory.size(); i++){ // 4 slots of colors to fill
         switch (i){
-            case 0:
-                emit firstHistoryChanged("background-color:" + colorHistory.at(i).name());
-                break;
-            case 1:
-                emit secondHistoryChanged("background-color:" + colorHistory.at(i).name());
-                break;
-            case 2:
-                emit thirdHistoryChanged("background-color:" + colorHistory.at(i).name());
-                break;
-            case 3:
-                emit fourthHistoryChanged("background-color:" + colorHistory.at(i).name());
-                break;
+        case 0:
+            emit firstHistoryChanged("background-color:" + colorHistory.at(i).name());
+            break;
+        case 1:
+            emit secondHistoryChanged("background-color:" + colorHistory.at(i).name());
+            break;
+        case 2:
+            emit thirdHistoryChanged("background-color:" + colorHistory.at(i).name());
+            break;
+        case 3:
+            emit fourthHistoryChanged("background-color:" + colorHistory.at(i).name());
+            break;
         }
     }
 }
@@ -139,6 +144,7 @@ void Canvas::nextFrameChanged(QImage &frame){
     image = frame;
     update();
 }
+
 void Canvas::prevFrameChanged(QImage &frame){
 
     image = frame;
