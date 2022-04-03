@@ -272,7 +272,7 @@ debug/moc_canvas.cpp: ../SpriteEditor/canvas.h \
 		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qdialog.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.3/mingw_64/bin/moc.exe
-	C:\Qt\6.2.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/QTProjects/a7-sprite-editor-s22-GrupieBug/build-SpriteEditor-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.3/mingw_64/mkspecs/win32-g++ -ID:/QTProjects/a7-sprite-editor-s22-GrupieBug/SpriteEditor -IC:/Qt/6.2.3/mingw_64/include -IC:/Qt/6.2.3/mingw_64/include/QtWidgets -IC:/Qt/6.2.3/mingw_64/include/QtGui -IC:/Qt/6.2.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw900_64/x86_64-w64-mingw32/include ..\SpriteEditor\canvas.h -o debug\moc_canvas.cpp
+	C:\Qt\6.2.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Admin/CS3505/SpriteEditor2/build-SpriteEditor-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Admin/CS3505/SpriteEditor2/SpriteEditor -IC:/Qt/6.2.3/mingw_64/include -IC:/Qt/6.2.3/mingw_64/include/QtWidgets -IC:/Qt/6.2.3/mingw_64/include/QtGui -IC:/Qt/6.2.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw900_64/x86_64-w64-mingw32/include ..\SpriteEditor\canvas.h -o debug\moc_canvas.cpp
 
 debug/moc_graphicsscene.cpp: ../SpriteEditor/graphicsscene.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/QObject \
@@ -402,7 +402,7 @@ debug/moc_graphicsscene.cpp: ../SpriteEditor/graphicsscene.h \
 		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qgraphicssceneevent.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.3/mingw_64/bin/moc.exe
-	C:\Qt\6.2.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/QTProjects/a7-sprite-editor-s22-GrupieBug/build-SpriteEditor-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.3/mingw_64/mkspecs/win32-g++ -ID:/QTProjects/a7-sprite-editor-s22-GrupieBug/SpriteEditor -IC:/Qt/6.2.3/mingw_64/include -IC:/Qt/6.2.3/mingw_64/include/QtWidgets -IC:/Qt/6.2.3/mingw_64/include/QtGui -IC:/Qt/6.2.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw900_64/x86_64-w64-mingw32/include ..\SpriteEditor\graphicsscene.h -o debug\moc_graphicsscene.cpp
+	C:\Qt\6.2.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Admin/CS3505/SpriteEditor2/build-SpriteEditor-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Admin/CS3505/SpriteEditor2/SpriteEditor -IC:/Qt/6.2.3/mingw_64/include -IC:/Qt/6.2.3/mingw_64/include/QtWidgets -IC:/Qt/6.2.3/mingw_64/include/QtGui -IC:/Qt/6.2.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw900_64/x86_64-w64-mingw32/include ..\SpriteEditor\graphicsscene.h -o debug\moc_graphicsscene.cpp
 
 debug/moc_mainwindow.cpp: ../SpriteEditor/mainwindow.h \
 		../SpriteEditor/model.h \
@@ -549,7 +549,7 @@ debug/moc_mainwindow.cpp: ../SpriteEditor/mainwindow.h \
 		C:/Qt/6.2.3/mingw_64/include/QtGui/qicon.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.3/mingw_64/bin/moc.exe
-	C:\Qt\6.2.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/QTProjects/a7-sprite-editor-s22-GrupieBug/build-SpriteEditor-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.3/mingw_64/mkspecs/win32-g++ -ID:/QTProjects/a7-sprite-editor-s22-GrupieBug/SpriteEditor -IC:/Qt/6.2.3/mingw_64/include -IC:/Qt/6.2.3/mingw_64/include/QtWidgets -IC:/Qt/6.2.3/mingw_64/include/QtGui -IC:/Qt/6.2.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw900_64/x86_64-w64-mingw32/include ..\SpriteEditor\mainwindow.h -o debug\moc_mainwindow.cpp
+	C:\Qt\6.2.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Admin/CS3505/SpriteEditor2/build-SpriteEditor-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Admin/CS3505/SpriteEditor2/SpriteEditor -IC:/Qt/6.2.3/mingw_64/include -IC:/Qt/6.2.3/mingw_64/include/QtWidgets -IC:/Qt/6.2.3/mingw_64/include/QtGui -IC:/Qt/6.2.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw900_64/x86_64-w64-mingw32/include ..\SpriteEditor\mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug/moc_model.cpp: ../SpriteEditor/model.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/QObject \
@@ -691,7 +691,7 @@ debug/moc_model.cpp: ../SpriteEditor/model.h \
 		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qdialog.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.3/mingw_64/bin/moc.exe
-	C:\Qt\6.2.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/QTProjects/a7-sprite-editor-s22-GrupieBug/build-SpriteEditor-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.3/mingw_64/mkspecs/win32-g++ -ID:/QTProjects/a7-sprite-editor-s22-GrupieBug/SpriteEditor -IC:/Qt/6.2.3/mingw_64/include -IC:/Qt/6.2.3/mingw_64/include/QtWidgets -IC:/Qt/6.2.3/mingw_64/include/QtGui -IC:/Qt/6.2.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw900_64/x86_64-w64-mingw32/include ..\SpriteEditor\model.h -o debug\moc_model.cpp
+	C:\Qt\6.2.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Admin/CS3505/SpriteEditor2/build-SpriteEditor-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Admin/CS3505/SpriteEditor2/SpriteEditor -IC:/Qt/6.2.3/mingw_64/include -IC:/Qt/6.2.3/mingw_64/include/QtWidgets -IC:/Qt/6.2.3/mingw_64/include/QtGui -IC:/Qt/6.2.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw900_64/x86_64-w64-mingw32/include ..\SpriteEditor\model.h -o debug\moc_model.cpp
 
 debug/moc_openingwindow.cpp: ../SpriteEditor/openingwindow.h \
 		../SpriteEditor/mainwindow.h \
@@ -848,7 +848,7 @@ debug/moc_openingwindow.cpp: ../SpriteEditor/openingwindow.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/qlocale.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.2.3/mingw_64/bin/moc.exe
-	C:\Qt\6.2.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/QTProjects/a7-sprite-editor-s22-GrupieBug/build-SpriteEditor-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.3/mingw_64/mkspecs/win32-g++ -ID:/QTProjects/a7-sprite-editor-s22-GrupieBug/SpriteEditor -IC:/Qt/6.2.3/mingw_64/include -IC:/Qt/6.2.3/mingw_64/include/QtWidgets -IC:/Qt/6.2.3/mingw_64/include/QtGui -IC:/Qt/6.2.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw900_64/x86_64-w64-mingw32/include ..\SpriteEditor\openingwindow.h -o debug\moc_openingwindow.cpp
+	C:\Qt\6.2.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Admin/CS3505/SpriteEditor2/build-SpriteEditor-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.2.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Admin/CS3505/SpriteEditor2/SpriteEditor -IC:/Qt/6.2.3/mingw_64/include -IC:/Qt/6.2.3/mingw_64/include/QtWidgets -IC:/Qt/6.2.3/mingw_64/include/QtGui -IC:/Qt/6.2.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw900_64/x86_64-w64-mingw32/include ..\SpriteEditor\openingwindow.h -o debug\moc_openingwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1014,7 +1014,22 @@ debug/canvas.o: ../SpriteEditor/canvas.cpp ../SpriteEditor/canvas.h \
 		C:/Qt/6.2.3/mingw_64/include/QtWidgets/QColorDialog \
 		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qcolordialog.h \
 		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qdialog.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/QDebug
+		C:/Qt/6.2.3/mingw_64/include/QtCore/QDebug \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/QStyleOption \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qlocale.h \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.2.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.2.3/mingw_64/include/QtGui/qicon.h \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qtabwidget.h \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qabstractitemmodel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\canvas.o ..\SpriteEditor\canvas.cpp
 
 debug/graphicsscene.o: ../SpriteEditor/graphicsscene.cpp ../SpriteEditor/graphicsscene.h \
@@ -1781,40 +1796,7 @@ debug/openingwindow.o: ../SpriteEditor/openingwindow.cpp ../SpriteEditor/opening
 		C:/Qt/6.2.3/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/qcalendar.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/qlocale.h \
-		ui_openingwindow.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/QVariant \
-		C:/Qt/6.2.3/mingw_64/include/QtWidgets/QApplication \
-		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qfuture.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qmutex.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qthread.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qexception.h \
-		C:/Qt/6.2.3/mingw_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.2.3/mingw_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.2.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.2.3/mingw_64/include/QtWidgets/QLabel \
-		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qlabel.h \
-		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qframe.h \
-		C:/Qt/6.2.3/mingw_64/include/QtGui/qpicture.h \
-		C:/Qt/6.2.3/mingw_64/include/QtGui/qtextdocument.h \
-		C:/Qt/6.2.3/mingw_64/include/QtWidgets/QPushButton \
-		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/6.2.3/mingw_64/include/QtWidgets/QSpinBox \
-		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qspinbox.h \
-		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/6.2.3/mingw_64/include/QtGui/qvalidator.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qregularexpression.h
+		ui_openingwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\openingwindow.o ..\SpriteEditor\openingwindow.cpp
 
 debug/moc_canvas.o: debug/moc_canvas.cpp 

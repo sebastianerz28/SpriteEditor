@@ -1,10 +1,8 @@
 #include "canvas.h"
 #include <QDebug>
 #include <QStyleOption>
-Canvas::Canvas(QImage _image, QWidget *parent) : QWidget{parent}, painter(this), image(_image) {
-
-//    this->setWindowFlags(Qt::FramelessWindowHint);
-//    this->setAttribute(Qt::WA_TranslucentBackground, true);
+Canvas::Canvas(QImage _image, QWidget *parent) : QWidget{parent},  image(_image), painter(this) {
+    this->setStyleSheet("background-color: #DFDFDE");
 }
 
 
@@ -51,11 +49,11 @@ void Canvas::mouseReleaseEvent(QMouseEvent *event)
 
 
 void Canvas::paintEvent(QPaintEvent *event) {
-//    QStyleOption opt;
-//    opt.initFrom(this);
+    QStyleOption opt;
+    opt.initFrom(this);
 
     QPainter imagePainter(this);
-//    style()->drawPrimitive(QStyle::PE_Widget, &opt, &imagePainter, this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &imagePainter, this);
     QRect dirtyRect = event->rect();
 
     imagePainter.drawImage(dirtyRect, image, dirtyRect);
@@ -146,6 +144,7 @@ void Canvas::nextFrameChanged(QImage &frame){
     image = frame;
     update();
 }
+
 void Canvas::prevFrameChanged(QImage &frame){
 
     image = frame;

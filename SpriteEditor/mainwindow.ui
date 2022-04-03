@@ -17,35 +17,6 @@
    <string notr="true">background-color: beige</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="canvasFrame">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>20</y>
-      <width>600</width>
-      <height>390</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: transparent;</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QWidget" name="widget" native="true">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>420</y>
-       <width>21</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
    <widget class="QWidget" name="brushWidget" native="true">
     <property name="geometry">
      <rect>
@@ -403,6 +374,9 @@ padding: 0px;
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="toolsWidget" native="true">
@@ -526,33 +500,30 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
    <widget class="QPushButton" name="plusButton">
     <property name="geometry">
      <rect>
-      <x>821</x>
-      <y>470</y>
-      <width>31</width>
-      <height>32</height>
+      <x>700</x>
+      <y>450</y>
+      <width>101</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>20</pointsize>
-      <bold>true</bold>
+      <pointsize>9</pointsize>
+      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPushButton{ 
-color: black; 
-}
+     <string notr="true">QPushButton{ color: black; }
 
 QPushButton:hover{
  background-color: rgba(0,0,0,0.05);
 color: black;
 }
 
-QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
-</string>
+QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
     </property>
     <property name="text">
-     <string>+</string>
+     <string>Add Frame</string>
     </property>
    </widget>
    <widget class="QScrollArea" name="frameScrollArea">
@@ -560,7 +531,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
      <rect>
       <x>20</x>
       <y>420</y>
-      <width>781</width>
+      <width>671</width>
       <height>80</height>
      </rect>
     </property>
@@ -572,7 +543,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>779</width>
+       <width>669</width>
        <height>78</height>
       </rect>
      </property>
@@ -583,7 +554,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
      <rect>
       <x>20</x>
       <y>480</y>
-      <width>781</width>
+      <width>671</width>
       <height>20</height>
      </rect>
     </property>
@@ -594,11 +565,21 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
    <widget class="QPushButton" name="nextFrameButton">
     <property name="geometry">
      <rect>
-      <x>971</x>
+      <x>940</x>
       <y>470</y>
-      <width>80</width>
+      <width>91</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{ color: black; }
+
+QPushButton:hover{
+ background-color: rgba(0,0,0,0.05);
+color: black;
+}
+
+QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
     </property>
     <property name="text">
      <string>Next Frame</string>
@@ -607,11 +588,21 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
    <widget class="QPushButton" name="previousFrameButton">
     <property name="geometry">
      <rect>
-      <x>860</x>
+      <x>820</x>
       <y>470</y>
       <width>91</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{ color: black; }
+
+QPushButton:hover{
+ background-color: rgba(0,0,0,0.05);
+color: black;
+}
+
+QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
     </property>
     <property name="text">
      <string>Previous Frame</string>
@@ -626,8 +617,54 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
       <height>24</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{ color: black; }
+
+QPushButton:hover{
+ background-color: rgba(0,0,0,0.05);
+color: black;
+}
+
+QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
+    </property>
     <property name="text">
-     <string>Play</string>
+     <string>Play Preview</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="canvasLabel">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>30</y>
+      <width>601</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="playFullscreenButton">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>420</y>
+      <width>101</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{ color: black; }
+
+QPushButton:hover{
+ background-color: rgba(0,0,0,0.05);
+color: black;
+}
+
+QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
+    </property>
+    <property name="text">
+     <string>Play Fullscreen</string>
     </property>
    </widget>
   </widget>

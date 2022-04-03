@@ -55,8 +55,7 @@ void OpeningWindow::loadExistingPressed(){
 }
 
 void OpeningWindow::startPressed(){
-    m->canvasHeight = height;
-    m->canvasWidth = width;
+    m = new Model(width, height);
     w = new MainWindow(*m);
     w->show();
     this->hide();

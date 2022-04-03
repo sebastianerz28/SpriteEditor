@@ -4,18 +4,19 @@
 #include <QTimer>
 
 Model::Model(int canvasWidth, int canvasHeight, QObject *parent)
-    : canvasWidth(canvasWidth), canvasHeight(canvasHeight), QObject{parent}
+    : QObject{parent}, canvasWidth(canvasWidth), canvasHeight(canvasHeight)
 {
-    QImage img = QPixmap(canvasWidth, canvasHeight).toImage();
-    QColor c("transparent");
-    img.fill(c);
+    QPixmap pixmap(canvasWidth, canvasHeight);
+    pixmap.fill(Qt::transparent);
+    QImage img = pixmap.toImage();
     frames.push_back(img);
 }
 
 void Model::addFrame(){
     qDebug() << "frame added";
-    QImage img = QPixmap(canvasWidth, canvasHeight).toImage();
-    img.fill(Qt::transparent);
+    QPixmap pixmap(canvasWidth, canvasHeight);
+    pixmap.fill(Qt::transparent);
+    QImage img = pixmap.toImage();
     frames.push_back(img);
 }
 
@@ -40,7 +41,7 @@ void Model::receiveUpdatedCanvasFrame(QImage& img){
 void Model::deleteFrame(){
     if(!animationRunning && currFrame != 0){
         frames.erase(frames.begin()+currFrame);
-        emit sendPreviousFrame(frames.at(currFrame));
+        emit sendPreviousFrame(frames.at(--currFrame));
     }else if (!animationRunning && currFrame == 0 && frames.size()>1){
         frames.erase(frames.begin());
         emit sendNextFrame(frames.at(currFrame));
@@ -49,7 +50,10 @@ void Model::deleteFrame(){
 
 void Model::emitSendNextAnimationFrame(){
     emit sendNextAnimationFrame(frames.at(currAnimationFrame));
+}
 
+void Model::emitSendNextCanvasAnimationFrame(){
+    emit sendNextCanvasAnimationFrame(frames.at(currFrame));
 }
 
 void Model::incrementAnimation(){
@@ -57,16 +61,30 @@ void Model::incrementAnimation(){
         QTimer::singleShot(frameRate, this, &Model::emitSendNextAnimationFrame);
         currAnimationFrame = (currAnimationFrame+1) % frames.size();
     }
+}
 
+void Model::incrementCanvasAnimation(){
+    if(canvasAnimationRunning){
+        QTimer::singleShot(frameRate, this, &Model::emitSendNextCanvasAnimationFrame);
+        currFrame = (currFrame+1) % frames.size();
+    }
 }
 
 void Model::setPlayPauseBool(bool play){
-    qDebug() << "recieved" << play;
     if(!animationRunning){
         animationRunning = play;
         emitSendNextAnimationFrame();
     } else {
         animationRunning = play;
+    }
+}
+
+void Model::setCanvasPlayPause(bool play){
+    if(!canvasAnimationRunning){
+        canvasAnimationRunning = play;
+        emitSendNextCanvasAnimationFrame();
+    } else {
+        canvasAnimationRunning = play;
     }
 }
 
