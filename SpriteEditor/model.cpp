@@ -7,14 +7,15 @@ Model::Model(int canvasWidth, int canvasHeight, QObject *parent)
     : canvasWidth(canvasWidth), canvasHeight(canvasHeight), QObject{parent}
 {
     QImage img = QPixmap(canvasWidth, canvasHeight).toImage();
-    //img.fill(Qt::transparent);
+    QColor c("transparent");
+    img.fill(c);
     frames.push_back(img);
 }
 
 void Model::addFrame(){
     qDebug() << "frame added";
     QImage img = QPixmap(canvasWidth, canvasHeight).toImage();
-    //img.fill(Qt::transparent);
+    img.fill(Qt::transparent);
     frames.push_back(img);
 }
 
@@ -37,11 +38,13 @@ void Model::receiveUpdatedCanvasFrame(QImage& img){
 }
 
 void Model::deleteFrame(){
-    if(currFrame != 0){
-        emit sendPreviousFrame(frames.at(--currFrame));
+    if(!animationRunning && currFrame != 0){
         frames.erase(frames.begin()+currFrame);
+        emit sendPreviousFrame(frames.at(currFrame));
+    }else if (!animationRunning && currFrame == 0 && frames.size()>1){
+        frames.erase(frames.begin());
+        emit sendNextFrame(frames.at(currFrame));
     }
-
 }
 
 void Model::emitSendNextAnimationFrame(){

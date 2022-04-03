@@ -253,6 +253,8 @@ public:
         animationLabel = new QLabel(previewWidget);
         animationLabel->setObjectName(QString::fromUtf8("animationLabel"));
         animationLabel->setGeometry(QRect(10, 30, 191, 181));
+        animationLabel->setAutoFillBackground(false);
+        animationLabel->setStyleSheet(QString::fromUtf8("background-color : transparent"));
         toolsWidget = new QWidget(centralwidget);
         toolsWidget->setObjectName(QString::fromUtf8("toolsWidget"));
         toolsWidget->setGeometry(QRect(821, 300, 211, 151));

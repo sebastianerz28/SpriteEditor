@@ -41,6 +41,7 @@ signals:
     void sendNextAnimationFrame(QImage &image);
 
 private:
+
     void emitSendNextAnimationFrame();
     bool animationStarted = false;
     bool animationRunning = false;

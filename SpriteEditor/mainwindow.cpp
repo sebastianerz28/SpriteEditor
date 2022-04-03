@@ -15,15 +15,22 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
     //Model model(400, 400); // We switched declarations so that we can ask the user what size they want BEFORE creating the model
 
     Canvas *c = new Canvas(model.frames.at(0), ui->canvasFrame);
+//    QGridLayout *layout = new QGridLayout(ui->canvasFrame);
+//    QLabel *label = new QLabel();
+//    label->setText("Overlaid Text");
 
+//    layout->addWidget(label, 0, 0, Qt::AlignLeft | Qt::AlignTop);
+//    layout->addWidget(c, 0, 0, Qt::AlignRight | Qt::AlignBottom);
     c->move((ui->canvasFrame->width()/2) -(model.canvasWidth/2), (ui->canvasFrame->height()/2) - (model.canvasHeight/2));
 
     c->resize(ui->canvasFrame->width(), ui->canvasFrame->height());
 
+    ui->animationLabel->setScaledContents(true);
     // Initializing slider
     ui->sizeSlider->setMaximum(40);
     ui->sizeSlider->setMinimum(1);
     ui->sizeSlider->setValue(5);
+
 
     ui->frameRateBox->setMinimum(1);
     ui->frameRateBox->setMaximum(30);
@@ -150,9 +157,11 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
                 &QSpinBox::valueChanged,
                 &model,
                 &Model::frameRateChanged);
+
 }
 
 void MainWindow::drawAnimation(QImage &img){
+
     ui->animationLabel->setPixmap(QPixmap::fromImage(img));
 }
 

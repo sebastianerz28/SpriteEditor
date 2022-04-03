@@ -6,8 +6,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv); // init
-    //Model m(400,400);
-    OpeningWindow o;
+    Model m(400,400);
+    OpeningWindow o(&m);
     o.show();
     //MainWindow w(m);
     //w.show();

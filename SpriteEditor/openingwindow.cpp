@@ -2,10 +2,11 @@
 #include "ui_openingwindow.h"
 #include "mainwindow.h"
 
-OpeningWindow::OpeningWindow(QWidget *parent) :
+OpeningWindow::OpeningWindow(Model* model,QWidget *parent) :
     QWidget(parent), w(nullptr),
     ui(new Ui::OpeningWindow)
 {
+    m = model;
     ui->setupUi(this);
     ui->widthBox->setMinimum(1);
     ui->widthBox->setMaximum(600);
@@ -54,8 +55,9 @@ void OpeningWindow::loadExistingPressed(){
 }
 
 void OpeningWindow::startPressed(){
-    Model model(width, height);
-    w = new MainWindow(model);
+    m->canvasHeight = height;
+    m->canvasWidth = width;
+    w = new MainWindow(*m);
     w->show();
     this->hide();
 }
