@@ -6,7 +6,7 @@
  * @param model
  * @param parent
  */
-OpeningWindow::OpeningWindow(Model* model,QWidget *parent) :
+OpeningWindow::OpeningWindow(Model* model, QWidget *parent) :
     QWidget(parent), w(nullptr),
     ui(new Ui::OpeningWindow)
 {

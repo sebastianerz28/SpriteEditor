@@ -8,7 +8,7 @@
 #include <QGridLayout>
 #include <cmath>
 #include <string>
-
+#include "openingwindow.h"
 
 using std::fmin;
 using std::string;
@@ -19,6 +19,11 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
 {
     ui->setupUi(this);
 
+    OpeningWindow *testOW = new OpeningWindow(&model);
+
+    testOW->show();
+
+    this->setDisabled(true);
     int scaledCanvasWidth = 0;
     int scaledCanvasHeight = 0;
 
