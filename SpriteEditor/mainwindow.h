@@ -31,10 +31,12 @@ signals:
     void sendPlayValue(bool);
     void sendCanvasPlayValue(bool);
 
+
 public slots:
     void drawAnimation(QImage&);
     void playPauseAnimation();
     void playPauseCanvasAnimation();
     void setTextCurrentFrameLabel(int, int);
+    void showSaveWindow(bool);
 };
 #endif

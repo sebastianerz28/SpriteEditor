@@ -9,6 +9,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QFileDialog>
 
 /**
  * @brief Model::Model
@@ -197,6 +198,12 @@ void Model::frameRateChanged(int framesPerSecond){
  */
 void Model::emitPauseAnimation(){
     emit pauseAnimation();
+}
+
+void Model::saveClicked(bool clicked){
+    if(clicked){
+
+    }
 }
 
 void Model::write(QJsonObject &json) const {

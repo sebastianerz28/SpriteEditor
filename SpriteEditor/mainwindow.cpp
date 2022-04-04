@@ -8,6 +8,7 @@
 #include <QGridLayout>
 #include <cmath>
 #include <string>
+#include <QFileDialog>
 
 
 using std::fmin;
@@ -209,6 +210,12 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &QPushButton::clicked,
             &model,
             &Model::copyFrame);
+
+    //toolbar
+    connect(ui->actionsave,
+            &QAction::isChecked,
+            this,
+            &MainWindow::showSaveWindow);
 }
 /**
  * @brief MainWindow::drawAnimation
@@ -293,4 +300,10 @@ void MainWindow::playPauseAnimation()
 void MainWindow::setTextCurrentFrameLabel(int curr, int total){
     QString s = QString::number(curr+1) + "/" + QString::number(total);
     ui->currentFrameLabel->setText(s);
+}
+
+void MainWindow::showSaveWindow(bool isClicked){
+    if(isClicked){
+     QString fileName = QFileDialog::getOpenFileName(this, "open a file");
+    }
 }
