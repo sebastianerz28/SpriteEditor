@@ -99,25 +99,42 @@ void Model::write(QJsonObject &json) const {
     json["width"] = frames.at(0).width();
     json["height"] = frames.at(0).height();
     json["numberOfFrames"] = (int)frames.size();
+    QJsonArray frameArray;
 
     for(int l = 0; l < (int)frames.size(); l++){
-        //vector<vector<QString>> frameColors;
         QJsonArray heightArray;
         for(int i = 0; i < frames.at(l).height(); i++){
             QJsonArray widthArray;
             for(int j = 0; j < frames.at(l).width(); j++){
                 QColor color = frames.at(l).pixelColor(i, j);
-                //frameColors.at(j).at(i) = color.name();
                 widthArray.push_back(color.name());
             }
             heightArray.push_back(widthArray);
         }
-        QJsonDocument frameAtIndex(heightArray);
+        QString frameName = "frame";
+        frameName.append(QString::number(l));
+        json[frameName] = heightArray;
+        frameArray.push_back(json[frameName]);
     }
+    json["frames"] = frameArray;
 }
 
 void Model::read(QJsonObject &json) {
     numberOfFrames = json["numberOfFrames"].toInt();
     imageWidth = json["width"].toInt();
     imageHeight = json["height"].toInt();
+    QJsonArray frameArray = json["frames"].toArray();
+
+    for(int i = 0; i < frameArray.size(); i++){
+        QImage imgAtFrame;
+        QJsonArray heights = frameArray.at(i).toArray();
+        for(int j = 0; j < heights.size(); j++){
+            QJsonArray widths = heights.at(i).toArray();
+            for(int k = 0; k < widths.size(); k++){
+                QColor color = widths.at(k).toString();
+                imgAtFrame.setPixel(j,i, color.rgba64());
+            }
+        }
+        frames.push_back(imgAtFrame);
+    }
 }
