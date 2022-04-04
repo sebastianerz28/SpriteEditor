@@ -167,6 +167,10 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &Model::enableDelete,
             ui->deleteFrameButton,
             &QPushButton::setEnabled);
+    connect(&model,
+            &Model::startAnimation,
+            &model,
+            &Model::incrementAnimation);
 
     // connect play canvas animation
 
@@ -198,8 +202,10 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
 }
 
 void MainWindow::drawAnimation(QImage &img){
+    qDebug() << "entered drawAnimation";
+    qDebug() << "image height:" << img.height();
     QPixmap p(QPixmap::fromImage(img));
-
+    qDebug() << "created pixmap";
     int scaledWidth = 0;
     int scaledHeight = 0;
     int maxWidth(ui->animationLabel->width());
@@ -207,10 +213,15 @@ void MainWindow::drawAnimation(QImage &img){
     int srcWidth(img.width());
     int srcHeight(img.height());
 
+
     calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight, scaledWidth, scaledHeight);
+    qDebug() << "found aspect ratio";
 
 
     ui->animationLabel->setPixmap(p.scaled(scaledWidth, scaledHeight, Qt::KeepAspectRatio));
+    qDebug() << "set pixmap of label";
+
+
 }
 
 MainWindow::~MainWindow(){

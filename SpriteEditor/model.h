@@ -46,6 +46,7 @@ signals:
     void updateCurrentFrameLabel(int, int);
     void pauseAnimation();
     void enableDelete(bool);
+    void startAnimation();
 private:
     bool deletingFrame = false;
     void emitSendNextCanvasAnimationFrame();

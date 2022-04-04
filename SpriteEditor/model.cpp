@@ -56,30 +56,37 @@ void Model::deleteFrame(){
 }
 void Model::deleteFrameRunning(){
     if(currFrame != 0){
-        frames.erase(frames.begin()+currFrame);
-        qDebug() << currFrame-1;
         emit sendPreviousFrame(frames.at(--currFrame));
+        qDebug() << currFrame;
+        frames.erase(frames.begin()+currFrame+1);
         currAnimationFrame = 0;
         deletingFrame = false;
 
-        emit sendNextAnimationFrame(frames.at(currAnimationFrame));
+        //        frames.erase(frames.begin()+currFrame);
+        //        qDebug() << currFrame-1;
+        //        emit sendPreviousFrame(frames.at(--currFrame));
+        //        currAnimationFrame = 0;
+        //        deletingFrame = false;
+
+        emit startAnimation();
     }else if (currFrame == 0 && frames.size()>1){
         frames.erase(frames.begin());
         emit sendNextFrame(frames.at(currFrame));
         currAnimationFrame = 0;
         deletingFrame = false;
 
-        emit sendNextAnimationFrame(frames.at(currAnimationFrame));
+        emit startAnimation();
     }
     else if (currFrame == 0 && frames.size() == 1){
         deletingFrame = false;
-        emit sendNextAnimationFrame(frames.at(currAnimationFrame));
+        emit startAnimation();
     }
     emit updateCurrentFrameLabel(currFrame, frames.size());
 
 }
 
 void Model::emitSendNextAnimationFrame(){
+    qDebug() << "entered sendNextAnimationFrame";
     emit sendNextAnimationFrame(frames.at(currAnimationFrame));
 }
 
@@ -88,7 +95,8 @@ void Model::emitSendNextCanvasAnimationFrame(){
 }
 
 void Model::incrementAnimation(){
-    qDebug() << animationRunning << " "<< deletingFrame;
+    qDebug() << "entered incrementAnimation";
+    qDebug() << "animationRunning: " << animationRunning << " deletingFrame: "<< deletingFrame;
     if(animationRunning && !deletingFrame){
         QTimer::singleShot(frameRate, this, &Model::emitSendNextAnimationFrame);
         currAnimationFrame = (currAnimationFrame+1) % frames.size();
