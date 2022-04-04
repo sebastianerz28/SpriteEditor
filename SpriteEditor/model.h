@@ -36,19 +36,23 @@ public slots:
     void frameRateChanged(int);
     void incrementCanvasAnimation();
     void setCanvasPlayPause(bool);
+    void deleteFrameRunning();
 
 signals:
     void sendNextFrame(QImage &image);
     void sendPreviousFrame(QImage &image);
     void sendNextAnimationFrame(QImage &image);
     void sendNextCanvasAnimationFrame(QImage &image);
-
+    void updateCurrentFrameLabel(int, int);
+    void pauseAnimation();
+    void enableDelete(bool);
 private:
-
+    bool deletingFrame = false;
     void emitSendNextCanvasAnimationFrame();
     void emitSendNextAnimationFrame();
     bool animationRunning = false;
     bool canvasAnimationRunning = false;
+
 
 };
 

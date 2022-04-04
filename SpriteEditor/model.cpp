@@ -18,6 +18,7 @@ void Model::addFrame(){
     pixmap.fill(Qt::transparent);
     QImage img = pixmap.toImage();
     frames.push_back(img);
+    emit updateCurrentFrameLabel(currFrame, frames.size());
 }
 
 void Model::nextFrame(){
@@ -25,6 +26,7 @@ void Model::nextFrame(){
         emit sendNextFrame(frames.at(++currFrame));
     }
     qDebug() << "curr frame is: "<< currFrame;
+    emit updateCurrentFrameLabel(currFrame, frames.size());
 }
 
 void Model::prevFrame(){
@@ -32,6 +34,7 @@ void Model::prevFrame(){
         emit sendPreviousFrame(frames.at(--currFrame));
     }
     qDebug() << "curr frame is: "<< currFrame;
+    emit updateCurrentFrameLabel(currFrame, frames.size());
 }
 
 void Model::receiveUpdatedCanvasFrame(QImage& img){
@@ -45,7 +48,30 @@ void Model::deleteFrame(){
     }else if (!animationRunning && currFrame == 0 && frames.size()>1){
         frames.erase(frames.begin());
         emit sendNextFrame(frames.at(currFrame));
+    } else if(animationRunning){
+        deletingFrame = true;
     }
+
+    emit updateCurrentFrameLabel(currFrame, frames.size());
+}
+void Model::deleteFrameRunning(){
+    if(currFrame != 0){
+        frames.erase(frames.begin()+currFrame);
+        emit sendPreviousFrame(frames.at(--currFrame));
+        currAnimationFrame = 0;
+        deletingFrame = false;
+
+        emit sendNextAnimationFrame(frames.at(currAnimationFrame));
+    }else if (currFrame == 0 && frames.size()>1){
+        frames.erase(frames.begin());
+        emit sendNextFrame(frames.at(currFrame));
+        currAnimationFrame = 0;
+        deletingFrame = false;
+
+        emit sendNextAnimationFrame(frames.at(currAnimationFrame));
+    }
+    emit updateCurrentFrameLabel(currFrame, frames.size());
+
 }
 
 void Model::emitSendNextAnimationFrame(){
@@ -57,9 +83,14 @@ void Model::emitSendNextCanvasAnimationFrame(){
 }
 
 void Model::incrementAnimation(){
-    if(animationRunning){
+    if(animationRunning && !deletingFrame){
         QTimer::singleShot(frameRate, this, &Model::emitSendNextAnimationFrame);
         currAnimationFrame = (currAnimationFrame+1) % frames.size();
+        emit enableDelete(true);
+    }
+    else if (animationRunning && deletingFrame){
+        emit enableDelete(false);
+        emit pauseAnimation();
     }
 }
 

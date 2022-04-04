@@ -33,5 +33,6 @@ public slots:
     void drawAnimation(QImage&);
     void playPauseAnimation();
     void playPauseCanvasAnimation();
+    void setTextCurrentFrameLabel(int, int);
 };
 #endif

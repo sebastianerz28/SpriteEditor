@@ -7,8 +7,11 @@
 #include <QGraphicsView>
 #include <QGridLayout>
 #include <cmath>
+#include <string>
+
 
 using std::fmin;
+using std::string;
 
 MainWindow::MainWindow(Model&model, QWidget *parent)
     : QMainWindow(parent),
@@ -156,6 +159,14 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &QSpinBox::valueChanged,
             &model,
             &Model::frameRateChanged);
+    connect(&model,
+            &Model::pauseAnimation,
+            &model,
+            &Model::deleteFrameRunning);
+    connect(&model,
+            &Model::enableDelete,
+            ui->deleteFrameButton,
+            &QPushButton::setEnabled);
 
     // connect play canvas animation
 
@@ -173,10 +184,17 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &QPushButton::clicked,
             this,
             &MainWindow::playPauseCanvasAnimation);
+
     connect(&model,
             &Model::sendNextCanvasAnimationFrame,
             c,
             &Canvas::nextFrameChanged);
+
+    //Conect Total frame count
+    connect(&model,
+            &Model::updateCurrentFrameLabel,
+            this,
+            &MainWindow::setTextCurrentFrameLabel);
 }
 
 void MainWindow::drawAnimation(QImage &img){
@@ -191,7 +209,6 @@ void MainWindow::drawAnimation(QImage &img){
 
     calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight, scaledWidth, scaledHeight);
 
-    qDebug() << scaledWidth << " " << scaledHeight;
 
     ui->animationLabel->setPixmap(p.scaled(scaledWidth, scaledHeight, Qt::KeepAspectRatio));
 }
@@ -235,4 +252,9 @@ void MainWindow::playPauseAnimation()
 
     emit sendPlayValue(animationButtonPlay);
     animationButtonPlay = !animationButtonPlay;
+}
+
+void MainWindow::setTextCurrentFrameLabel(int curr, int total){
+    QString s = QString::number(curr+1) + "/" + QString::number(total);
+    ui->currentFrameLabel->setText(s);
 }
