@@ -23,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    const uint offsetsAndSize[18];
-    char stringdata0[137];
+    const uint offsetsAndSize[24];
+    char stringdata0[199];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
@@ -34,17 +34,21 @@ QT_MOC_LITERAL(0, 10), // "MainWindow"
 QT_MOC_LITERAL(11, 13), // "sendPlayValue"
 QT_MOC_LITERAL(25, 0), // ""
 QT_MOC_LITERAL(26, 19), // "sendCanvasPlayValue"
-QT_MOC_LITERAL(46, 13), // "drawAnimation"
-QT_MOC_LITERAL(60, 7), // "QImage&"
-QT_MOC_LITERAL(68, 18), // "playPauseAnimation"
-QT_MOC_LITERAL(87, 24), // "playPauseCanvasAnimation"
-QT_MOC_LITERAL(112, 24) // "setTextCurrentFrameLabel"
+QT_MOC_LITERAL(46, 13), // "getFirstFrame"
+QT_MOC_LITERAL(60, 13), // "drawAnimation"
+QT_MOC_LITERAL(74, 7), // "QImage&"
+QT_MOC_LITERAL(82, 18), // "playPauseAnimation"
+QT_MOC_LITERAL(101, 24), // "playPauseCanvasAnimation"
+QT_MOC_LITERAL(126, 24), // "setTextCurrentFrameLabel"
+QT_MOC_LITERAL(151, 21), // "openFullScreenPreview"
+QT_MOC_LITERAL(173, 25) // "enableMainWindowAfterHide"
 
     },
     "MainWindow\0sendPlayValue\0\0sendCanvasPlayValue\0"
-    "drawAnimation\0QImage&\0playPauseAnimation\0"
-    "playPauseCanvasAnimation\0"
-    "setTextCurrentFrameLabel"
+    "getFirstFrame\0drawAnimation\0QImage&\0"
+    "playPauseAnimation\0playPauseCanvasAnimation\0"
+    "setTextCurrentFrameLabel\0openFullScreenPreview\0"
+    "enableMainWindowAfterHide"
 };
 #undef QT_MOC_LITERAL
 
@@ -54,32 +58,38 @@ static const uint qt_meta_data_MainWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   50,    2, 0x06,    1 /* Public */,
-       3,    1,   53,    2, 0x06,    3 /* Public */,
+       1,    1,   68,    2, 0x06,    1 /* Public */,
+       3,    1,   71,    2, 0x06,    3 /* Public */,
+       4,    0,   74,    2, 0x06,    5 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       4,    1,   56,    2, 0x0a,    5 /* Public */,
-       6,    0,   59,    2, 0x0a,    7 /* Public */,
-       7,    0,   60,    2, 0x0a,    8 /* Public */,
-       8,    2,   61,    2, 0x0a,    9 /* Public */,
+       5,    1,   75,    2, 0x0a,    6 /* Public */,
+       7,    0,   78,    2, 0x0a,    8 /* Public */,
+       8,    0,   79,    2, 0x0a,    9 /* Public */,
+       9,    2,   80,    2, 0x0a,   10 /* Public */,
+      10,    0,   85,    2, 0x0a,   13 /* Public */,
+      11,    0,   86,    2, 0x0a,   14 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void, QMetaType::Bool,    2,
+    QMetaType::Void,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 5,    2,
+    QMetaType::Void, 0x80000000 | 6,    2,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    2,    2,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -92,10 +102,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->sendPlayValue((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 1: _t->sendCanvasPlayValue((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 2: _t->drawAnimation((*reinterpret_cast< std::add_pointer_t<QImage&>>(_a[1]))); break;
-        case 3: _t->playPauseAnimation(); break;
-        case 4: _t->playPauseCanvasAnimation(); break;
-        case 5: _t->setTextCurrentFrameLabel((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 2: _t->getFirstFrame(); break;
+        case 3: _t->drawAnimation((*reinterpret_cast< std::add_pointer_t<QImage&>>(_a[1]))); break;
+        case 4: _t->playPauseAnimation(); break;
+        case 5: _t->playPauseCanvasAnimation(); break;
+        case 6: _t->setTextCurrentFrameLabel((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 7: _t->openFullScreenPreview(); break;
+        case 8: _t->enableMainWindowAfterHide(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -114,6 +127,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
                 return;
             }
         }
+        {
+            using _t = void (MainWindow::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MainWindow::getFirstFrame)) {
+                *result = 2;
+                return;
+            }
+        }
     }
 }
 
@@ -124,8 +144,8 @@ const QMetaObject MainWindow::staticMetaObject = { {
     qt_static_metacall,
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t
-, QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>
+, QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,
@@ -152,13 +172,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 9;
     }
     return _id;
 }
@@ -175,6 +195,12 @@ void MainWindow::sendCanvasPlayValue(bool _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
+}
+
+// SIGNAL 2
+void MainWindow::getFirstFrame()
+{
+    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

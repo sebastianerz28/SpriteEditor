@@ -385,7 +385,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "C@ DAWGZ Sprite Editor", nullptr));
         actionsave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
         actionLoad->setText(QCoreApplication::translate("MainWindow", "Load", nullptr));
         brushButton->setText(QCoreApplication::translate("MainWindow", "Brush", nullptr));
@@ -403,7 +403,7 @@ public:
         toolsLabel->setText(QCoreApplication::translate("MainWindow", "Tools:", nullptr));
         deleteFrameButton->setText(QCoreApplication::translate("MainWindow", "Delete Frame", nullptr));
         frameRateLabel->setText(QCoreApplication::translate("MainWindow", "Frame Rate:", nullptr));
-        copyFrameButton->setText(QCoreApplication::translate("MainWindow", "Copy Prev", nullptr));
+        copyFrameButton->setText(QCoreApplication::translate("MainWindow", "Copy Frame", nullptr));
         plusButton->setText(QCoreApplication::translate("MainWindow", "Add Frame", nullptr));
         nextFrameButton->setText(QCoreApplication::translate("MainWindow", "Next Frame", nullptr));
         previousFrameButton->setText(QCoreApplication::translate("MainWindow", "Previous Frame", nullptr));
