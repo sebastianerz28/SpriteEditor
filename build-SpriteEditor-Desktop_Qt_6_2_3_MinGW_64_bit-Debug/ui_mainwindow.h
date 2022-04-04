@@ -53,7 +53,7 @@ public:
     QPushButton *deleteFrameButton;
     QSpinBox *frameRateBox;
     QLabel *frameRateLabel;
-    QPushButton *overlayButton;
+    QPushButton *copyFrameButton;
     QPushButton *plusButton;
     QPushButton *nextFrameButton;
     QPushButton *previousFrameButton;
@@ -280,10 +280,10 @@ public:
         frameRateLabel->setObjectName(QString::fromUtf8("frameRateLabel"));
         frameRateLabel->setGeometry(QRect(30, 110, 91, 21));
         frameRateLabel->setStyleSheet(QString::fromUtf8("padding: 0px; color: black; border-style: none; background-color: transparent;"));
-        overlayButton = new QPushButton(toolsWidget);
-        overlayButton->setObjectName(QString::fromUtf8("overlayButton"));
-        overlayButton->setGeometry(QRect(30, 30, 141, 31));
-        overlayButton->setStyleSheet(QString::fromUtf8("QPushButton{ \n"
+        copyFrameButton = new QPushButton(toolsWidget);
+        copyFrameButton->setObjectName(QString::fromUtf8("copyFrameButton"));
+        copyFrameButton->setGeometry(QRect(30, 30, 141, 31));
+        copyFrameButton->setStyleSheet(QString::fromUtf8("QPushButton{ \n"
 "color: black; \n"
 "}\n"
 "\n"
@@ -403,7 +403,7 @@ public:
         toolsLabel->setText(QCoreApplication::translate("MainWindow", "Tools:", nullptr));
         deleteFrameButton->setText(QCoreApplication::translate("MainWindow", "Delete Frame", nullptr));
         frameRateLabel->setText(QCoreApplication::translate("MainWindow", "Frame Rate:", nullptr));
-        overlayButton->setText(QCoreApplication::translate("MainWindow", " Over Lay", nullptr));
+        copyFrameButton->setText(QCoreApplication::translate("MainWindow", "Copy Prev", nullptr));
         plusButton->setText(QCoreApplication::translate("MainWindow", "Add Frame", nullptr));
         nextFrameButton->setText(QCoreApplication::translate("MainWindow", "Next Frame", nullptr));
         previousFrameButton->setText(QCoreApplication::translate("MainWindow", "Previous Frame", nullptr));

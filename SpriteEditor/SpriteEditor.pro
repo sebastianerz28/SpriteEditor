@@ -10,7 +10,6 @@ CONFIG += c++11
 
 SOURCES += \
     canvas.cpp \
-    graphicsscene.cpp \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
@@ -18,7 +17,6 @@ SOURCES += \
 
 HEADERS += \
     canvas.h \
-    graphicsscene.h \
     mainwindow.h \
     model.h \
     openingwindow.h

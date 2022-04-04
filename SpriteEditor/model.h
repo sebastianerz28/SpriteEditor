@@ -9,7 +9,9 @@
 #include <vector>
 
 using std::vector;
-
+/**
+ * @brief The Model class
+ */
 class Model : public QObject
 {
     Q_OBJECT
@@ -37,6 +39,8 @@ public slots:
     void incrementCanvasAnimation();
     void setCanvasPlayPause(bool);
     void deleteFrameRunning();
+    void startAnimationAfterDelete();
+    void copyFrame();
 
 signals:
     void sendNextFrame(QImage &image);
@@ -47,6 +51,7 @@ signals:
     void pauseAnimation();
     void enableDelete(bool);
     void startAnimation();
+    void canDraw(bool);
 private:
     bool deletingFrame = false;
     void emitSendNextCanvasAnimationFrame();
