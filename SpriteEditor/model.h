@@ -53,7 +53,7 @@ private:
     void emitSendNextAnimationFrame();
     bool animationRunning = false;
     bool canvasAnimationRunning = false;
-
+    void emitPauseAnimation();
 
 };
 

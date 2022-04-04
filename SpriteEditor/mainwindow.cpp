@@ -202,10 +202,10 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
 }
 
 void MainWindow::drawAnimation(QImage &img){
-    qDebug() << "entered drawAnimation";
+    qDebug() << "line 205";
     qDebug() << "image height:" << img.height();
     QPixmap p(QPixmap::fromImage(img));
-    qDebug() << "created pixmap";
+    qDebug() << "line 208";
     int scaledWidth = 0;
     int scaledHeight = 0;
     int maxWidth(ui->animationLabel->width());
@@ -215,11 +215,11 @@ void MainWindow::drawAnimation(QImage &img){
 
 
     calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight, scaledWidth, scaledHeight);
-    qDebug() << "found aspect ratio";
+    qDebug() << "line 218";
 
 
     ui->animationLabel->setPixmap(p.scaled(scaledWidth, scaledHeight, Qt::KeepAspectRatio));
-    qDebug() << "set pixmap of label";
+    qDebug() << "line 222";
 
 
 }
