@@ -211,11 +211,11 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &model,
             &Model::copyFrame);
 
-    //toolbar
-    connect(ui->actionsave,
-            &QAction::isChecked,
-            this,
-            &MainWindow::showSaveWindow);
+//    //toolbar
+//    connect(ui->actionsave,
+//            &QAction::isChecked,
+//            this,
+//            &MainWindow::showSaveWindow);
 }
 /**
  * @brief MainWindow::drawAnimation
