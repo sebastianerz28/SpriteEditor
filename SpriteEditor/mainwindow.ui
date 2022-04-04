@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1072</width>
-    <height>563</height>
+    <width>1054</width>
+    <height>525</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,9 +21,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>20</y>
+      <y>50</y>
       <width>141</width>
-      <height>391</height>
+      <height>341</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -38,9 +38,9 @@ background-color: #fafaeb;
     <widget class="QPushButton" name="brushButton">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>10</x>
        <y>10</y>
-       <width>91</width>
+       <width>121</width>
        <height>24</height>
       </rect>
      </property>
@@ -61,9 +61,9 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
     <widget class="QPushButton" name="eraseButton">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>10</x>
        <y>40</y>
-       <width>91</width>
+       <width>121</width>
        <height>24</height>
       </rect>
      </property>
@@ -296,26 +296,6 @@ background-color: orange;
       <string/>
      </property>
     </widget>
-    <widget class="QWidget" name="brushIcon" native="true">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>21</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QWidget" name="eraserIcon" native="true">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>21</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
    </widget>
    <widget class="QWidget" name="previewWidget" native="true">
     <property name="geometry">
@@ -500,15 +480,15 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
    <widget class="QPushButton" name="plusButton">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>420</y>
+      <x>330</x>
+      <y>430</y>
       <width>101</width>
-      <height>24</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>13</pointsize>
       <bold>false</bold>
      </font>
     </property>
@@ -529,10 +509,10 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QPushButton" name="nextFrameButton">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>420</y>
-      <width>91</width>
-      <height>24</height>
+      <x>570</x>
+      <y>430</y>
+      <width>101</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -552,10 +532,10 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QPushButton" name="previousFrameButton">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>420</y>
-      <width>91</width>
-      <height>24</height>
+      <x>450</x>
+      <y>430</y>
+      <width>101</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -611,10 +591,10 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QPushButton" name="playFullscreenButton">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>420</y>
+      <x>210</x>
+      <y>430</y>
       <width>101</width>
-      <height>24</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -634,11 +614,16 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QLabel" name="currentFrameLabel">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>420</y>
-      <width>31</width>
+      <x>730</x>
+      <y>450</y>
+      <width>21</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">color: black</string>
@@ -647,13 +632,29 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
      <string>1/1</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>430</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: black;</string>
+    </property>
+    <property name="text">
+     <string>Current Frame:</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1072</width>
+     <width>1054</width>
      <height>21</height>
     </rect>
    </property>
