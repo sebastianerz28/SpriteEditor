@@ -1,7 +1,11 @@
 #include "canvas.h"
 #include <QStyleOption>
-Canvas::Canvas(QImage _image, QWidget *parent) : QWidget{parent},  image(_image), painter(this) {
+#include <QLabel>
+#include <QDebug>
+Canvas::Canvas(QImage _image, int width, int height, QWidget *parent) : QLabel{parent},  image(_image), painter(this) {
     this->setStyleSheet("background-color: #DFDFDE");
+    this->resize(width, height);
+    this->setScaledContents(true);
 }
 
 /**
@@ -15,8 +19,13 @@ void Canvas::drawLineTo(const QPoint &endPoint)
     if(eraseOn){
         painter.setCompositionMode(QPainter::CompositionMode_Clear);
     }
-    int xCoord = brushSize * (endPoint.x() / brushSize);
-    int yCoord = brushSize * (endPoint.y() / brushSize);
+    double xScaleFactor(this->width() / (double)image.width());
+    double yScaleFactor(this->height() / (double)image.height());
+
+    int xCoord =  xScaleFactor * brushSize * (endPoint.x() / brushSize);
+    qDebug() << "x scale factor: " << xScaleFactor;
+    int yCoord =  yScaleFactor * brushSize * (endPoint.y() / brushSize);
+    qDebug() << "y scale factor: " << yScaleFactor;
     painter.fillRect(xCoord, yCoord, brushSize, brushSize, brushColor);
     mousePos = endPoint;
     update();

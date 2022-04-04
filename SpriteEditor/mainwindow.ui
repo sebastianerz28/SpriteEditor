@@ -500,8 +500,8 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
    <widget class="QPushButton" name="plusButton">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>420</y>
+      <x>360</x>
+      <y>430</y>
       <width>101</width>
       <height>24</height>
      </rect>
@@ -529,8 +529,8 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QPushButton" name="nextFrameButton">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>420</y>
+      <x>630</x>
+      <y>430</y>
       <width>91</width>
       <height>24</height>
      </rect>
@@ -552,8 +552,8 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QPushButton" name="previousFrameButton">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>420</y>
+      <x>480</x>
+      <y>430</y>
       <width>91</width>
       <height>24</height>
      </rect>
@@ -598,10 +598,10 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QLabel" name="canvasLabel">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>30</y>
-      <width>601</width>
-      <height>371</height>
+      <x>290</x>
+      <y>20</y>
+      <width>400</width>
+      <height>400</height>
      </rect>
     </property>
     <property name="text">
@@ -611,8 +611,8 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QPushButton" name="playFullscreenButton">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>420</y>
+      <x>250</x>
+      <y>430</y>
       <width>101</width>
       <height>24</height>
      </rect>
@@ -634,8 +634,8 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QLabel" name="currentFrameLabel">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>420</y>
+      <x>590</x>
+      <y>430</y>
       <width>31</width>
       <height>21</height>
      </rect>
@@ -654,7 +654,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
      <x>0</x>
      <y>0</y>
      <width>1072</width>
-     <height>21</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">

@@ -19,14 +19,27 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
 {
     ui->setupUi(this);
 
-    Canvas *c = new Canvas(model.frames.at(0), ui->canvasLabel);
+    int scaledCanvasWidth = 0;
+    int scaledCanvasHeight = 0;
 
-    c->move((ui->canvasLabel->width()/2) -(model.canvasWidth/2), (ui->canvasLabel->height()/2) - (model.canvasHeight/2));
+    int maxWidth(ui->canvasLabel->width());
+    int maxHeight(ui->canvasLabel->height());
+    int srcWidth(model.canvasWidth);
+    int srcHeight(model.canvasHeight);
 
-    c->resize(model.canvasWidth, model.canvasHeight);
 
-//    ui->animationLabel->setScaledContents(true);
+    calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight, scaledCanvasWidth, scaledCanvasHeight);
 
+    Canvas *c = new Canvas(model.frames.at(0), scaledCanvasWidth, scaledCanvasHeight, ui->canvasLabel);
+
+    c->move((ui->canvasLabel->width()/2) -(scaledCanvasWidth/2), (ui->canvasLabel->height()/2) - (scaledCanvasHeight/2));
+
+//    c->resize(model.canvasWidth, model.canvasHeight);
+
+//    c->resize(ui->canvasLabel->width(), ui->canvasLabel->height());
+//    c->setScaledContents(true);
+
+    ui->canvasLabel->setScaledContents(true);
 
     // Initializing slider
     ui->sizeSlider->setMaximum(40);
