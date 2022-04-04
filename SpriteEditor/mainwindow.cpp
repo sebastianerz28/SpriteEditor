@@ -19,11 +19,11 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
 {
     ui->setupUi(this);
 
-    OpeningWindow *testOW = new OpeningWindow(&model);
 
-    testOW->show();
 
-    this->setDisabled(true);
+
+
+
     int scaledCanvasWidth = 0;
     int scaledCanvasHeight = 0;
 
@@ -191,30 +191,57 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &Model::startAnimationAfterDelete);
 
     // connect play canvas animation
-
-    connect(this,
-            &MainWindow::sendCanvasPlayValue,
-            &model,
-            &Model::setCanvasPlayPause);
-
-    connect(&model,
-            &Model::sendNextCanvasAnimationFrame,
-            &model,
-            &Model::incrementCanvasAnimation);
-
     connect(ui->playFullscreenButton,
             &QPushButton::clicked,
             this,
-            &MainWindow::playPauseCanvasAnimation);
-
+            &MainWindow::openFullScreenPreview);
+    connect(this,
+            &MainWindow::getFirstFrame,
+            &model,
+            &Model::incrementCanvasAnimation);
     connect(&model,
             &Model::sendNextCanvasAnimationFrame,
-            c,
-            &Canvas::nextFrameChanged);
-    connect(&model,
-            &Model::canDraw,
+            this->preview,
+            &FullscreenPreview::receiveFrame);
+    connect(this->preview,
+            &FullscreenPreview::updatedImage,
+            &model,
+            &Model::incrementCanvasAnimation);
+    connect(this->preview,
+            &FullscreenPreview::enableMainWindow,
+            this,
+            &MainWindow::enableMainWindowAfterHide);
+    connect(this->preview,
+            &FullscreenPreview::enableMainWindow,
             c,
             &Canvas::recieveCanDraw);
+//    connect(this,
+//            &MainWindow::sendCanvasPlayValue,
+//            &model,
+//            &Model::setCanvasPlayPause);
+
+//    connect(&model,
+//            &Model::sendNextCanvasAnimationFrame,
+//            preview,
+//            &FullscreenPreview::receiveFrame);
+
+//    connect(ui->playFullscreenButton,
+//            &QPushButton::clicked,
+//            this,
+//            &MainWindow::openFullScreenPreview);
+//    connect(preview,
+//            &FullscreenPreview::updatedImage,
+//            &model,
+//            &Model::incrementCanvasAnimation);
+
+//    connect(&model,
+//            &Model::sendNextCanvasAnimationFrame,
+//            c,
+//            &Canvas::nextFrameChanged);
+//    connect(&model,
+//            &Model::canDraw,
+//            c,
+//            &Canvas::recieveCanDraw);
 
     //Conect Total frame count
     connect(&model,
@@ -227,6 +254,8 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &QPushButton::clicked,
             &model,
             &Model::copyFrame);
+
+
 }
 /**
  * @brief MainWindow::drawAnimation
@@ -311,4 +340,15 @@ void MainWindow::playPauseAnimation()
 void MainWindow::setTextCurrentFrameLabel(int curr, int total){
     QString s = QString::number(curr+1) + "/" + QString::number(total);
     ui->currentFrameLabel->setText(s);
+}
+
+void MainWindow::openFullScreenPreview(){
+    preview->show();
+    preview->animationRunning = true;
+    emit getFirstFrame();
+    this->setDisabled(true);
+}
+
+void MainWindow::enableMainWindowAfterHide(){
+    this->setDisabled(false);
 }

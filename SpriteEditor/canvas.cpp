@@ -19,23 +19,14 @@ void Canvas::drawLineTo(const QPoint &endPoint) {
     if (eraseOn) {
         painter.setCompositionMode(QPainter::CompositionMode_Clear);
     }
-    qDebug() << "canvas width: " << this->width();
-    qDebug() << "canvas height: " << this->height() << '\n';
 
-    qDebug() << "img width: " << image.width();
-    qDebug() << "img height: " << image.height() << '\n';
 
     double xScaleFactor(this->width() / (double)image.width());
     double yScaleFactor(this->height() / (double)image.height());
 
     int xCoord = brushSize * ((int)(endPoint.x()/xScaleFactor) / brushSize);
-    qDebug() << "x scale factor: " << xScaleFactor;
     int yCoord = brushSize * ((int)(endPoint.y()/yScaleFactor) / brushSize);
-    qDebug() << "y scale factor: " << yScaleFactor << '\n';
     painter.fillRect(xCoord, yCoord, brushSize, brushSize, brushColor);
-
-    qDebug() << "x image coord: " << xCoord;
-    qDebug() << "y image coord: " << yCoord;
 
     mousePos = endPoint;
     update();

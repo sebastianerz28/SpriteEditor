@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "model.h"
+#include "fullscreenpreview.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -22,6 +23,7 @@ public:
 private:
     bool canvasAnimationButtonPlay = true;
     bool animationButtonPlay = true;
+    FullscreenPreview* preview = new FullscreenPreview();
     Ui::MainWindow *ui;
     Canvas *canvas;
     void paintEvent(QPaintEvent *);
@@ -30,11 +32,15 @@ private:
 signals:
     void sendPlayValue(bool);
     void sendCanvasPlayValue(bool);
+    void getFirstFrame();
 
 public slots:
     void drawAnimation(QImage&);
     void playPauseAnimation();
     void playPauseCanvasAnimation();
     void setTextCurrentFrameLabel(int, int);
+    void openFullScreenPreview();
+    void enableMainWindowAfterHide();
+
 };
 #endif
