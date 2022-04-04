@@ -1,11 +1,13 @@
 #include "canvas.h"
-#include <QDebug>
 #include <QStyleOption>
 Canvas::Canvas(QImage _image, QWidget *parent) : QWidget{parent},  image(_image), painter(this) {
     this->setStyleSheet("background-color: #DFDFDE");
 }
 
-
+/**
+ * @brief Canvas::drawLineTo Draws a rectangle at the specified point and sets
+ * @param endPoint
+ */
 void Canvas::drawLineTo(const QPoint &endPoint)
 {
     QPainter painter(&image);
@@ -19,27 +21,36 @@ void Canvas::drawLineTo(const QPoint &endPoint)
     mousePos = endPoint;
     update();
 }
-
+/**
+ * @brief Canvas::mousePressEvent
+ * @param event
+ */
 void Canvas::mousePressEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton) {
+    if (event->button() == Qt::LeftButton  && !animationPlaying) {
         mousePos = event->pos();
         drawing = true;
         emit updateModelFrames(image);
     }
 }
-
+/**
+ * @brief Canvas::mouseMoveEvent
+ * @param event
+ */
 void Canvas::mouseMoveEvent(QMouseEvent *event)
 {
-    if ((event->buttons() & Qt::LeftButton) && drawing){
+    if ((event->buttons() & Qt::LeftButton) && drawing && !animationPlaying){
         drawLineTo(event->pos());
         emit updateModelFrames(image);
     }
 }
-
+/**
+ * @brief Canvas::mouseReleaseEvent
+ * @param event
+ */
 void Canvas::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton && drawing) {
+    if (event->button() == Qt::LeftButton && drawing && !animationPlaying) {
         drawLineTo(event->pos());
         drawing = false;
         emit updateModelFrames(image);
@@ -47,7 +58,10 @@ void Canvas::mouseReleaseEvent(QMouseEvent *event)
 }
 
 
-
+/**
+ * @brief Canvas::paintEvent
+ * @param event
+ */
 void Canvas::paintEvent(QPaintEvent *event) {
     QStyleOption opt;
     opt.initFrom(this);
@@ -60,19 +74,28 @@ void Canvas::paintEvent(QPaintEvent *event) {
 
 
 }
-
+/**
+ * @brief Canvas::brushSizeChanged
+ * @param newBrushSize
+ */
 void Canvas::brushSizeChanged(int newBrushSize){
     brushSize = newBrushSize;
 }
-
+/**
+ * @brief Canvas::eraseSelected
+ */
 void Canvas::eraseSelected(){
     eraseOn = true;
 }
-
+/**
+ * @brief Canvas::brushSelected
+ */
 void Canvas::brushSelected(){
     eraseOn = false;
 }
-
+/**
+ * @brief Canvas::colorDialogSelected
+ */
 void Canvas::colorDialogSelected(){
     QColor colorSelected = QColorDialog::getColor(brushColor);
     brushColor = (colorSelected);
@@ -110,7 +133,9 @@ void Canvas::colorDialogSelected(){
         }
     }
 }
-
+/**
+ * @brief Canvas::firstHistorySelcted
+ */
 void Canvas::firstHistorySelcted(){
     if(colorHistory.size() >= 1){
         brushColor = (colorHistory.at(0));
@@ -118,6 +143,9 @@ void Canvas::firstHistorySelcted(){
         eraseOn = false;
     }
 }
+/**
+ * @brief Canvas::secondHistorySelcted
+ */
 void Canvas::secondHistorySelcted(){
     if(colorHistory.size() >= 2){
         brushColor = (colorHistory.at(1));
@@ -125,6 +153,9 @@ void Canvas::secondHistorySelcted(){
         eraseOn = false;
     }
 }
+/**
+ * @brief Canvas::thirdHistorySelcted
+ */
 void Canvas::thirdHistorySelcted(){
     if(colorHistory.size() >= 3){
         brushColor = (colorHistory.at(2));
@@ -132,6 +163,9 @@ void Canvas::thirdHistorySelcted(){
         eraseOn = false;
     }
 }
+/**
+ * @brief Canvas::fourthHistorySelcted
+ */
 void Canvas::fourthHistorySelcted(){
     if(colorHistory.size() >= 4){
         brushColor = (colorHistory.at(3));
@@ -139,16 +173,29 @@ void Canvas::fourthHistorySelcted(){
         eraseOn = false;
     }
 }
-
+/**
+ * @brief Canvas::nextFrameChanged
+ * @param frame
+ */
 void Canvas::nextFrameChanged(QImage &frame){
     image = frame;
     update();
 }
-
+/**
+ * @brief Canvas::prevFrameChanged
+ * @param frame
+ */
 void Canvas::prevFrameChanged(QImage &frame){
 
     image = frame;
     update();
+}
+/**
+ * @brief Canvas::recieveCanDraw
+ * @param value
+ */
+void Canvas::recieveCanDraw(bool value){
+    animationPlaying = value;
 }
 
 

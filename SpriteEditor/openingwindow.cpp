@@ -1,7 +1,11 @@
 #include "openingwindow.h"
 #include "ui_openingwindow.h"
 #include "mainwindow.h"
-
+/**
+ * @brief OpeningWindow::OpeningWindow
+ * @param model
+ * @param parent
+ */
 OpeningWindow::OpeningWindow(Model* model,QWidget *parent) :
     QWidget(parent), w(nullptr),
     ui(new Ui::OpeningWindow)
@@ -42,33 +46,47 @@ OpeningWindow::OpeningWindow(Model* model,QWidget *parent) :
             this,
             &OpeningWindow::heightBoxChanged);
 }
-
+/**
+ * @brief OpeningWindow::~OpeningWindow
+ */
 OpeningWindow::~OpeningWindow()
 {
     delete ui;
     delete w;
 }
-
+/**
+ * @brief OpeningWindow::loadExistingPressed
+ */
 void OpeningWindow::loadExistingPressed(){
     QString fileName = QFileDialog::getOpenFileName(this, "open a file");
     ui->createNewButton->setEnabled(false);
 }
-
+/**
+ * @brief OpeningWindow::startPressed
+ */
 void OpeningWindow::startPressed(){
     m = new Model(width, height);
     w = new MainWindow(*m);
     w->show();
     this->hide();
 }
-
+/**
+ * @brief OpeningWindow::widthBoxChanged
+ * @param inputWidth
+ */
 void OpeningWindow::widthBoxChanged(int inputWidth){
     width = inputWidth;
 }
-
+/**
+ * @brief OpeningWindow::heightBoxChanged
+ * @param inputHeight
+ */
 void OpeningWindow::heightBoxChanged(int inputHeight){
     height = inputHeight;
 }
-
+/**
+ * @brief OpeningWindow::createNewPressed
+ */
 void OpeningWindow::createNewPressed(){
     ui->widthBox->setEnabled(true);
     ui->heightBox->setEnabled(true);

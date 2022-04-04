@@ -12,14 +12,11 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QScrollArea>
-#include <QtWidgets/QScrollBar>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
@@ -33,8 +30,6 @@ public:
     QAction *actionsave;
     QAction *actionLoad;
     QWidget *centralwidget;
-    QFrame *canvasFrame;
-    QWidget *widget;
     QWidget *brushWidget;
     QPushButton *brushButton;
     QPushButton *eraseButton;
@@ -48,8 +43,6 @@ public:
     QPushButton *colorHist2;
     QPushButton *colorHist3;
     QPushButton *colorHist4;
-    QWidget *brushIcon;
-    QWidget *eraserIcon;
     QWidget *previewWidget;
     QLabel *previewLabel;
     QLabel *animationLabel;
@@ -58,14 +51,15 @@ public:
     QPushButton *deleteFrameButton;
     QSpinBox *frameRateBox;
     QLabel *frameRateLabel;
-    QPushButton *overlayButton;
+    QPushButton *copyFrameButton;
     QPushButton *plusButton;
-    QScrollArea *frameScrollArea;
-    QWidget *scrollAreaWidgetContents;
-    QScrollBar *horizontalScrollBar;
     QPushButton *nextFrameButton;
     QPushButton *previousFrameButton;
     QPushButton *playPauseAnimationButton;
+    QLabel *canvasLabel;
+    QPushButton *playFullscreenButton;
+    QLabel *currentFrameLabel;
+    QLabel *label;
     QMenuBar *menubar;
     QMenu *menufile;
     QMenu *menuhelp;
@@ -75,7 +69,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1072, 563);
+        MainWindow->resize(1054, 525);
         MainWindow->setStyleSheet(QString::fromUtf8("background-color: beige"));
         actionsave = new QAction(MainWindow);
         actionsave->setObjectName(QString::fromUtf8("actionsave"));
@@ -83,18 +77,9 @@ public:
         actionLoad->setObjectName(QString::fromUtf8("actionLoad"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        canvasFrame = new QFrame(centralwidget);
-        canvasFrame->setObjectName(QString::fromUtf8("canvasFrame"));
-        canvasFrame->setGeometry(QRect(180, 20, 600, 390));
-        canvasFrame->setStyleSheet(QString::fromUtf8("background-color: transparent;"));
-        canvasFrame->setFrameShape(QFrame::StyledPanel);
-        canvasFrame->setFrameShadow(QFrame::Raised);
-        widget = new QWidget(canvasFrame);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(0, 420, 21, 21));
         brushWidget = new QWidget(centralwidget);
         brushWidget->setObjectName(QString::fromUtf8("brushWidget"));
-        brushWidget->setGeometry(QRect(20, 20, 141, 391));
+        brushWidget->setGeometry(QRect(20, 50, 141, 341));
         brushWidget->setStyleSheet(QString::fromUtf8("#brushWidget{\n"
 "border-style: solid;\n"
 "border-width: 1px;\n"
@@ -104,7 +89,7 @@ public:
 "}"));
         brushButton = new QPushButton(brushWidget);
         brushButton->setObjectName(QString::fromUtf8("brushButton"));
-        brushButton->setGeometry(QRect(40, 10, 91, 24));
+        brushButton->setGeometry(QRect(10, 10, 121, 24));
         brushButton->setStyleSheet(QString::fromUtf8("QPushButton{ color: black; }\n"
 "\n"
 "QPushButton:hover{\n"
@@ -115,7 +100,7 @@ public:
 "QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }"));
         eraseButton = new QPushButton(brushWidget);
         eraseButton->setObjectName(QString::fromUtf8("eraseButton"));
-        eraseButton->setGeometry(QRect(40, 40, 91, 24));
+        eraseButton->setGeometry(QRect(10, 40, 121, 24));
         eraseButton->setStyleSheet(QString::fromUtf8("QPushButton{ color: black; }\n"
 "\n"
 "QPushButton:hover{\n"
@@ -225,12 +210,6 @@ public:
 "QPushButton:pressed{ \n"
 "background-color: orange; \n"
 "}"));
-        brushIcon = new QWidget(brushWidget);
-        brushIcon->setObjectName(QString::fromUtf8("brushIcon"));
-        brushIcon->setGeometry(QRect(10, 10, 21, 21));
-        eraserIcon = new QWidget(brushWidget);
-        eraserIcon->setObjectName(QString::fromUtf8("eraserIcon"));
-        eraserIcon->setGeometry(QRect(10, 40, 21, 21));
         previewWidget = new QWidget(centralwidget);
         previewWidget->setObjectName(QString::fromUtf8("previewWidget"));
         previewWidget->setGeometry(QRect(820, 20, 211, 221));
@@ -253,6 +232,9 @@ public:
         animationLabel = new QLabel(previewWidget);
         animationLabel->setObjectName(QString::fromUtf8("animationLabel"));
         animationLabel->setGeometry(QRect(10, 30, 191, 181));
+        animationLabel->setAutoFillBackground(false);
+        animationLabel->setStyleSheet(QString::fromUtf8("background-color : transparent"));
+        animationLabel->setAlignment(Qt::AlignCenter);
         toolsWidget = new QWidget(centralwidget);
         toolsWidget->setObjectName(QString::fromUtf8("toolsWidget"));
         toolsWidget->setGeometry(QRect(821, 300, 211, 151));
@@ -291,10 +273,10 @@ public:
         frameRateLabel->setObjectName(QString::fromUtf8("frameRateLabel"));
         frameRateLabel->setGeometry(QRect(30, 110, 91, 21));
         frameRateLabel->setStyleSheet(QString::fromUtf8("padding: 0px; color: black; border-style: none; background-color: transparent;"));
-        overlayButton = new QPushButton(toolsWidget);
-        overlayButton->setObjectName(QString::fromUtf8("overlayButton"));
-        overlayButton->setGeometry(QRect(30, 30, 141, 31));
-        overlayButton->setStyleSheet(QString::fromUtf8("QPushButton{ \n"
+        copyFrameButton = new QPushButton(toolsWidget);
+        copyFrameButton->setObjectName(QString::fromUtf8("copyFrameButton"));
+        copyFrameButton->setGeometry(QRect(30, 30, 141, 31));
+        copyFrameButton->setStyleSheet(QString::fromUtf8("QPushButton{ \n"
 "color: black; \n"
 "}\n"
 "\n"
@@ -307,47 +289,81 @@ public:
 ""));
         plusButton = new QPushButton(centralwidget);
         plusButton->setObjectName(QString::fromUtf8("plusButton"));
-        plusButton->setGeometry(QRect(821, 470, 31, 32));
+        plusButton->setGeometry(QRect(330, 430, 101, 51));
         QFont font;
-        font.setPointSize(20);
-        font.setBold(true);
+        font.setPointSize(13);
+        font.setBold(false);
         plusButton->setFont(font);
-        plusButton->setStyleSheet(QString::fromUtf8("QPushButton{ \n"
-"color: black; \n"
-"}\n"
+        plusButton->setStyleSheet(QString::fromUtf8("QPushButton{ color: black; }\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgba(0,0,0,0.05);\n"
 "color: black;\n"
 "}\n"
 "\n"
-"QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }\n"
-""));
-        frameScrollArea = new QScrollArea(centralwidget);
-        frameScrollArea->setObjectName(QString::fromUtf8("frameScrollArea"));
-        frameScrollArea->setGeometry(QRect(20, 420, 781, 80));
-        frameScrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 779, 78));
-        frameScrollArea->setWidget(scrollAreaWidgetContents);
-        horizontalScrollBar = new QScrollBar(centralwidget);
-        horizontalScrollBar->setObjectName(QString::fromUtf8("horizontalScrollBar"));
-        horizontalScrollBar->setGeometry(QRect(20, 480, 781, 20));
-        horizontalScrollBar->setOrientation(Qt::Horizontal);
+"QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }"));
         nextFrameButton = new QPushButton(centralwidget);
         nextFrameButton->setObjectName(QString::fromUtf8("nextFrameButton"));
-        nextFrameButton->setGeometry(QRect(971, 470, 80, 24));
+        nextFrameButton->setGeometry(QRect(570, 430, 101, 51));
+        nextFrameButton->setStyleSheet(QString::fromUtf8("QPushButton{ color: black; }\n"
+"\n"
+"QPushButton:hover{\n"
+" background-color: rgba(0,0,0,0.05);\n"
+"color: black;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }"));
         previousFrameButton = new QPushButton(centralwidget);
         previousFrameButton->setObjectName(QString::fromUtf8("previousFrameButton"));
-        previousFrameButton->setGeometry(QRect(860, 470, 91, 24));
+        previousFrameButton->setGeometry(QRect(450, 430, 101, 51));
+        previousFrameButton->setStyleSheet(QString::fromUtf8("QPushButton{ color: black; }\n"
+"\n"
+"QPushButton:hover{\n"
+" background-color: rgba(0,0,0,0.05);\n"
+"color: black;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }"));
         playPauseAnimationButton = new QPushButton(centralwidget);
         playPauseAnimationButton->setObjectName(QString::fromUtf8("playPauseAnimationButton"));
         playPauseAnimationButton->setGeometry(QRect(820, 260, 80, 24));
+        playPauseAnimationButton->setStyleSheet(QString::fromUtf8("QPushButton{ color: black; }\n"
+"\n"
+"QPushButton:hover{\n"
+" background-color: rgba(0,0,0,0.05);\n"
+"color: black;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }"));
+        canvasLabel = new QLabel(centralwidget);
+        canvasLabel->setObjectName(QString::fromUtf8("canvasLabel"));
+        canvasLabel->setGeometry(QRect(190, 30, 601, 371));
+        playFullscreenButton = new QPushButton(centralwidget);
+        playFullscreenButton->setObjectName(QString::fromUtf8("playFullscreenButton"));
+        playFullscreenButton->setGeometry(QRect(210, 430, 101, 51));
+        playFullscreenButton->setStyleSheet(QString::fromUtf8("QPushButton{ color: black; }\n"
+"\n"
+"QPushButton:hover{\n"
+" background-color: rgba(0,0,0,0.05);\n"
+"color: black;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }"));
+        currentFrameLabel = new QLabel(centralwidget);
+        currentFrameLabel->setObjectName(QString::fromUtf8("currentFrameLabel"));
+        currentFrameLabel->setGeometry(QRect(730, 450, 21, 21));
+        QFont font1;
+        font1.setPointSize(14);
+        currentFrameLabel->setFont(font1);
+        currentFrameLabel->setStyleSheet(QString::fromUtf8("color: black"));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(700, 430, 91, 20));
+        label->setStyleSheet(QString::fromUtf8("color: black;"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1072, 21));
+        menubar->setGeometry(QRect(0, 0, 1054, 21));
         menufile = new QMenu(menubar);
         menufile->setObjectName(QString::fromUtf8("menufile"));
         menuhelp = new QMenu(menubar);
@@ -387,11 +403,15 @@ public:
         toolsLabel->setText(QCoreApplication::translate("MainWindow", "Tools:", nullptr));
         deleteFrameButton->setText(QCoreApplication::translate("MainWindow", "Delete Frame", nullptr));
         frameRateLabel->setText(QCoreApplication::translate("MainWindow", "Frame Rate:", nullptr));
-        overlayButton->setText(QCoreApplication::translate("MainWindow", " Over Lay", nullptr));
-        plusButton->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
+        copyFrameButton->setText(QCoreApplication::translate("MainWindow", "Copy Prev", nullptr));
+        plusButton->setText(QCoreApplication::translate("MainWindow", "Add Frame", nullptr));
         nextFrameButton->setText(QCoreApplication::translate("MainWindow", "Next Frame", nullptr));
         previousFrameButton->setText(QCoreApplication::translate("MainWindow", "Previous Frame", nullptr));
-        playPauseAnimationButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        playPauseAnimationButton->setText(QCoreApplication::translate("MainWindow", "Play Preview", nullptr));
+        canvasLabel->setText(QString());
+        playFullscreenButton->setText(QCoreApplication::translate("MainWindow", "Play Fullscreen", nullptr));
+        currentFrameLabel->setText(QCoreApplication::translate("MainWindow", "1/1", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Current Frame:", nullptr));
         menufile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuhelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
     } // retranslateUi

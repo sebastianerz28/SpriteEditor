@@ -7,7 +7,9 @@
 namespace Ui {
 class OpeningWindow;
 }
-
+/**
+ * @brief The OpeningWindow class
+ */
 class OpeningWindow : public QWidget
 {
     Q_OBJECT
