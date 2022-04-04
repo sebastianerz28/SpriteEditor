@@ -30,6 +30,7 @@ private:
 signals:
     void sendPlayValue(bool);
     void sendCanvasPlayValue(bool);
+    void sendSaved(QString);
 
 
 public slots:

@@ -46,7 +46,7 @@ public slots:
     void deleteFrameRunning();
     void startAnimationAfterDelete();
     void copyFrame();
-    void saveClicked(bool);
+    void saveClicked(QString);
 
 signals:
     void sendNextFrame(QImage &image);

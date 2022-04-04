@@ -200,10 +200,32 @@ void Model::emitPauseAnimation(){
     emit pauseAnimation();
 }
 
-void Model::saveClicked(bool clicked){
-    if(clicked){
+void Model::saveClicked(QString filename){
+      if(filename.last(4) != ".ssp"){
+         filename.append(".ssp");
+      }
+      qDebug() << filename;
+      QDir dir;
+      if (!dir.exists(filename)){
+          qDebug() << "ema";
+          dir.mkpath(filename);
+      }
+      qDebug() << filename;
 
-    }
+      QFile file(filename);
+      if (!file.open(QIODevice::WriteOnly))
+      {
+          qDebug() << "Failed to open";
+      }
+
+      QJsonObject saveSprite;
+      write(saveSprite);
+
+      //convert to document
+      QJsonDocument jsonSave(saveSprite);
+      //write and clos
+      file.write(jsonSave.toJson());
+      file.close();
 }
 
 void Model::write(QJsonObject &json) const {

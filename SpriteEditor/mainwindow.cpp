@@ -211,11 +211,15 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &model,
             &Model::copyFrame);
 
-//    //toolbar
-//    connect(ui->actionsave,
-//            &QAction::isChecked,
-//            this,
-//            &MainWindow::showSaveWindow);
+    //toolbar
+    connect(ui->actionsave,
+            &QAction::triggered,
+            this,
+            &MainWindow::showSaveWindow);
+    connect(this,
+            &MainWindow::sendSaved,
+            &model,
+            &Model::saveClicked);
 }
 /**
  * @brief MainWindow::drawAnimation
@@ -302,8 +306,8 @@ void MainWindow::setTextCurrentFrameLabel(int curr, int total){
     ui->currentFrameLabel->setText(s);
 }
 
-void MainWindow::showSaveWindow(bool isClicked){
-    if(isClicked){
-     QString fileName = QFileDialog::getOpenFileName(this, "open a file");
-    }
+void MainWindow::showSaveWindow(bool){
+    QString filter = "Sprites (*.ssp)";
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Sprite"), QDir::homePath() , filter, &filter); // homepath MAY NOT WORK FOR ALL OS
+    emit sendSaved(fileName);
 }
