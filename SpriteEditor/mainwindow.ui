@@ -470,7 +470,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
       <string>Frame Rate:</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="overlayButton">
+    <widget class="QPushButton" name="copyFrameButton">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -493,15 +493,15 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
 </string>
      </property>
      <property name="text">
-      <string> Over Lay</string>
+      <string>Copy Prev</string>
      </property>
     </widget>
    </widget>
    <widget class="QPushButton" name="plusButton">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>450</y>
+      <x>290</x>
+      <y>420</y>
       <width>101</width>
       <height>24</height>
      </rect>
@@ -526,47 +526,11 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
      <string>Add Frame</string>
     </property>
    </widget>
-   <widget class="QScrollArea" name="frameScrollArea">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>420</y>
-      <width>671</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>669</width>
-       <height>78</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QScrollBar" name="horizontalScrollBar">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>480</y>
-      <width>671</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
    <widget class="QPushButton" name="nextFrameButton">
     <property name="geometry">
      <rect>
-      <x>940</x>
-      <y>470</y>
+      <x>560</x>
+      <y>420</y>
       <width>91</width>
       <height>24</height>
      </rect>
@@ -588,8 +552,8 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QPushButton" name="previousFrameButton">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>470</y>
+      <x>410</x>
+      <y>420</y>
       <width>91</width>
       <height>24</height>
      </rect>
@@ -647,7 +611,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QPushButton" name="playFullscreenButton">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>180</x>
       <y>420</y>
       <width>101</width>
       <height>24</height>
@@ -665,6 +629,22 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
     </property>
     <property name="text">
      <string>Play Fullscreen</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="currentFrameLabel">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>420</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: black</string>
+    </property>
+    <property name="text">
+     <string>1/1</string>
     </property>
    </widget>
   </widget>

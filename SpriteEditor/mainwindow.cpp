@@ -7,8 +7,11 @@
 #include <QGraphicsView>
 #include <QGridLayout>
 #include <cmath>
+#include <string>
+
 
 using std::fmin;
+using std::string;
 
 MainWindow::MainWindow(Model&model, QWidget *parent)
     : QMainWindow(parent),
@@ -156,6 +159,18 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &QSpinBox::valueChanged,
             &model,
             &Model::frameRateChanged);
+    connect(&model,
+            &Model::pauseAnimation,
+            &model,
+            &Model::deleteFrameRunning);
+    connect(&model,
+            &Model::enableDelete,
+            ui->deleteFrameButton,
+            &QPushButton::setEnabled);
+    connect(&model,
+            &Model::startAnimation,
+            &model,
+            &Model::startAnimationAfterDelete);
 
     // connect play canvas animation
 
@@ -173,15 +188,34 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &QPushButton::clicked,
             this,
             &MainWindow::playPauseCanvasAnimation);
+
     connect(&model,
             &Model::sendNextCanvasAnimationFrame,
             c,
             &Canvas::nextFrameChanged);
-}
+    connect(&model,
+            &Model::canDraw,
+            c,
+            &Canvas::recieveCanDraw);
 
+    //Conect Total frame count
+    connect(&model,
+            &Model::updateCurrentFrameLabel,
+            this,
+            &MainWindow::setTextCurrentFrameLabel);
+
+    //CopyFrame
+    connect(ui->copyFrameButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::copyFrame);
+}
+/**
+ * @brief MainWindow::drawAnimation
+ * @param img
+ */
 void MainWindow::drawAnimation(QImage &img){
     QPixmap p(QPixmap::fromImage(img));
-
     int scaledWidth = 0;
     int scaledHeight = 0;
     int maxWidth(ui->animationLabel->width());
@@ -189,24 +223,37 @@ void MainWindow::drawAnimation(QImage &img){
     int srcWidth(img.width());
     int srcHeight(img.height());
 
+
     calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight, scaledWidth, scaledHeight);
 
-    qDebug() << scaledWidth << " " << scaledHeight;
 
     ui->animationLabel->setPixmap(p.scaled(scaledWidth, scaledHeight, Qt::KeepAspectRatio));
+
+
 }
 
 MainWindow::~MainWindow(){
     delete ui;
 }
 
+/**
+ * @brief MainWindow::paintEvent
+ */
 void MainWindow::paintEvent(QPaintEvent *) {
     // Create a painter
     QPainter painter(this);
     QPen pen(Qt::black);
     painter.setPen(pen);
 }
-
+/**
+ * @brief MainWindow::calculateAspectRatioFit
+ * @param srcWidth
+ * @param srcHeight
+ * @param maxWidth
+ * @param maxHeight
+ * @param scaledWidth
+ * @param scaledHeight
+ */
 void MainWindow::calculateAspectRatioFit(int srcWidth, int srcHeight, int maxWidth, int maxHeight, int& scaledWidth, int& scaledHeight){
     double ratio = fmin(maxWidth/(double)srcWidth, maxHeight/(double)srcHeight);
 
@@ -224,7 +271,9 @@ void MainWindow::playPauseCanvasAnimation(){
     emit sendCanvasPlayValue(canvasAnimationButtonPlay);
     canvasAnimationButtonPlay = !canvasAnimationButtonPlay;
 }
-
+/**
+ * @brief MainWindow::playPauseAnimation
+ */
 void MainWindow::playPauseAnimation()
 {
     if(animationButtonPlay){
@@ -235,4 +284,13 @@ void MainWindow::playPauseAnimation()
 
     emit sendPlayValue(animationButtonPlay);
     animationButtonPlay = !animationButtonPlay;
+}
+/**
+ * @brief MainWindow::setTextCurrentFrameLabel
+ * @param curr
+ * @param total
+ */
+void MainWindow::setTextCurrentFrameLabel(int curr, int total){
+    QString s = QString::number(curr+1) + "/" + QString::number(total);
+    ui->currentFrameLabel->setText(s);
 }

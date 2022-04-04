@@ -8,7 +8,9 @@
 #include <QPoint>
 #include <QColorDialog>
 #include <unordered_set>
-
+/**
+ * @brief The Canvas class
+ */
 class Canvas : public QWidget
 {
     Q_OBJECT
@@ -32,6 +34,7 @@ protected:
     bool drawing = false;
     bool modified = false;
     bool eraseOn = false;
+    bool animationPlaying;
     std::vector<QColor> colorHistory;
     std::unordered_set<QString> colorsSet;
 
@@ -56,6 +59,7 @@ public slots:
     void secondHistorySelcted();
     void thirdHistorySelcted();
     void fourthHistorySelcted();
+    void recieveCanDraw(bool);
 
 };
 
