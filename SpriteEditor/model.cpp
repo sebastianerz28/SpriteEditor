@@ -57,6 +57,7 @@ void Model::deleteFrame(){
 void Model::deleteFrameRunning(){
     if(currFrame != 0){
         frames.erase(frames.begin()+currFrame);
+        qDebug() << currFrame-1;
         emit sendPreviousFrame(frames.at(--currFrame));
         currAnimationFrame = 0;
         deletingFrame = false;
@@ -68,6 +69,10 @@ void Model::deleteFrameRunning(){
         currAnimationFrame = 0;
         deletingFrame = false;
 
+        emit sendNextAnimationFrame(frames.at(currAnimationFrame));
+    }
+    else if (currFrame == 0 && frames.size() == 1){
+        deletingFrame = false;
         emit sendNextAnimationFrame(frames.at(currAnimationFrame));
     }
     emit updateCurrentFrameLabel(currFrame, frames.size());
@@ -83,6 +88,7 @@ void Model::emitSendNextCanvasAnimationFrame(){
 }
 
 void Model::incrementAnimation(){
+    qDebug() << animationRunning << " "<< deletingFrame;
     if(animationRunning && !deletingFrame){
         QTimer::singleShot(frameRate, this, &Model::emitSendNextAnimationFrame);
         currAnimationFrame = (currAnimationFrame+1) % frames.size();
