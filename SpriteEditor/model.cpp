@@ -249,7 +249,7 @@ void Model::read(QJsonObject &json) {
     QJsonArray frameArray = json["frames"].toArray();
 //    int height = json["width"].toInt();
 //    int width = json["height"].toInt();
-
+    frames.pop_back();
     for(int i = 0; i < frameArray.size(); i++){
         QImage imgAtFrame(canvasWidth, canvasHeight, QImage::Format_RGBA64);
 
@@ -258,14 +258,13 @@ void Model::read(QJsonObject &json) {
             QJsonArray widths = heights.at(j).toArray();
             for(int k = 0; k < widths.size(); k++){
                 QJsonArray colorArray = widths.at(k).toArray();
-
                 QColor color;
                 color.setRed(colorArray.at(0).toInt());
                 color.setGreen(colorArray.at(1).toInt());
                 color.setBlue(colorArray.at(2).toInt());
                 color.setAlpha(colorArray.at(3).toInt());
-               // qDebug() << color;
-                imgAtFrame.setPixel(j,k, color.rgba());
+
+                imgAtFrame.setPixel(j, k, qRgba(color.red(), color.green(), color.blue(), color.alpha()));
             }
         }
         frames.push_back(imgAtFrame);
