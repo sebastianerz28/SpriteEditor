@@ -5,6 +5,9 @@ FullscreenPreview::FullscreenPreview(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::FullscreenPreview)
 {
+
+    //ui->frameLabel->move((ui->frameLabel->width()/2) -(400/2), (ui->frameLabel->height()/2) - (400/2));
+
     ui->setupUi(this);
 }
 
@@ -16,6 +19,7 @@ FullscreenPreview::~FullscreenPreview()
 
 void FullscreenPreview::receiveFrame(QImage& image){
     if(animationRunning){
+        ui->frameLabel->setAlignment (Qt::AlignCenter);
         ui->frameLabel->setPixmap(QPixmap::fromImage(image));
         emit updatedImage();
     }
