@@ -218,7 +218,14 @@ void Model::write(QJsonObject &json, QString filename) const {
             QJsonArray widthArray;
             for(int j = 0; j < frames.at(l).width(); j++){
                 QColor color = frames.at(l).pixelColor(i, j);
-                widthArray.push_back(color.name());
+
+                QJsonArray colorArray;
+                colorArray.push_back(color.red());
+                colorArray.push_back(color.green());
+                colorArray.push_back(color.blue());
+                colorArray.push_back(color.alpha());
+
+                widthArray.push_back(colorArray);
             }
             heightArray.push_back(widthArray);
         }
@@ -229,20 +236,16 @@ void Model::write(QJsonObject &json, QString filename) const {
     }
     json["frames"] = frameArray;
 
-        QJsonDocument doc;
-        doc.setObject(json);
-        QFile file(filename);
-        file.open(QFile::WriteOnly | QFile::Text | QFile::Truncate);
-        file.write(doc.toJson());
-        file.close();
-
-
+    QJsonDocument doc;
+    doc.setObject(json);
+    QFile file(filename);
+    file.open(QFile::WriteOnly | QFile::Text | QFile::Truncate);
+    file.write(doc.toJson());
+    file.close();
 }
 
 void Model::read(QJsonObject &json) {
     numberOfFrames = json["numberOfFrames"].toInt();
-    imageWidth = json["width"].toInt();
-    imageHeight = json["height"].toInt();
     QJsonArray frameArray = json["frames"].toArray();
 
     for(int i = 0; i < frameArray.size(); i++){
@@ -251,8 +254,15 @@ void Model::read(QJsonObject &json) {
         for(int j = 0; j < heights.size(); j++){
             QJsonArray widths = heights.at(i).toArray();
             for(int k = 0; k < widths.size(); k++){
-                QColor color = widths.at(k).toString();
-                imgAtFrame.setPixel(j,i, color.rgba64());
+                QJsonArray colorArray = widths.at(k).toArray();
+
+                QColor color;
+                color.setRed(colorArray.at(0).toInt());
+                color.setGreen(colorArray.at(1).toInt());
+                color.setBlue(colorArray.at(2).toInt());
+                color.setAlpha(colorArray.at(3).toInt());
+
+                imgAtFrame.setPixel(j,k, color.rgba());
             }
         }
         frames.push_back(imgAtFrame);
