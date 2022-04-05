@@ -247,8 +247,6 @@ void Model::write(QJsonObject &json, QString filename) const {
 void Model::read(QJsonObject &json) {
     numberOfFrames = json["numberOfFrames"].toInt();
     QJsonArray frameArray = json["frames"].toArray();
-//    int height = json["width"].toInt();
-//    int width = json["height"].toInt();
     frames.pop_back();
     for(int i = 0; i < frameArray.size(); i++){
         QImage imgAtFrame(canvasWidth, canvasHeight, QImage::Format_RGBA64);
