@@ -1,7 +1,7 @@
 /**
- *
- *
- *
+ * this class holds all the backing logic connecting the ui to a drawing canvas
+ * additonally it also holds the features that enhance the sprite editor such as
+ * frame animations, saving and loading.
  */
 #include "model.h"
 #include "canvas.h"
@@ -12,6 +12,8 @@
 
 /**
  * @brief Model::Model
+ * this is the constructor for the model. It initialized all the parameters needed to create a
+ * drawing canvas
  * @param canvasWidth
  * @param canvasHeight
  * @param parent
@@ -27,6 +29,7 @@ Model::Model(int canvasWidth, int canvasHeight, QObject *parent)
 }
 /**
  * @brief Model::copyFrame
+ * this method copies the previous frame into the current frame the user is on
  */
 void Model::copyFrame(){
     QImage img = frames.at(currFrame).copy();
@@ -37,6 +40,7 @@ void Model::copyFrame(){
 }
 /**
  * @brief Model::addFrame
+ * this method adds a new image canvas to the sprite editor
  */
 void Model::addFrame(){
     QPixmap pixmap(canvasWidth, canvasHeight);
@@ -47,6 +51,9 @@ void Model::addFrame(){
 }
 /**
  * @brief Model::nextFrame
+ * this is a signal that changes the frame that is currently being
+ * displayed on the preview and canvas, to the next one.
+ *
  */
 void Model::nextFrame(){
     if(currFrame < (int)frames.size()-1){
@@ -57,6 +64,8 @@ void Model::nextFrame(){
 }
 /**
  * @brief Model::prevFrame
+ * this is a signal that changes the frame currently being displayed, to
+ * the previous frame/ image
  */
 void Model::prevFrame(){
     if(currFrame > 0){
@@ -67,6 +76,7 @@ void Model::prevFrame(){
 }
 /**
  * @brief Model::receiveUpdatedCanvasFrame
+ * assigns an image to the current frame
  * @param img
  */
 void Model::receiveUpdatedCanvasFrame(QImage& img){
@@ -74,6 +84,7 @@ void Model::receiveUpdatedCanvasFrame(QImage& img){
 }
 /**
  * @brief Model::deleteFrame
+ * removes an image from the animation/ set of images
  */
 void Model::deleteFrame(){
     if(!animationRunning && currFrame != 0){
@@ -199,6 +210,12 @@ void Model::emitPauseAnimation(){
     emit pauseAnimation();
 }
 
+/**
+ * @brief Model::write
+ * this method creates a json file of the frames and stores each individual pixel
+ * this allows to save a sprite project
+ * @param json
+ */
 void Model::write(QJsonObject &json) const {
     json["width"] = frames.at(0).width();
     json["height"] = frames.at(0).height();
@@ -223,6 +240,12 @@ void Model::write(QJsonObject &json) const {
     json["frames"] = frameArray;
 }
 
+/**
+ * @brief Model::read
+ * this method deserializes a json file, which allows us to retrieve a saved project and
+ * load it in the sprite editor
+ * @param json
+ */
 void Model::read(QJsonObject &json) {
     numberOfFrames = json["numberOfFrames"].toInt();
     imageWidth = json["width"].toInt();

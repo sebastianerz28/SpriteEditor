@@ -11,7 +11,6 @@
 
 
 using std::fmin;
-using std::string;
 
 MainWindow::MainWindow(Model&model, QWidget *parent)
     : QMainWindow(parent),
@@ -24,9 +23,6 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
     c->move((ui->canvasLabel->width()/2) -(model.canvasWidth/2), (ui->canvasLabel->height()/2) - (model.canvasHeight/2));
 
     c->resize(model.canvasWidth, model.canvasHeight);
-
-//    ui->animationLabel->setScaledContents(true);
-
 
     // Initializing slider
     ui->sizeSlider->setMaximum(40);
@@ -61,6 +57,8 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
     connect(ui->colorPickButton,
             &QPushButton::clicked,
             c,
+
+            // changing the color of the brush as well as saving presets
             &Canvas::colorDialogSelected);
     connect(c,
             &Canvas::firstHistoryChanged,
@@ -102,7 +100,7 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             c,
             &Canvas::fourthHistorySelcted);
 
-    //connect add frame signal
+    //connectng frame functionality
     connect(ui->plusButton,
             &QPushButton::clicked,
             &model,

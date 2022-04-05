@@ -1,5 +1,6 @@
 #include "canvas.h"
 #include <QStyleOption>
+
 Canvas::Canvas(QImage _image, QWidget *parent) : QWidget{parent},  image(_image), painter(this) {
     this->setStyleSheet("background-color: #DFDFDE");
 }
@@ -76,6 +77,7 @@ void Canvas::paintEvent(QPaintEvent *event) {
 }
 /**
  * @brief Canvas::brushSizeChanged
+ * recieves the size of the brush
  * @param newBrushSize
  */
 void Canvas::brushSizeChanged(int newBrushSize){
@@ -83,18 +85,22 @@ void Canvas::brushSizeChanged(int newBrushSize){
 }
 /**
  * @brief Canvas::eraseSelected
+ * used to update model when the eraser should be toggled on or not
  */
 void Canvas::eraseSelected(){
     eraseOn = true;
 }
 /**
  * @brief Canvas::brushSelected
+ * used to update model when the eraser should be toggled on or not
  */
 void Canvas::brushSelected(){
     eraseOn = false;
 }
 /**
  * @brief Canvas::colorDialogSelected
+ * creates a popup that allows users to select and change the current color of the brush
+ * as well as updates the color history presets accordingly
  */
 void Canvas::colorDialogSelected(){
     QColor colorSelected = QColorDialog::getColor(brushColor);
@@ -135,6 +141,7 @@ void Canvas::colorDialogSelected(){
 }
 /**
  * @brief Canvas::firstHistorySelcted
+ * button that stores the color history of the most recent color
  */
 void Canvas::firstHistorySelcted(){
     if(colorHistory.size() >= 1){
@@ -145,6 +152,7 @@ void Canvas::firstHistorySelcted(){
 }
 /**
  * @brief Canvas::secondHistorySelcted
+ * button that stores the color history of the 2nd most recent color
  */
 void Canvas::secondHistorySelcted(){
     if(colorHistory.size() >= 2){
@@ -155,6 +163,7 @@ void Canvas::secondHistorySelcted(){
 }
 /**
  * @brief Canvas::thirdHistorySelcted
+ * button that stores the color history of the 3rd most recent color
  */
 void Canvas::thirdHistorySelcted(){
     if(colorHistory.size() >= 3){
@@ -165,6 +174,7 @@ void Canvas::thirdHistorySelcted(){
 }
 /**
  * @brief Canvas::fourthHistorySelcted
+ * button that stores the color history of the 4th most recent color
  */
 void Canvas::fourthHistorySelcted(){
     if(colorHistory.size() >= 4){
@@ -175,6 +185,7 @@ void Canvas::fourthHistorySelcted(){
 }
 /**
  * @brief Canvas::nextFrameChanged
+ * updates the current image to the next frame/ image in the project
  * @param frame
  */
 void Canvas::nextFrameChanged(QImage &frame){
@@ -183,6 +194,7 @@ void Canvas::nextFrameChanged(QImage &frame){
 }
 /**
  * @brief Canvas::prevFrameChanged
+ * connects the current image to the previous image in the project.
  * @param frame
  */
 void Canvas::prevFrameChanged(QImage &frame){
