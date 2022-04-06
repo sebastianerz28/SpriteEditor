@@ -7,7 +7,6 @@ Canvas::Canvas(QImage _image, int width, int height, QWidget *parent)
     : QLabel{parent}, image(_image), painter(this) {
     this->setStyleSheet("background-color: #DFDFDE");
     this->resize(width, height);
-    //    this->setScaledContents(true);
 }
 
 /**
