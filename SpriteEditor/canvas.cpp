@@ -95,6 +95,7 @@ void Canvas::eraseSelected() { eraseOn = true; }
  * used to update model when the eraser should be toggled on or not
  */
 void Canvas::brushSelected() { eraseOn = false; }
+
 /**
  * @brief Canvas::colorDialogSelected
  * creates a popup that allows users to select and change the current color of the brush
@@ -138,6 +139,7 @@ void Canvas::colorDialogSelected() {
         }
     }
 }
+
 /**
  * @brief Canvas::firstHistorySelcted
  * button that stores the color history of the most recent color
@@ -149,6 +151,7 @@ void Canvas::firstHistorySelcted() {
         eraseOn = false;
     }
 }
+
 /**
  * @brief Canvas::secondHistorySelcted
  * button that stores the color history of the 2nd most recent color
@@ -160,6 +163,7 @@ void Canvas::secondHistorySelcted() {
         eraseOn = false;
     }
 }
+
 /**
  * @brief Canvas::thirdHistorySelcted
  * button that stores the color history of the 3rd most recent color
@@ -182,6 +186,7 @@ void Canvas::fourthHistorySelcted() {
         eraseOn = false;
     }
 }
+
 /**
  * @brief Canvas::nextFrameChanged
  * updates the current image to the next frame/ image in the project
@@ -197,7 +202,6 @@ void Canvas::nextFrameChanged(QImage &frame) {
  * @param frame
  */
 void Canvas::prevFrameChanged(QImage &frame) {
-
     image = frame;
     update();
 }
