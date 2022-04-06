@@ -166,11 +166,8 @@ void Model::incrementAnimation(){
  * @brief Model::incrementCanvasAnimation
  */
 void Model::incrementCanvasAnimation(){
-//    if(canvasAnimationRunning){
-
         QTimer::singleShot(frameRate, this, &Model::emitSendNextCanvasAnimationFrame);
         currFrame = (currFrame+1) % frames.size();
-//    }
 }
 /**
  * @brief Model::setPlayPauseBool
@@ -236,7 +233,7 @@ void Model::write(QJsonObject &json, QString filename) const {
         for(int i = 0; i < frames.at(l).height(); i++){
             QJsonArray widthArray;
             for(int j = 0; j < frames.at(l).width(); j++){
-                QColor color = frames.at(l).pixelColor(i, j);
+                QColor color = frames.at(l).pixelColor(j, i);
 
                 QJsonArray colorArray;
                 colorArray.push_back(color.red());
@@ -287,7 +284,7 @@ void Model::read(QJsonObject &json) {
                 color.setBlue(colorArray.at(2).toInt());
                 color.setAlpha(colorArray.at(3).toInt());
 
-                imgAtFrame.setPixel(j, k, qRgba(color.red(), color.green(), color.blue(), color.alpha()));
+                imgAtFrame.setPixel(k, j, qRgba(color.red(), color.green(), color.blue(), color.alpha()));
             }
         }
         frames.push_back(imgAtFrame);
