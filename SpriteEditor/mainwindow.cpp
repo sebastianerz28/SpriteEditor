@@ -13,6 +13,9 @@
 
 using std::fmin;
 
+
+
+
 MainWindow::MainWindow(Model&model, QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow)
@@ -32,11 +35,6 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
     Canvas *c = new Canvas(model.frames.at(0), scaledCanvasWidth, scaledCanvasHeight, ui->canvasLabel);
 
     c->move((ui->canvasLabel->width()/2) -(scaledCanvasWidth/2), (ui->canvasLabel->height()/2) - (scaledCanvasHeight/2));
-
-//    c->resize(model.canvasWidth, model.canvasHeight);
-
-//    c->resize(ui->canvasLabel->width(), ui->canvasLabel->height());
-//    c->setScaledContents(true);
 
     ui->canvasLabel->setScaledContents(true);
 
@@ -211,33 +209,6 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &FullscreenPreview::enableMainWindow,
             c,
             &Canvas::recieveCanDraw);
-//    connect(this,
-//            &MainWindow::sendCanvasPlayValue,
-//            &model,
-//            &Model::setCanvasPlayPause);
-
-//    connect(&model,
-//            &Model::sendNextCanvasAnimationFrame,
-//            preview,
-//            &FullscreenPreview::receiveFrame);
-
-//    connect(ui->playFullscreenButton,
-//            &QPushButton::clicked,
-//            this,
-//            &MainWindow::openFullScreenPreview);
-//    connect(preview,
-//            &FullscreenPreview::updatedImage,
-//            &model,
-//            &Model::incrementCanvasAnimation);
-
-//    connect(&model,
-//            &Model::sendNextCanvasAnimationFrame,
-//            c,
-//            &Canvas::nextFrameChanged);
-//    connect(&model,
-//            &Model::canDraw,
-//            c,
-//            &Canvas::recieveCanDraw);
 
     //Conect Total frame count
     connect(&model,
@@ -286,24 +257,14 @@ void MainWindow::drawAnimation(QImage &img){
 MainWindow::~MainWindow(){
     delete ui;
 }
-
 /**
- * @brief MainWindow::paintEvent
- */
-void MainWindow::paintEvent(QPaintEvent *) {
-    // Create a painter
-    QPainter painter(this);
-    QPen pen(Qt::black);
-    painter.setPen(pen);
-}
-/**
- * @brief MainWindow::calculateAspectRatioFit
- * @param srcWidth
- * @param srcHeight
- * @param maxWidth
- * @param maxHeight
- * @param scaledWidth
- * @param scaledHeight
+ * @brief MainWindow::calculateAspectRatioFit calulates the aspect ratio and then a scaled width and height
+ * @param srcWidth orginal width
+ * @param srcHeight original height
+ * @param maxWidth - maxium width
+ * @param maxHeight maxium height
+ * @param scaledWidth - newly scaled width
+ * @param scaledHeight - newly scaled height
  */
 void MainWindow::calculateAspectRatioFit(int srcWidth, int srcHeight, int maxWidth, int maxHeight, int& scaledWidth, int& scaledHeight){
     double ratio = fmin(maxWidth/(double)srcWidth, maxHeight/(double)srcHeight);
@@ -311,7 +272,9 @@ void MainWindow::calculateAspectRatioFit(int srcWidth, int srcHeight, int maxWid
     scaledWidth = srcWidth * ratio;
     scaledHeight = srcHeight * ratio;
 }
-
+/**
+ * @brief MainWindow::playPauseCanvasAnimation - sets text for the fullscreen animation
+ */
 void MainWindow::playPauseCanvasAnimation(){
     if(canvasAnimationButtonPlay){
         ui->playFullscreenButton->setText("Pause");
@@ -347,6 +310,9 @@ void MainWindow::setTextCurrentFrameLabel(int curr, int total){
 }
 
 
+/**
+ * @brief MainWindow::openFullScreenPreview - slot for on click for the play fullscreen will display the sprite in actual size even when small
+ */
 void MainWindow::openFullScreenPreview(){
     preview->show();
     preview->animationRunning = true;
@@ -354,9 +320,14 @@ void MainWindow::openFullScreenPreview(){
     this->setDisabled(true);
 }
 
+/**
+ * @brief MainWindow::enableMainWindowAfterHide - slot to enable mainwindow again after the slot is hidden.
+ */
 void MainWindow::enableMainWindowAfterHide(){
     this->setDisabled(false);
 }
+
+
 void MainWindow::showSaveWindow(bool){
     QString filter = "Sprites (*.ssp)";
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Sprite"), QDir::homePath() , filter, &filter); // homepath MAY NOT WORK FOR ALL OS

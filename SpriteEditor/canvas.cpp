@@ -33,7 +33,7 @@ void Canvas::drawLineTo(const QPoint &endPoint) {
     update();
 }
 /**
- * @brief Canvas::mousePressEvent
+ * @brief Canvas::mousePressEvent - handles clicking left mouse button and if clicked once draws pixels corresponding to brush size using draw line to
  * @param event
  */
 void Canvas::mousePressEvent(QMouseEvent *event) {
@@ -44,7 +44,7 @@ void Canvas::mousePressEvent(QMouseEvent *event) {
     }
 }
 /**
- * @brief Canvas::mouseMoveEvent
+ * @brief Canvas::mouseMoveEvent continously draws squares when moving the mouse using draw line to
  * @param event
  */
 void Canvas::mouseMoveEvent(QMouseEvent *event) {
@@ -54,7 +54,7 @@ void Canvas::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 /**
- * @brief Canvas::mouseReleaseEvent
+ * @brief Canvas::mouseReleaseEvent - will draw one final square when releasing them mouse
  * @param event
  */
 void Canvas::mouseReleaseEvent(QMouseEvent *event) {
@@ -66,7 +66,7 @@ void Canvas::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 /**
- * @brief Canvas::paintEvent
+ * @brief Canvas::paintEvent - paints the image on the main canvas
  * @param event
  */
 void Canvas::paintEvent(QPaintEvent *event) {

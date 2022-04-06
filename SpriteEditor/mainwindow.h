@@ -26,7 +26,7 @@ private:
     FullscreenPreview* preview = new FullscreenPreview();
     Ui::MainWindow *ui;
     Canvas *canvas;
-    void paintEvent(QPaintEvent *);
+
     void calculateAspectRatioFit(int srcWidth, int srcHeight, int maxWidth, int maxHeight, int& scaledWidth, int& scaledHeight);
 
 signals:

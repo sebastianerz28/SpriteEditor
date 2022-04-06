@@ -1714,7 +1714,13 @@ debug/model.o: ../SpriteEditor/model.cpp ../SpriteEditor/model.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/QJsonDocument \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/qjsondocument.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/QJsonArray \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/qjsonarray.h
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qjsonarray.h \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.2.3/mingw_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qdir.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qfile.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qfileinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\model.o ..\SpriteEditor\model.cpp
 
 debug/openingwindow.o: ../SpriteEditor/openingwindow.cpp ../SpriteEditor/openingwindow.h \
@@ -1877,7 +1883,16 @@ debug/openingwindow.o: ../SpriteEditor/openingwindow.cpp ../SpriteEditor/opening
 		C:/Qt/6.2.3/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/qcalendar.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/qlocale.h \
-		ui_openingwindow.h
+		ui_openingwindow.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/QJsonDocument \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qjsondocument.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qjsonvalue.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qcborvalue.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qcborcommon.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/quuid.h \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/QJsonObject \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/qjsonobject.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\openingwindow.o ..\SpriteEditor\openingwindow.cpp
 
 debug/moc_canvas.o: debug/moc_canvas.cpp 
