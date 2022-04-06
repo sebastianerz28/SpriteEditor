@@ -58,6 +58,8 @@ signals:
     void enableDelete(bool);
     void startAnimation();
     void canDraw(bool);
+
+
 private:
     bool deletingFrame = false;
     void emitSendNextCanvasAnimationFrame();

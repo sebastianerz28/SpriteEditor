@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>C@ DAWGZ Sprite Editor</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: beige</string>
@@ -473,7 +473,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
 </string>
      </property>
      <property name="text">
-      <string>Copy Prev</string>
+      <string>Copy Frame</string>
      </property>
     </widget>
    </widget>
@@ -578,10 +578,10 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QLabel" name="canvasLabel">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>30</y>
-      <width>601</width>
-      <height>371</height>
+      <x>290</x>
+      <y>20</y>
+      <width>400</width>
+      <height>400</height>
      </rect>
     </property>
     <property name="text">

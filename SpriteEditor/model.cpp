@@ -155,10 +155,11 @@ void Model::incrementAnimation(){
  * @brief Model::incrementCanvasAnimation
  */
 void Model::incrementCanvasAnimation(){
-    if(canvasAnimationRunning){
+//    if(canvasAnimationRunning){
+
         QTimer::singleShot(frameRate, this, &Model::emitSendNextCanvasAnimationFrame);
         currFrame = (currFrame+1) % frames.size();
-    }
+//    }
 }
 /**
  * @brief Model::setPlayPauseBool
