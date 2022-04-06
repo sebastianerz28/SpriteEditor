@@ -28,7 +28,6 @@ public:
     QLabel *height;
     QLabel *width;
     QPushButton *startButton;
-    QLabel *mainText;
 
     void setupUi(QWidget *OpeningWindow)
     {
@@ -37,28 +36,25 @@ public:
         OpeningWindow->resize(400, 300);
         loadButton = new QPushButton(OpeningWindow);
         loadButton->setObjectName(QString::fromUtf8("loadButton"));
-        loadButton->setGeometry(QRect(20, 60, 141, 51));
+        loadButton->setGeometry(QRect(50, 70, 141, 51));
         createNewButton = new QPushButton(OpeningWindow);
         createNewButton->setObjectName(QString::fromUtf8("createNewButton"));
-        createNewButton->setGeometry(QRect(20, 130, 141, 51));
+        createNewButton->setGeometry(QRect(50, 140, 141, 51));
         widthBox = new QSpinBox(OpeningWindow);
         widthBox->setObjectName(QString::fromUtf8("widthBox"));
-        widthBox->setGeometry(QRect(190, 140, 61, 31));
+        widthBox->setGeometry(QRect(220, 110, 61, 31));
         heightBox = new QSpinBox(OpeningWindow);
         heightBox->setObjectName(QString::fromUtf8("heightBox"));
-        heightBox->setGeometry(QRect(190, 190, 61, 31));
+        heightBox->setGeometry(QRect(220, 160, 61, 31));
         height = new QLabel(OpeningWindow);
         height->setObjectName(QString::fromUtf8("height"));
-        height->setGeometry(QRect(270, 200, 58, 16));
+        height->setGeometry(QRect(300, 170, 58, 16));
         width = new QLabel(OpeningWindow);
         width->setObjectName(QString::fromUtf8("width"));
-        width->setGeometry(QRect(270, 150, 58, 16));
+        width->setGeometry(QRect(300, 120, 58, 16));
         startButton = new QPushButton(OpeningWindow);
         startButton->setObjectName(QString::fromUtf8("startButton"));
-        startButton->setGeometry(QRect(160, 240, 81, 41));
-        mainText = new QLabel(OpeningWindow);
-        mainText->setObjectName(QString::fromUtf8("mainText"));
-        mainText->setGeometry(QRect(120, 20, 161, 41));
+        startButton->setGeometry(QRect(160, 230, 81, 41));
 
         retranslateUi(OpeningWindow);
 
@@ -67,13 +63,12 @@ public:
 
     void retranslateUi(QWidget *OpeningWindow)
     {
-        OpeningWindow->setWindowTitle(QCoreApplication::translate("OpeningWindow", "Form", nullptr));
+        OpeningWindow->setWindowTitle(QCoreApplication::translate("OpeningWindow", "C@ DAWGS Sprite Editor", nullptr));
         loadButton->setText(QCoreApplication::translate("OpeningWindow", "Load from existing", nullptr));
         createNewButton->setText(QCoreApplication::translate("OpeningWindow", "Create new", nullptr));
         height->setText(QCoreApplication::translate("OpeningWindow", "Height", nullptr));
         width->setText(QCoreApplication::translate("OpeningWindow", "Width", nullptr));
         startButton->setText(QCoreApplication::translate("OpeningWindow", "Start", nullptr));
-        mainText->setText(QCoreApplication::translate("OpeningWindow", "C@ DAWGS PIXEL EDITOR", nullptr));
     } // retranslateUi
 
 };

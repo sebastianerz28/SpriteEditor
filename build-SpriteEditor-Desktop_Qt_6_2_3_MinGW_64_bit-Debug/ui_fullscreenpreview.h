@@ -37,7 +37,7 @@ public:
 
     void retranslateUi(QDialog *FullscreenPreview)
     {
-        FullscreenPreview->setWindowTitle(QCoreApplication::translate("FullscreenPreview", "Dialog", nullptr));
+        FullscreenPreview->setWindowTitle(QCoreApplication::translate("FullscreenPreview", "Preview", nullptr));
         frameLabel->setText(QString());
     } // retranslateUi
 
