@@ -85,9 +85,13 @@ void Model::receiveUpdatedCanvasFrame(QImage& img){
 void Model::deleteFrame(){
     if(!animationRunning && currFrame != 0){
         frames.erase(frames.begin()+currFrame);
+        currAnimationFrame = 0;
+        currFullscreenFrame = 0;
         emit sendPreviousFrame(frames.at(--currFrame));
     }else if (!animationRunning && currFrame == 0 && frames.size()>1){
         frames.erase(frames.begin());
+        currAnimationFrame = 0;
+        currFullscreenFrame = 0;
         emit sendNextFrame(frames.at(currFrame));
     } else if(animationRunning){
         deletingFrame = true;
