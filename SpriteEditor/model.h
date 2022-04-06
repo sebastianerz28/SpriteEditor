@@ -10,7 +10,7 @@
 
 using std::vector;
 /**
- * @brief The Model class
+ * @brief The Model class serves as the data container for the application.
  */
 class Model : public QObject
 {
@@ -23,8 +23,8 @@ public:
     int currFrame = 0;
     int currAnimationFrame = 0;
     int currFullscreenFrame = 0;
-    int canvasWidth;
-    int canvasHeight;
+    int imgWidth;
+    int imgHeight;
     int frameRate;
     void write(QJsonObject &json, QString) const;
     void read(QJsonObject &json);
@@ -42,8 +42,7 @@ public slots:
     void incrementAnimation();
     void setPlayPauseBool(bool);
     void frameRateChanged(int);
-    void incrementCanvasAnimation();
-    void setCanvasPlayPause(bool);
+    void incrementFullscreenAnimation();
     void deleteFrameRunning();
     void startAnimationAfterDelete();
     void copyFrame();

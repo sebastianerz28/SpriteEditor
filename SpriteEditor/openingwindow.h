@@ -7,8 +7,9 @@
 namespace Ui {
 class OpeningWindow;
 }
+
 /**
- * @brief The OpeningWindow class
+ * @brief The OpeningWindow class is the dialogue that prompts a user to create a new file or open an existing one.
  */
 class OpeningWindow : public QWidget
 {

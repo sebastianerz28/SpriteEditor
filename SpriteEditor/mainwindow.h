@@ -8,8 +8,9 @@
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
 /**
- * @brief The MainWindow class
+ * @brief The MainWindow class is the main interface of the application.
  */
 class MainWindow : public QMainWindow
 {
@@ -21,6 +22,8 @@ public:
 
 
 private:
+    bool brushSelected = true;
+    bool eraserSelected = false;
     bool canvasAnimationButtonPlay = true;
     bool animationButtonPlay = true;
     FullscreenPreview* preview = new FullscreenPreview();
@@ -37,6 +40,8 @@ signals:
 
 
 public slots:
+    void toggleBrushButton();
+    void toggleEraserButton();
     void drawAnimation(QImage&);
     void playPauseAnimation();
     void playPauseCanvasAnimation();

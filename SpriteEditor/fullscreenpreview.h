@@ -7,6 +7,9 @@ namespace Ui {
 class FullscreenPreview;
 }
 
+/**
+ * @brief The FullscreenPreview class provides a full-size view of the sprite animation.
+ */
 class FullscreenPreview : public QDialog
 {
     Q_OBJECT

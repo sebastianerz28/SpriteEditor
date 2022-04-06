@@ -9,8 +9,12 @@
 #include <QColorDialog>
 #include <unordered_set>
 #include <QLabel>
+
 /**
- * @brief The Canvas class
+ * @brief The Canvas class serves as the editing panel for the sprite frames.
+ * This class holds all the backing logic connecting the ui to a drawing canvas.
+ * Additonally, it holds the features that enhance the sprite editor such as
+ * frame animations, saving and loading.
  */
 class Canvas : public QLabel
 {

@@ -11,17 +11,17 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>C@ DAWGZ Sprite Editor</string>
+   <string>C@ DAWGS Sprite Editor</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: beige</string>
+   <string notr="true">background-color: #DFDFDF</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="brushWidget" native="true">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>50</y>
+      <y>20</y>
       <width>141</width>
       <height>341</height>
      </rect>
@@ -32,7 +32,7 @@ border-style: solid;
 border-width: 1px;
 border-color: #4d3900;
 padding: 6px;
-background-color: #fafaeb;
+background-color: #DFDFDF;
 }</string>
     </property>
     <widget class="QPushButton" name="brushButton">
@@ -45,7 +45,7 @@ background-color: #fafaeb;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton{ color: black; }
+      <string notr="true">QPushButton{ color: black;border: 1px solid black; }
 
 QPushButton:hover{
  background-color: rgba(0,0,0,0.05);
@@ -312,7 +312,7 @@ border-style: solid;
 border-width: 1px;
 border-color: #4d3900;
 padding: 6px;
-background-color: #fafaeb;
+background-color: #DFDFDF;
 }</string>
     </property>
     <widget class="QLabel" name="previewLabel">
@@ -363,7 +363,7 @@ padding: 0px;
     <property name="geometry">
      <rect>
       <x>821</x>
-      <y>300</y>
+      <y>320</y>
       <width>211</width>
       <height>151</height>
      </rect>
@@ -374,7 +374,7 @@ border-style: solid;
 border-width: 1px;
 border-color: #4d3900;
 padding: 6px;
-background-color: #fafaeb;
+background-color: #DFDFDF;
 }</string>
     </property>
     <widget class="QLabel" name="toolsLabel">
@@ -483,12 +483,12 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }
       <x>330</x>
       <y>430</y>
       <width>101</width>
-      <height>51</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>13</pointsize>
+      <pointsize>9</pointsize>
       <bold>false</bold>
      </font>
     </property>
@@ -512,7 +512,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
       <x>570</x>
       <y>430</y>
       <width>101</width>
-      <height>51</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -535,7 +535,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
       <x>450</x>
       <y>430</y>
       <width>101</width>
-      <height>51</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -557,8 +557,8 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
      <rect>
       <x>820</x>
       <y>260</y>
-      <width>80</width>
-      <height>24</height>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -594,7 +594,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
       <x>210</x>
       <y>430</y>
       <width>101</width>
-      <height>51</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -614,19 +614,21 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QLabel" name="currentFrameLabel">
     <property name="geometry">
      <rect>
-      <x>730</x>
+      <x>690</x>
       <y>450</y>
-      <width>21</width>
+      <width>51</width>
       <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: black</string>
+     <string notr="true">color: black;
+
+background-color: transparent;</string>
     </property>
     <property name="text">
      <string>1/1</string>
@@ -635,17 +637,22 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>690</x>
       <y>430</y>
       <width>91</width>
       <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: black;</string>
+     <string notr="true">color: black;
+
+background-color: transparent;
+
+margin: 0;
+padding: 0;</string>
     </property>
     <property name="text">
-     <string>Current Frame:</string>
+     <string>Current Frame</string>
     </property>
    </widget>
   </widget>
@@ -655,7 +662,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
      <x>0</x>
      <y>0</y>
      <width>1054</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
@@ -664,13 +671,7 @@ QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }</string>
     </property>
     <addaction name="actionsave"/>
    </widget>
-   <widget class="QMenu" name="menuhelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-   </widget>
    <addaction name="menufile"/>
-   <addaction name="menuhelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionsave">

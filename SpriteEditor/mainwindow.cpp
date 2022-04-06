@@ -13,9 +13,12 @@
 
 using std::fmin;
 
-
-
-
+/**
+ * @brief MainWindow::MainWindow creates the main window application. It takes a Model object as a parameter to serve as the
+ * container for application data.
+ * @param model
+ * @param parent
+ */
 MainWindow::MainWindow(Model&model, QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow)
@@ -26,8 +29,8 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
 
     int maxWidth(ui->canvasLabel->width());
     int maxHeight(ui->canvasLabel->height());
-    int srcWidth(model.canvasWidth);
-    int srcHeight(model.canvasHeight);
+    int srcWidth(model.imgWidth);
+    int srcHeight(model.imgHeight);
 
 
     calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight, scaledCanvasWidth, scaledCanvasHeight);
@@ -68,6 +71,14 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &QPushButton::clicked,
             c,
             &Canvas::brushSelected);
+    connect(ui->brushButton,
+            &QPushButton::clicked,
+            this,
+            &MainWindow::toggleBrushButton);
+    connect(ui->eraseButton,
+            &QPushButton::clicked,
+            this,
+            &MainWindow::toggleEraserButton);
     connect(ui->colorPickButton,
             &QPushButton::clicked,
             c,
@@ -192,7 +203,7 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
     connect(this,
             &MainWindow::getFirstFrame,
             &model,
-            &Model::incrementCanvasAnimation);
+            &Model::incrementFullscreenAnimation);
     connect(&model,
             &Model::sendNextCanvasAnimationFrame,
             this->preview,
@@ -200,7 +211,7 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
     connect(this->preview,
             &FullscreenPreview::updatedImage,
             &model,
-            &Model::incrementCanvasAnimation);
+            &Model::incrementFullscreenAnimation);
     connect(this->preview,
             &FullscreenPreview::enableMainWindow,
             this,
@@ -332,4 +343,34 @@ void MainWindow::showSaveWindow(bool){
     QString filter = "Sprites (*.ssp)";
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Sprite"), QDir::homePath() , filter, &filter); // homepath MAY NOT WORK FOR ALL OS
     emit sendSaved(fileName);
+}
+
+/**
+ * @brief MainWindow::toggleBrushButton
+ * Toggles if the brush button is selected or not.
+ */
+void MainWindow::toggleBrushButton(){
+    if(!brushSelected){
+        brushSelected = true;
+        eraserSelected = false;
+        ui->brushButton->setStyleSheet("QPushButton{ color: black; border: 1px solid black; } QPushButton:hover{ background-color: rgba(0,0,0,0.05); color: black;} "
+                                       "QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }");
+        ui->eraseButton->setStyleSheet("QPushButton{ color: black; } QPushButton:hover{ background-color: rgba(0,0,0,0.05); color: black;} "
+                                       "QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }");
+    }
+}
+
+/**
+ * @brief MainWindow::toggleEraserButton
+ * Toggles if the eraser button is selected or not.
+ */
+void MainWindow::toggleEraserButton(){
+    if(!eraserSelected){
+        brushSelected = false;
+        eraserSelected = true;
+        ui->eraseButton->setStyleSheet("QPushButton{ color: black; border: 1px solid black; } QPushButton:hover{ background-color: rgba(0,0,0,0.05); color: black;} "
+                                       "QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }");
+        ui->brushButton->setStyleSheet("QPushButton{ color: black; } QPushButton:hover{ background-color: rgba(0,0,0,0.05); color: black;} "
+                                       "QPushButton:pressed{ background-color: rgba(0,0,0,0.1); }");
+    }
 }

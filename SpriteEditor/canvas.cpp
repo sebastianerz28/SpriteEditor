@@ -3,9 +3,16 @@
 #include <QLabel>
 #include <QStyleOption>
 
+/**
+ * @brief Canvas::Canvas The constructor for a Canvas object that takes all necessary parameters for construction.
+ * @param _image The starting image
+ * @param width The width of the canvas (depends on image size)
+ * @param height The height of the canvas (depends on image size)
+ * @param parent The QWidget parent of the canvas
+ */
 Canvas::Canvas(QImage _image, int width, int height, QWidget *parent)
     : QLabel{parent}, image(_image), painter(this) {
-    this->setStyleSheet("background-color: #DFDFDE");
+    this->setStyleSheet("background-color: #F4F3F3; border: 1px solid black;");
     this->resize(width, height);
 }
 

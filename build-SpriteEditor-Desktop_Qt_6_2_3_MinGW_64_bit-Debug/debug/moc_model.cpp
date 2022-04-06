@@ -23,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Model_t {
-    const uint offsetsAndSize[54];
-    char stringdata0[411];
+    const uint offsetsAndSize[52];
+    char stringdata0[396];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_Model_t, stringdata0) + ofs), len 
@@ -51,12 +51,11 @@ QT_MOC_LITERAL(235, 11), // "deleteFrame"
 QT_MOC_LITERAL(247, 18), // "incrementAnimation"
 QT_MOC_LITERAL(266, 16), // "setPlayPauseBool"
 QT_MOC_LITERAL(283, 16), // "frameRateChanged"
-QT_MOC_LITERAL(300, 24), // "incrementCanvasAnimation"
-QT_MOC_LITERAL(325, 18), // "setCanvasPlayPause"
-QT_MOC_LITERAL(344, 18), // "deleteFrameRunning"
-QT_MOC_LITERAL(363, 25), // "startAnimationAfterDelete"
-QT_MOC_LITERAL(389, 9), // "copyFrame"
-QT_MOC_LITERAL(399, 11) // "saveClicked"
+QT_MOC_LITERAL(300, 28), // "incrementFullscreenAnimation"
+QT_MOC_LITERAL(329, 18), // "deleteFrameRunning"
+QT_MOC_LITERAL(348, 25), // "startAnimationAfterDelete"
+QT_MOC_LITERAL(374, 9), // "copyFrame"
+QT_MOC_LITERAL(384, 11) // "saveClicked"
 
     },
     "Model\0sendNextFrame\0\0QImage&\0image\0"
@@ -67,10 +66,9 @@ QT_MOC_LITERAL(399, 11) // "saveClicked"
     "addFrame\0nextFrame\0prevFrame\0"
     "receiveUpdatedCanvasFrame\0deleteFrame\0"
     "incrementAnimation\0setPlayPauseBool\0"
-    "frameRateChanged\0incrementCanvasAnimation\0"
-    "setCanvasPlayPause\0deleteFrameRunning\0"
-    "startAnimationAfterDelete\0copyFrame\0"
-    "saveClicked"
+    "frameRateChanged\0incrementFullscreenAnimation\0"
+    "deleteFrameRunning\0startAnimationAfterDelete\0"
+    "copyFrame\0saveClicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -80,7 +78,7 @@ static const uint qt_meta_data_Model[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      23,   14, // methods
+      22,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -88,31 +86,30 @@ static const uint qt_meta_data_Model[] = {
        9,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  152,    2, 0x06,    1 /* Public */,
-       5,    1,  155,    2, 0x06,    3 /* Public */,
-       6,    1,  158,    2, 0x06,    5 /* Public */,
-       7,    1,  161,    2, 0x06,    7 /* Public */,
-       8,    2,  164,    2, 0x06,    9 /* Public */,
-       9,    0,  169,    2, 0x06,   12 /* Public */,
-      10,    1,  170,    2, 0x06,   13 /* Public */,
-      11,    0,  173,    2, 0x06,   15 /* Public */,
-      12,    1,  174,    2, 0x06,   16 /* Public */,
+       1,    1,  146,    2, 0x06,    1 /* Public */,
+       5,    1,  149,    2, 0x06,    3 /* Public */,
+       6,    1,  152,    2, 0x06,    5 /* Public */,
+       7,    1,  155,    2, 0x06,    7 /* Public */,
+       8,    2,  158,    2, 0x06,    9 /* Public */,
+       9,    0,  163,    2, 0x06,   12 /* Public */,
+      10,    1,  164,    2, 0x06,   13 /* Public */,
+      11,    0,  167,    2, 0x06,   15 /* Public */,
+      12,    1,  168,    2, 0x06,   16 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      13,    0,  177,    2, 0x0a,   18 /* Public */,
-      14,    0,  178,    2, 0x0a,   19 /* Public */,
-      15,    0,  179,    2, 0x0a,   20 /* Public */,
-      16,    1,  180,    2, 0x0a,   21 /* Public */,
-      17,    0,  183,    2, 0x0a,   23 /* Public */,
-      18,    0,  184,    2, 0x0a,   24 /* Public */,
-      19,    1,  185,    2, 0x0a,   25 /* Public */,
-      20,    1,  188,    2, 0x0a,   27 /* Public */,
-      21,    0,  191,    2, 0x0a,   29 /* Public */,
-      22,    1,  192,    2, 0x0a,   30 /* Public */,
-      23,    0,  195,    2, 0x0a,   32 /* Public */,
-      24,    0,  196,    2, 0x0a,   33 /* Public */,
-      25,    0,  197,    2, 0x0a,   34 /* Public */,
-      26,    1,  198,    2, 0x0a,   35 /* Public */,
+      13,    0,  171,    2, 0x0a,   18 /* Public */,
+      14,    0,  172,    2, 0x0a,   19 /* Public */,
+      15,    0,  173,    2, 0x0a,   20 /* Public */,
+      16,    1,  174,    2, 0x0a,   21 /* Public */,
+      17,    0,  177,    2, 0x0a,   23 /* Public */,
+      18,    0,  178,    2, 0x0a,   24 /* Public */,
+      19,    1,  179,    2, 0x0a,   25 /* Public */,
+      20,    1,  182,    2, 0x0a,   27 /* Public */,
+      21,    0,  185,    2, 0x0a,   29 /* Public */,
+      22,    0,  186,    2, 0x0a,   30 /* Public */,
+      23,    0,  187,    2, 0x0a,   31 /* Public */,
+      24,    0,  188,    2, 0x0a,   32 /* Public */,
+      25,    1,  189,    2, 0x0a,   33 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -135,7 +132,6 @@ static const uint qt_meta_data_Model[] = {
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void, QMetaType::Int,    2,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -167,12 +163,11 @@ void Model::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         case 14: _t->incrementAnimation(); break;
         case 15: _t->setPlayPauseBool((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 16: _t->frameRateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 17: _t->incrementCanvasAnimation(); break;
-        case 18: _t->setCanvasPlayPause((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 19: _t->deleteFrameRunning(); break;
-        case 20: _t->startAnimationAfterDelete(); break;
-        case 21: _t->copyFrame(); break;
-        case 22: _t->saveClicked((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 17: _t->incrementFullscreenAnimation(); break;
+        case 18: _t->deleteFrameRunning(); break;
+        case 19: _t->startAnimationAfterDelete(); break;
+        case 20: _t->copyFrame(); break;
+        case 21: _t->saveClicked((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -251,7 +246,7 @@ const QMetaObject Model::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_Model_t
 , QtPrivate::TypeAndForceComplete<Model, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>
 
 
 >,
@@ -278,13 +273,13 @@ int Model::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 23)
+        if (_id < 22)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 23;
+        _id -= 22;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 23)
+        if (_id < 22)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 23;
+        _id -= 22;
     }
     return _id;
 }

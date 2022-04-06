@@ -1,8 +1,3 @@
-/**
- * this class holds all the backing logic connecting the ui to a drawing canvas
- * additonally it also holds the features that enhance the sprite editor such as
- * frame animations, saving and loading.
- */
 #include "model.h"
 #include "canvas.h"
 #include <QTimer>
@@ -13,24 +8,24 @@
 
 /**
  * @brief Model::Model
- * this is the constructor for the model. It initialized all the parameters needed to create a
+ * This is the constructor for the model. It initializes all the parameters needed to create a
  * drawing canvas
- * @param canvasWidth
- * @param canvasHeight
- * @param parent
+ * @param imgWidth The width of the images in pixels
+ * @param imgHeight The height of the images in pixels
+ * @param parent The QObject parent of the model
  */
 
-Model::Model(int canvasWidth, int canvasHeight, QObject *parent)
-    : QObject{parent}, canvasWidth(canvasWidth), canvasHeight(canvasHeight)
+Model::Model(int imgWidth, int imgHeight, QObject *parent)
+    : QObject{parent}, imgWidth(imgWidth), imgHeight(imgHeight)
 {
-    QPixmap pixmap(canvasWidth, canvasHeight);
+    QPixmap pixmap(imgWidth, imgHeight);
     pixmap.fill(Qt::transparent);
     QImage img = pixmap.toImage();
     frames.push_back(img);
 }
 /**
  * @brief Model::copyFrame
- * this method copies the previous frame into the current frame the user is on
+ * This method copies the current frame into an added frame.
  */
 void Model::copyFrame(){
     QImage img = frames.at(currFrame).copy();
@@ -41,10 +36,11 @@ void Model::copyFrame(){
 }
 /**
  * @brief Model::addFrame
- * this method adds a new image canvas to the sprite editor
+ * This method adds a new image frame to the model and sends an update of the current
+ * frame index to the view.
  */
 void Model::addFrame(){
-    QPixmap pixmap(canvasWidth, canvasHeight);
+    QPixmap pixmap(imgWidth, imgHeight);
     pixmap.fill(Qt::transparent);
     QImage img = pixmap.toImage();
     frames.push_back(img);
@@ -52,9 +48,8 @@ void Model::addFrame(){
 }
 /**
  * @brief Model::nextFrame
- * this is a signal that changes the frame that is currently being
- * displayed on the preview and canvas, to the next one.
- *
+ * This is a slot that changes the frame that is currently being
+ * displayed on the preview and canvas to the next available frame.
  */
 void Model::nextFrame(){
     if(currFrame < (int)frames.size()-1){
@@ -65,8 +60,8 @@ void Model::nextFrame(){
 }
 /**
  * @brief Model::prevFrame
- * this is a signal that changes the frame currently being displayed, to
- * the previous frame/ image
+ * This is a slot that changes the frame currently being displayed to
+ * the previous frame.
  */
 void Model::prevFrame(){
     if(currFrame > 0){
@@ -77,7 +72,7 @@ void Model::prevFrame(){
 }
 /**
  * @brief Model::receiveUpdatedCanvasFrame
- * assigns an image to the current frame
+ * This method assigns an image to the current frame.
  * @param img
  */
 void Model::receiveUpdatedCanvasFrame(QImage& img){
@@ -85,7 +80,7 @@ void Model::receiveUpdatedCanvasFrame(QImage& img){
 }
 /**
  * @brief Model::deleteFrame
- * removes an image from the animation/ set of images
+ * This method removes an image from the vector of images (and thus the animation).
  */
 void Model::deleteFrame(){
     if(!animationRunning && currFrame != 0){
@@ -102,6 +97,9 @@ void Model::deleteFrame(){
 }
 /**
  * @brief Model::deleteFrameRunning
+ * This method removes an image from the vector of images while the animation is
+ * is running. Special conditions are considered to prevent the animation from
+ * attempting to display an already-deleted frame.
  */
 void Model::deleteFrameRunning(){
     if(currFrame != 0){
@@ -128,6 +126,8 @@ void Model::deleteFrameRunning(){
 }
 /**
  * @brief Model::emitSendNextAnimationFrame
+ * This method is a wrapper for the sendNextAnimationFrame signal. It also increments
+ * currAnimationFrame.
  */
 void Model::emitSendNextAnimationFrame(){
     emit sendNextAnimationFrame(frames.at(currAnimationFrame));
@@ -135,12 +135,15 @@ void Model::emitSendNextAnimationFrame(){
 }
 /**
  * @brief Model::emitSendNextCanvasAnimationFrame
+ * This method is a wrapper for the nextCanvasAnimationFrame signal.
  */
 void Model::emitSendNextCanvasAnimationFrame(){
     emit sendNextCanvasAnimationFrame(frames.at(currFullscreenFrame));
 }
 /**
  * @brief Model::startAnimationAfterDelete
+ * This method is a slot that is used to restart the animation cycle when the user
+ * deletes a frame while the animation is running.
  */
 void Model::startAnimationAfterDelete(){
     emitSendNextAnimationFrame();
@@ -148,6 +151,8 @@ void Model::startAnimationAfterDelete(){
 
 /**
  * @brief Model::incrementAnimation
+ * This method increments the animation preview to the next frame, or handles
+ * pausing the animation to safely delete a frame.
  */
 void Model::incrementAnimation(){
 
@@ -163,15 +168,18 @@ void Model::incrementAnimation(){
     }
 }
 /**
- * @brief Model::incrementCanvasAnimation
+ * @brief Model::incrementFullscreenAnimation
+ * This method progresses the full screen animation to the next frame.
  */
-void Model::incrementCanvasAnimation(){
-        QTimer::singleShot(frameRate, this, &Model::emitSendNextCanvasAnimationFrame);
-        currFullscreenFrame = (currFullscreenFrame+1) % frames.size();
+void Model::incrementFullscreenAnimation(){
+    QTimer::singleShot(frameRate, this, &Model::emitSendNextCanvasAnimationFrame);
+    currFullscreenFrame = (currFullscreenFrame+1) % frames.size();
 }
 /**
  * @brief Model::setPlayPauseBool
- * @param play
+ * @param play, a boolean that is true if the animation is running
+ * This method sets the animationRunning boolean used to safely delete frames
+ * while the animation is running.
  */
 void Model::setPlayPauseBool(bool play){
     if(!animationRunning){
@@ -181,22 +189,11 @@ void Model::setPlayPauseBool(bool play){
         animationRunning = play;
     }
 }
-/**
- * @brief Model::setCanvasPlayPause
- * @param play
- */
-void Model::setCanvasPlayPause(bool play){
-    if(!canvasAnimationRunning){
-        canvasAnimationRunning = play;
-        emitSendNextCanvasAnimationFrame();
-    } else {
-        canvasAnimationRunning = play;
-    }
-    emit canDraw(canvasAnimationRunning);
-}
+
 /**
  * @brief Model::frameRateChanged
- * @param framesPerSecond
+ * @param framesPerSecond The new frames per second value for the frame rate.
+ * This method updates the frame rate.
  */
 void Model::frameRateChanged(int framesPerSecond){
     frameRate = 1000 / framesPerSecond;
@@ -204,16 +201,22 @@ void Model::frameRateChanged(int framesPerSecond){
 
 /**
  * @brief Model::emitPauseAnimation
+ * This method is a wrapper for the pauseAnimation signal.
  */
 void Model::emitPauseAnimation(){
     emit pauseAnimation();
 }
 
-\
+
+/**
+ * @brief Model::saveClicked
+ * @param filename The filename to save to.
+ * This method writes a sprite project to the specified filename.
+ */
 void Model::saveClicked(QString filename){
 
-      QJsonObject saveSprite;
-      write(saveSprite, filename);
+    QJsonObject saveSprite;
+    write(saveSprite, filename);
 }
 
 /**
@@ -271,7 +274,7 @@ void Model::read(QJsonObject &json) {
     QJsonArray frameArray = json["frames"].toArray();
     frames.pop_back();
     for(int i = 0; i < frameArray.size(); i++){
-        QImage imgAtFrame(canvasWidth, canvasHeight, QImage::Format_RGBA64);
+        QImage imgAtFrame(imgWidth, imgHeight, QImage::Format_RGBA64);
 
         QJsonArray heights = frameArray.at(i).toArray();
         for(int j = 0; j < heights.size(); j++){
@@ -289,6 +292,5 @@ void Model::read(QJsonObject &json) {
         }
         frames.push_back(imgAtFrame);
     }
-
 }
 
