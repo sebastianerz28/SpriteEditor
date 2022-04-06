@@ -22,6 +22,7 @@ public:
     explicit Model(int, int, QObject *parent = nullptr);
     int currFrame = 0;
     int currAnimationFrame = 0;
+    int currFullscreenFrame = 0;
     int canvasWidth;
     int canvasHeight;
     int frameRate;

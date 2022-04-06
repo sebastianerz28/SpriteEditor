@@ -137,7 +137,7 @@ void Model::emitSendNextAnimationFrame(){
  * @brief Model::emitSendNextCanvasAnimationFrame
  */
 void Model::emitSendNextCanvasAnimationFrame(){
-    emit sendNextCanvasAnimationFrame(frames.at(currFrame));
+    emit sendNextCanvasAnimationFrame(frames.at(currFullscreenFrame));
 }
 /**
  * @brief Model::startAnimationAfterDelete
@@ -167,7 +167,7 @@ void Model::incrementAnimation(){
  */
 void Model::incrementCanvasAnimation(){
         QTimer::singleShot(frameRate, this, &Model::emitSendNextCanvasAnimationFrame);
-        currFrame = (currFrame+1) % frames.size();
+        currFullscreenFrame = (currFullscreenFrame+1) % frames.size();
 }
 /**
  * @brief Model::setPlayPauseBool
