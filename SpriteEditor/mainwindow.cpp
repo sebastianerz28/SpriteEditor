@@ -12,19 +12,12 @@
 #include <QFileDialog>
 
 using std::fmin;
-using std::string;
 
 MainWindow::MainWindow(Model&model, QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-
-
-
-
-
     int scaledCanvasWidth = 0;
     int scaledCanvasHeight = 0;
 
@@ -80,6 +73,8 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
     connect(ui->colorPickButton,
             &QPushButton::clicked,
             c,
+
+            // changing the color of the brush as well as saving presets
             &Canvas::colorDialogSelected);
     connect(c,
             &Canvas::firstHistoryChanged,
@@ -121,7 +116,7 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             c,
             &Canvas::fourthHistorySelcted);
 
-    //connect add frame signal
+    //connectng frame functionality
     connect(ui->plusButton,
             &QPushButton::clicked,
             &model,
