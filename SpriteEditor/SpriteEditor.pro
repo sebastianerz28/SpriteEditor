@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     canvas.cpp \
+    fullscreenpreview.cpp \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
@@ -17,11 +18,13 @@ SOURCES += \
 
 HEADERS += \
     canvas.h \
+    fullscreenpreview.h \
     mainwindow.h \
     model.h \
     openingwindow.h
 
 FORMS += \
+    fullscreenpreview.ui \
     mainwindow.ui \
     openingwindow.ui
 

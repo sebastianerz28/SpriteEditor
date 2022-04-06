@@ -8,14 +8,15 @@
 #include <QPoint>
 #include <QColorDialog>
 #include <unordered_set>
+#include <QLabel>
 /**
  * @brief The Canvas class
  */
-class Canvas : public QWidget
+class Canvas : public QLabel
 {
     Q_OBJECT
 public:
-    Canvas( QImage _image, QWidget *parent = nullptr);
+    Canvas( QImage _image, int width, int height, QWidget *parent = nullptr);
     int brushSize;
     QColor brushColor;
     QImage image;

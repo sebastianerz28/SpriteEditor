@@ -8,7 +8,8 @@
 #include <QGridLayout>
 #include <cmath>
 #include <string>
-
+#include "openingwindow.h"
+#include <QFileDialog>
 
 using std::fmin;
 
@@ -17,12 +18,27 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
       ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    int scaledCanvasWidth = 0;
+    int scaledCanvasHeight = 0;
 
-    Canvas *c = new Canvas(model.frames.at(0), ui->canvasLabel);
+    int maxWidth(ui->canvasLabel->width());
+    int maxHeight(ui->canvasLabel->height());
+    int srcWidth(model.canvasWidth);
+    int srcHeight(model.canvasHeight);
 
-    c->move((ui->canvasLabel->width()/2) -(model.canvasWidth/2), (ui->canvasLabel->height()/2) - (model.canvasHeight/2));
 
-    c->resize(model.canvasWidth, model.canvasHeight);
+    calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight, scaledCanvasWidth, scaledCanvasHeight);
+
+    Canvas *c = new Canvas(model.frames.at(0), scaledCanvasWidth, scaledCanvasHeight, ui->canvasLabel);
+
+    c->move((ui->canvasLabel->width()/2) -(scaledCanvasWidth/2), (ui->canvasLabel->height()/2) - (scaledCanvasHeight/2));
+
+//    c->resize(model.canvasWidth, model.canvasHeight);
+
+//    c->resize(ui->canvasLabel->width(), ui->canvasLabel->height());
+//    c->setScaledContents(true);
+
+    ui->canvasLabel->setScaledContents(true);
 
     // Initializing slider
     ui->sizeSlider->setMaximum(40);
@@ -171,30 +187,57 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &Model::startAnimationAfterDelete);
 
     // connect play canvas animation
-
-    connect(this,
-            &MainWindow::sendCanvasPlayValue,
-            &model,
-            &Model::setCanvasPlayPause);
-
-    connect(&model,
-            &Model::sendNextCanvasAnimationFrame,
-            &model,
-            &Model::incrementCanvasAnimation);
-
     connect(ui->playFullscreenButton,
             &QPushButton::clicked,
             this,
-            &MainWindow::playPauseCanvasAnimation);
-
+            &MainWindow::openFullScreenPreview);
+    connect(this,
+            &MainWindow::getFirstFrame,
+            &model,
+            &Model::incrementCanvasAnimation);
     connect(&model,
             &Model::sendNextCanvasAnimationFrame,
-            c,
-            &Canvas::nextFrameChanged);
-    connect(&model,
-            &Model::canDraw,
+            this->preview,
+            &FullscreenPreview::receiveFrame);
+    connect(this->preview,
+            &FullscreenPreview::updatedImage,
+            &model,
+            &Model::incrementCanvasAnimation);
+    connect(this->preview,
+            &FullscreenPreview::enableMainWindow,
+            this,
+            &MainWindow::enableMainWindowAfterHide);
+    connect(this->preview,
+            &FullscreenPreview::enableMainWindow,
             c,
             &Canvas::recieveCanDraw);
+//    connect(this,
+//            &MainWindow::sendCanvasPlayValue,
+//            &model,
+//            &Model::setCanvasPlayPause);
+
+//    connect(&model,
+//            &Model::sendNextCanvasAnimationFrame,
+//            preview,
+//            &FullscreenPreview::receiveFrame);
+
+//    connect(ui->playFullscreenButton,
+//            &QPushButton::clicked,
+//            this,
+//            &MainWindow::openFullScreenPreview);
+//    connect(preview,
+//            &FullscreenPreview::updatedImage,
+//            &model,
+//            &Model::incrementCanvasAnimation);
+
+//    connect(&model,
+//            &Model::sendNextCanvasAnimationFrame,
+//            c,
+//            &Canvas::nextFrameChanged);
+//    connect(&model,
+//            &Model::canDraw,
+//            c,
+//            &Canvas::recieveCanDraw);
 
     //Conect Total frame count
     connect(&model,
@@ -207,6 +250,16 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &QPushButton::clicked,
             &model,
             &Model::copyFrame);
+
+    //toolbar
+    connect(ui->actionsave,
+            &QAction::triggered,
+            this,
+            &MainWindow::showSaveWindow);
+    connect(this,
+            &MainWindow::sendSaved,
+            &model,
+            &Model::saveClicked);
 }
 /**
  * @brief MainWindow::drawAnimation
@@ -291,4 +344,21 @@ void MainWindow::playPauseAnimation()
 void MainWindow::setTextCurrentFrameLabel(int curr, int total){
     QString s = QString::number(curr+1) + "/" + QString::number(total);
     ui->currentFrameLabel->setText(s);
+}
+
+
+void MainWindow::openFullScreenPreview(){
+    preview->show();
+    preview->animationRunning = true;
+    emit getFirstFrame();
+    this->setDisabled(true);
+}
+
+void MainWindow::enableMainWindowAfterHide(){
+    this->setDisabled(false);
+}
+void MainWindow::showSaveWindow(bool){
+    QString filter = "Sprites (*.ssp)";
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Sprite"), QDir::homePath() , filter, &filter); // homepath MAY NOT WORK FOR ALL OS
+    emit sendSaved(fileName);
 }

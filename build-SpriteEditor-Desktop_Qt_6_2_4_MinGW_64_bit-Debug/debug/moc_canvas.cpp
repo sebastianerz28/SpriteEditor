@@ -8,6 +8,7 @@
 
 #include <memory>
 #include "../../SpriteEditor/canvas.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
@@ -22,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Canvas_t {
-    const uint offsetsAndSize[38];
-    char stringdata0[313];
+    const uint offsetsAndSize[40];
+    char stringdata0[328];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_Canvas_t, stringdata0) + ofs), len 
@@ -47,7 +48,8 @@ QT_MOC_LITERAL(211, 19), // "colorDialogSelected"
 QT_MOC_LITERAL(231, 19), // "firstHistorySelcted"
 QT_MOC_LITERAL(251, 20), // "secondHistorySelcted"
 QT_MOC_LITERAL(272, 19), // "thirdHistorySelcted"
-QT_MOC_LITERAL(292, 20) // "fourthHistorySelcted"
+QT_MOC_LITERAL(292, 20), // "fourthHistorySelcted"
+QT_MOC_LITERAL(313, 14) // "recieveCanDraw"
 
     },
     "Canvas\0firstHistoryChanged\0\0"
@@ -58,7 +60,7 @@ QT_MOC_LITERAL(292, 20) // "fourthHistorySelcted"
     "eraseSelected\0brushSelected\0"
     "colorDialogSelected\0firstHistorySelcted\0"
     "secondHistorySelcted\0thirdHistorySelcted\0"
-    "fourthHistorySelcted"
+    "fourthHistorySelcted\0recieveCanDraw"
 };
 #undef QT_MOC_LITERAL
 
@@ -68,7 +70,7 @@ static const uint qt_meta_data_Canvas[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -76,24 +78,25 @@ static const uint qt_meta_data_Canvas[] = {
        6,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  110,    2, 0x06,    1 /* Public */,
-       3,    1,  113,    2, 0x06,    3 /* Public */,
-       4,    1,  116,    2, 0x06,    5 /* Public */,
-       5,    1,  119,    2, 0x06,    7 /* Public */,
-       6,    1,  122,    2, 0x06,    9 /* Public */,
-       7,    1,  125,    2, 0x06,   11 /* Public */,
+       1,    1,  116,    2, 0x06,    1 /* Public */,
+       3,    1,  119,    2, 0x06,    3 /* Public */,
+       4,    1,  122,    2, 0x06,    5 /* Public */,
+       5,    1,  125,    2, 0x06,    7 /* Public */,
+       6,    1,  128,    2, 0x06,    9 /* Public */,
+       7,    1,  131,    2, 0x06,   11 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       9,    1,  128,    2, 0x0a,   13 /* Public */,
-      10,    1,  131,    2, 0x0a,   15 /* Public */,
-      11,    1,  134,    2, 0x0a,   17 /* Public */,
-      12,    0,  137,    2, 0x0a,   19 /* Public */,
-      13,    0,  138,    2, 0x0a,   20 /* Public */,
-      14,    0,  139,    2, 0x0a,   21 /* Public */,
-      15,    0,  140,    2, 0x0a,   22 /* Public */,
-      16,    0,  141,    2, 0x0a,   23 /* Public */,
-      17,    0,  142,    2, 0x0a,   24 /* Public */,
-      18,    0,  143,    2, 0x0a,   25 /* Public */,
+       9,    1,  134,    2, 0x0a,   13 /* Public */,
+      10,    1,  137,    2, 0x0a,   15 /* Public */,
+      11,    1,  140,    2, 0x0a,   17 /* Public */,
+      12,    0,  143,    2, 0x0a,   19 /* Public */,
+      13,    0,  144,    2, 0x0a,   20 /* Public */,
+      14,    0,  145,    2, 0x0a,   21 /* Public */,
+      15,    0,  146,    2, 0x0a,   22 /* Public */,
+      16,    0,  147,    2, 0x0a,   23 /* Public */,
+      17,    0,  148,    2, 0x0a,   24 /* Public */,
+      18,    0,  149,    2, 0x0a,   25 /* Public */,
+      19,    1,  150,    2, 0x0a,   26 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    2,
@@ -114,6 +117,7 @@ static const uint qt_meta_data_Canvas[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,    2,
 
        0        // eod
 };
@@ -140,6 +144,7 @@ void Canvas::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 13: _t->secondHistorySelcted(); break;
         case 14: _t->thirdHistorySelcted(); break;
         case 15: _t->fourthHistorySelcted(); break;
+        case 16: _t->recieveCanDraw((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -190,14 +195,14 @@ void Canvas::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
 }
 
 const QMetaObject Canvas::staticMetaObject = { {
-    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    QMetaObject::SuperData::link<QLabel::staticMetaObject>(),
     qt_meta_stringdata_Canvas.offsetsAndSize,
     qt_meta_data_Canvas,
     qt_static_metacall,
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_Canvas_t
 , QtPrivate::TypeAndForceComplete<Canvas, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QImage &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>
 
 
 >,
@@ -215,22 +220,22 @@ void *Canvas::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_Canvas.stringdata0))
         return static_cast<void*>(this);
-    return QWidget::qt_metacast(_clname);
+    return QLabel::qt_metacast(_clname);
 }
 
 int Canvas::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QLabel::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 17)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 16;
+        _id -= 17;
     }
     return _id;
 }

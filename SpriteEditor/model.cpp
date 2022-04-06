@@ -9,6 +9,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QFileDialog>
 
 /**
  * @brief Model::Model
@@ -165,10 +166,11 @@ void Model::incrementAnimation(){
  * @brief Model::incrementCanvasAnimation
  */
 void Model::incrementCanvasAnimation(){
-    if(canvasAnimationRunning){
+//    if(canvasAnimationRunning){
+
         QTimer::singleShot(frameRate, this, &Model::emitSendNextCanvasAnimationFrame);
         currFrame = (currFrame+1) % frames.size();
-    }
+//    }
 }
 /**
  * @brief Model::setPlayPauseBool
@@ -210,13 +212,20 @@ void Model::emitPauseAnimation(){
     emit pauseAnimation();
 }
 
+\
+void Model::saveClicked(QString filename){
+
+      QJsonObject saveSprite;
+      write(saveSprite, filename);
+}
+
 /**
  * @brief Model::write
  * this method creates a json file of the frames and stores each individual pixel
  * this allows to save a sprite project
  * @param json
  */
-void Model::write(QJsonObject &json) const {
+void Model::write(QJsonObject &json, QString filename) const {
     json["width"] = frames.at(0).width();
     json["height"] = frames.at(0).height();
     json["numberOfFrames"] = (int)frames.size();
@@ -228,7 +237,14 @@ void Model::write(QJsonObject &json) const {
             QJsonArray widthArray;
             for(int j = 0; j < frames.at(l).width(); j++){
                 QColor color = frames.at(l).pixelColor(i, j);
-                widthArray.push_back(color.name());
+
+                QJsonArray colorArray;
+                colorArray.push_back(color.red());
+                colorArray.push_back(color.green());
+                colorArray.push_back(color.blue());
+                colorArray.push_back(color.alpha());
+
+                widthArray.push_back(colorArray);
             }
             heightArray.push_back(widthArray);
         }
@@ -238,6 +254,13 @@ void Model::write(QJsonObject &json) const {
         frameArray.push_back(json[frameName]);
     }
     json["frames"] = frameArray;
+
+    QJsonDocument doc;
+    doc.setObject(json);
+    QFile file(filename);
+    file.open(QFile::WriteOnly | QFile::Text | QFile::Truncate);
+    file.write(doc.toJson());
+    file.close();
 }
 
 /**
@@ -248,21 +271,27 @@ void Model::write(QJsonObject &json) const {
  */
 void Model::read(QJsonObject &json) {
     numberOfFrames = json["numberOfFrames"].toInt();
-    imageWidth = json["width"].toInt();
-    imageHeight = json["height"].toInt();
     QJsonArray frameArray = json["frames"].toArray();
-
+    frames.pop_back();
     for(int i = 0; i < frameArray.size(); i++){
-        QImage imgAtFrame;
+        QImage imgAtFrame(canvasWidth, canvasHeight, QImage::Format_RGBA64);
+
         QJsonArray heights = frameArray.at(i).toArray();
         for(int j = 0; j < heights.size(); j++){
-            QJsonArray widths = heights.at(i).toArray();
+            QJsonArray widths = heights.at(j).toArray();
             for(int k = 0; k < widths.size(); k++){
-                QColor color = widths.at(k).toString();
-                imgAtFrame.setPixel(j,i, color.rgba64());
+                QJsonArray colorArray = widths.at(k).toArray();
+                QColor color;
+                color.setRed(colorArray.at(0).toInt());
+                color.setGreen(colorArray.at(1).toInt());
+                color.setBlue(colorArray.at(2).toInt());
+                color.setAlpha(colorArray.at(3).toInt());
+
+                imgAtFrame.setPixel(j, k, qRgba(color.red(), color.green(), color.blue(), color.alpha()));
             }
         }
         frames.push_back(imgAtFrame);
     }
+
 }
 
