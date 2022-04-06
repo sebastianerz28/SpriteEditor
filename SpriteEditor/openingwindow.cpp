@@ -5,9 +5,10 @@
 #include <QJsonObject>
 
 /**
- * @brief OpeningWindow::OpeningWindow
- * @param model
- * @param parent
+ * @brief OpeningWindow::OpeningWindow This class holds logic for the opening window popup display
+ * that asks the user for how they would like to load the pixel editor or create a new one
+ * @param model Model to be used in the editor project
+ * @param parent QWidget
  */
 OpeningWindow::OpeningWindow(Model* model, QWidget *parent) :
     QWidget(parent), w(nullptr),
@@ -28,6 +29,7 @@ OpeningWindow::OpeningWindow(Model* model, QWidget *parent) :
     ui->widthBox->setEnabled(false);
     ui->heightBox->setEnabled(false);
 
+    // Button connections
     connect(ui->createNewButton,
             &QPushButton::pressed,
             this,
@@ -60,36 +62,37 @@ OpeningWindow::~OpeningWindow()
 }
 
 /**
- * @brief OpeningWindow::loadExistingPressed
+ * @brief OpeningWindow::loadExistingPressed Logic to load a sprite project from existing
  */
 void OpeningWindow::loadExistingPressed(){
     QString fileName = QFileDialog::getOpenFileName(this, "open a file");
+    if(!(fileName.size() == 0)){
+        QFile file(fileName);
+        file.open(QIODevice::ReadOnly | QIODevice::Text);
 
+        QByteArray bytes = file.readAll();
+        file.close();
+        QJsonDocument document = QJsonDocument::fromJson(bytes);
+        QJsonObject fileObj = document.object();
 
-    QFile file(fileName);
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
+        int imageWidth = fileObj["width"].toInt();
+        int imageHeight = fileObj["height"].toInt();
 
-//    QString val;
-//    val = file.readAll();
-//    file.close();
-
-    QByteArray bytes = file.readAll();
-    file.close();
-    QJsonDocument document = QJsonDocument::fromJson(bytes);
-    QJsonObject fileObj = document.object();
-
-    int imageWidth = fileObj["width"].toInt();
-    int imageHeight = fileObj["height"].toInt();
-
-    m = new Model(imageWidth, imageHeight);
-    m->read(fileObj);
-    w = new MainWindow(*m);
-    w->show();
-    this->hide();
+        m = new Model(imageWidth, imageHeight);
+        m->read(fileObj);
+        w = new MainWindow(*m);
+        w->show();
+        this->hide();
+    }
+    else{
+        ui->loadButton->setEnabled(true);
+        ui->loadButton->setDown(false);
+    }
 }
 
 /**
- * @brief OpeningWindow::startPressed
+ * @brief OpeningWindow::startPressed Logic to create and display a new opening window if the user
+ * wants start from new
  */
 void OpeningWindow::startPressed(){
     m = new Model(width, height);
@@ -99,7 +102,8 @@ void OpeningWindow::startPressed(){
 }
 
 /**
- * @brief OpeningWindow::widthBoxChanged
+ * @brief OpeningWindow::widthBoxChanged Logic to connect changing width isntance variables if the user
+ * chooses a non default width size
  * @param inputWidth
  */
 void OpeningWindow::widthBoxChanged(int inputWidth){
@@ -107,7 +111,8 @@ void OpeningWindow::widthBoxChanged(int inputWidth){
 }
 
 /**
- * @brief OpeningWindow::heightBoxChanged
+ * @brief OpeningWindow::heightBoxChanged Logic to connect changing height isntance variables if the user
+ * chooses a non default height size
  * @param inputHeight
  */
 void OpeningWindow::heightBoxChanged(int inputHeight){
@@ -115,7 +120,8 @@ void OpeningWindow::heightBoxChanged(int inputHeight){
 }
 
 /**
- * @brief OpeningWindow::createNewPressed
+ * @brief OpeningWindow::createNewPressed "parent" button that contros what extra buttons are enabled when the user chooses to create a new project
+ * from new
  */
 void OpeningWindow::createNewPressed(){
     ui->widthBox->setEnabled(true);
