@@ -363,7 +363,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1054, 21));
+        menubar->setGeometry(QRect(0, 0, 1054, 24));
         menufile = new QMenu(menubar);
         menufile->setObjectName(QString::fromUtf8("menufile"));
         menuhelp = new QMenu(menubar);
@@ -376,7 +376,6 @@ public:
         menubar->addAction(menufile->menuAction());
         menubar->addAction(menuhelp->menuAction());
         menufile->addAction(actionsave);
-        menufile->addAction(actionLoad);
 
         retranslateUi(MainWindow);
 

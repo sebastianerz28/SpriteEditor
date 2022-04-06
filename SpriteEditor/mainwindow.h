@@ -33,6 +33,8 @@ signals:
     void sendPlayValue(bool);
     void sendCanvasPlayValue(bool);
     void getFirstFrame();
+    void sendSaved(QString);
+
 
 public slots:
     void drawAnimation(QImage&);
@@ -41,6 +43,6 @@ public slots:
     void setTextCurrentFrameLabel(int, int);
     void openFullScreenPreview();
     void enableMainWindowAfterHide();
-
+    void showSaveWindow(bool);
 };
 #endif

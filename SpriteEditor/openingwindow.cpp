@@ -1,6 +1,9 @@
 #include "openingwindow.h"
 #include "ui_openingwindow.h"
 #include "mainwindow.h"
+#include <QJsonDocument>
+#include <QJsonObject>
+
 /**
  * @brief OpeningWindow::OpeningWindow
  * @param model
@@ -46,6 +49,7 @@ OpeningWindow::OpeningWindow(Model* model, QWidget *parent) :
             this,
             &OpeningWindow::heightBoxChanged);
 }
+
 /**
  * @brief OpeningWindow::~OpeningWindow
  */
@@ -54,13 +58,36 @@ OpeningWindow::~OpeningWindow()
     delete ui;
     delete w;
 }
+
 /**
  * @brief OpeningWindow::loadExistingPressed
  */
 void OpeningWindow::loadExistingPressed(){
     QString fileName = QFileDialog::getOpenFileName(this, "open a file");
-    ui->createNewButton->setEnabled(false);
+
+
+    QFile file(fileName);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+
+//    QString val;
+//    val = file.readAll();
+//    file.close();
+
+    QByteArray bytes = file.readAll();
+    file.close();
+    QJsonDocument document = QJsonDocument::fromJson(bytes);
+    QJsonObject fileObj = document.object();
+
+    int imageWidth = fileObj["width"].toInt();
+    int imageHeight = fileObj["height"].toInt();
+
+    m = new Model(imageWidth, imageHeight);
+    m->read(fileObj);
+    w = new MainWindow(*m);
+    w->show();
+    this->hide();
 }
+
 /**
  * @brief OpeningWindow::startPressed
  */
@@ -70,6 +97,7 @@ void OpeningWindow::startPressed(){
     w->show();
     this->hide();
 }
+
 /**
  * @brief OpeningWindow::widthBoxChanged
  * @param inputWidth
@@ -77,6 +105,7 @@ void OpeningWindow::startPressed(){
 void OpeningWindow::widthBoxChanged(int inputWidth){
     width = inputWidth;
 }
+
 /**
  * @brief OpeningWindow::heightBoxChanged
  * @param inputHeight
@@ -84,6 +113,7 @@ void OpeningWindow::widthBoxChanged(int inputWidth){
 void OpeningWindow::heightBoxChanged(int inputHeight){
     height = inputHeight;
 }
+
 /**
  * @brief OpeningWindow::createNewPressed
  */

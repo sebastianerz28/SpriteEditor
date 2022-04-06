@@ -9,6 +9,7 @@
 #include <cmath>
 #include <string>
 #include "openingwindow.h"
+#include <QFileDialog>
 
 using std::fmin;
 using std::string;
@@ -255,7 +256,15 @@ MainWindow::MainWindow(Model&model, QWidget *parent)
             &model,
             &Model::copyFrame);
 
-
+    //toolbar
+    connect(ui->actionsave,
+            &QAction::triggered,
+            this,
+            &MainWindow::showSaveWindow);
+    connect(this,
+            &MainWindow::sendSaved,
+            &model,
+            &Model::saveClicked);
 }
 /**
  * @brief MainWindow::drawAnimation
@@ -342,6 +351,7 @@ void MainWindow::setTextCurrentFrameLabel(int curr, int total){
     ui->currentFrameLabel->setText(s);
 }
 
+
 void MainWindow::openFullScreenPreview(){
     preview->show();
     preview->animationRunning = true;
@@ -351,4 +361,9 @@ void MainWindow::openFullScreenPreview(){
 
 void MainWindow::enableMainWindowAfterHide(){
     this->setDisabled(false);
+}
+void MainWindow::showSaveWindow(bool){
+    QString filter = "Sprites (*.ssp)";
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Sprite"), QDir::homePath() , filter, &filter); // homepath MAY NOT WORK FOR ALL OS
+    emit sendSaved(fileName);
 }

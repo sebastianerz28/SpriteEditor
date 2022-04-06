@@ -25,7 +25,7 @@ public:
     int canvasWidth;
     int canvasHeight;
     int frameRate;
-    void write(QJsonObject &json) const;
+    void write(QJsonObject &json, QString) const;
     void read(QJsonObject &json);
     int imageWidth;
     int imageHeight;
@@ -46,6 +46,7 @@ public slots:
     void deleteFrameRunning();
     void startAnimationAfterDelete();
     void copyFrame();
+    void saveClicked(QString);
 
 signals:
     void sendNextFrame(QImage &image);
